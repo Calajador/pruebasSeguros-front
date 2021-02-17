@@ -1,0 +1,90 @@
+<mat-dialog-content [formGroup]="formularioPersona">
+  <mat-form-field>
+    <input matInput placeholder="Name" formControlName="nombre" />
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Apellidos" formControlName="apellidos" />
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-select placeholder="Sexo" formControlName="sex">
+      <mat-option value="masculino"> masculino</mat-option>
+      <mat-option value="femenino"> femenino</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <!-- <input
+      matInput
+      placeholder="Fecha nacimiento"
+      formControlName="fechaNacimiento"
+      [matDatepicker]="picker"
+    />
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+
+    <mat-datepicker #picker></mat-datepicker> -->
+    <input
+      matInput
+      placeholder="Fecha nacimiento"
+      formControlName="fechaNacimiento"
+      mask="00/00/0000"
+      [showMaskTyped]="true"
+    />
+  </mat-form-field>
+
+  <mat-form-field>
+    <input
+      matInput
+      placeholder="DNI"
+      formControlName="indentificacion"
+      mask="00000000S"
+    />
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Licencia" formControlName="licenciaConducir" />
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Direccion" formControlName="direccion" />
+  </mat-form-field>
+
+  <mat-form-field>
+    <input
+      matInput
+      placeholder="Telefono"
+      formControlName="telefono"
+      mask="000 00 00 00"
+    />
+  </mat-form-field>
+
+  <mat-form-field>
+    <input
+      matInput
+      placeholder="Email"
+      formControlName="email"
+      pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}"
+    />
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-select placeholder="Seguro" formControlName="seguro">
+      <mat-option *ngFor="let item of seguros" [value]="item._id">{{
+        item.titulo
+      }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div class="form-element">
+    <button mat-raised-button color="accent" (click)="cerrar()">Cerrar</button>
+    <button
+      mat-raised-button
+      color="primary"
+      [disabled]="!formularioPersona.valid"
+      (click)="agregar()"
+    >
+      {{ enviar }}
+    </button>
+  </div>
+</mat-dialog-content>

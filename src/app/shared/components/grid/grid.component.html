@@ -1,0 +1,89 @@
+<div>
+  <mat-form-field>
+    <input
+      matInput
+      (keyup)="applyFilter($event.target.value)"
+      placeholder="Filter"
+    />
+  </mat-form-field>
+  <button>Añadir</button>
+
+  <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+    <ng-container
+      [matColumnDef]="tableData"
+      *ngFor="let tableData of objectKeys(columnHeader)"
+    >
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        <mat-checkbox
+          *ngIf="columnHeader[tableData] == ''"
+          (change)="$event ? masterToggle() : null"
+          [checked]="selection.hasValue() && isAllSelected()"
+          [indeterminate]="selection.hasValue() && !isAllSelected()"
+          [aria-label]="checkboxLabel()"
+        >
+        </mat-checkbox>
+        {{ columnHeader[tableData] }}
+      </th>
+      <div
+        *ngIf="
+          columnHeader[tableData] != 'Editar' &&
+          columnHeader[tableData] != 'Borrar' &&
+          columnHeader[tableData] != 'Detalle' &&
+          columnHeader[tableData] != ''
+        "
+      >
+        <td mat-cell *matCellDef="let element">{{ element[tableData] }}</td>
+      </div>
+      <div *ngIf="columnHeader[tableData] == ''">
+        <td mat-cell *matCellDef="let row">
+          <mat-checkbox
+            (click)="$event.stopPropagation(); seeCheck(row)"
+            (change)="$event ? selection.toggle(row) : null"
+            [checked]="selection.isSelected(row)"
+            [aria-label]="checkboxLabel(row)"
+          >
+          </mat-checkbox>
+        </td>
+      </div>
+      <div *ngIf="columnHeader[tableData] == 'Editar'">
+        <td mat-cell *matCellDef="let element">
+          <mat-icon (click)="editRow(element)" style="cursor: pointer"
+            >edit</mat-icon
+          >
+        </td>
+      </div>
+      <div *ngIf="columnHeader[tableData] == 'Borrar'">
+        <td mat-cell *matCellDef="let element">
+          <mat-icon (click)="deleteRow(element)" style="cursor: pointer"
+            >delete</mat-icon
+          >
+        </td>
+      </div>
+      <div *ngIf="columnHeader[tableData] == 'Detalle'">
+        <td mat-cell *matCellDef="let element">
+          <mat-icon (click)="selectRow(element)" style="cursor: pointer"
+            >add</mat-icon
+          >
+        </td>
+      </div>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="objectKeys(columnHeader)"></tr>
+    <tr mat-row *matRowDef="let row; columns: objectKeys(columnHeader)"></tr>
+  </table>
+
+  <div
+    *ngIf="isLoading"
+    style="
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: white;
+    "
+  >
+    <mat-progress-spinner color="primary" mode="indeterminate">
+    </mat-progress-spinner>
+  </div>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</div>

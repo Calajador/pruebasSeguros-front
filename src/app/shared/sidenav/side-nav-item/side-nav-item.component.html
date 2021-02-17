@@ -1,0 +1,11 @@
+<mat-expansion-panel dense>
+  <mat-expansion-panel-header>
+    <mat-icon style="margin-right: 5px">{{ item.iconName }}</mat-icon>
+    {{ item.displayName | translate }}
+  </mat-expansion-panel-header>
+  <mat-nav-list *ngFor="let child of item.children" dense>
+    <a mat-list-item [routerLink]="child.route" (click)="onToggleSidenav()">{{
+      child.displayName | translate
+    }}</a>
+  </mat-nav-list>
+</mat-expansion-panel>

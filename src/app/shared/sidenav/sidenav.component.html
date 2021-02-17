@@ -1,0 +1,29 @@
+<mat-sidenav-container id="container" fullscreen>
+  <mat-sidenav
+    #sidenav
+    role="navigation"
+    mode="over"
+    [class.mat-elevation-z4]="true"
+    opened="false"
+  >
+    <mat-nav-list dense>
+      <div>
+        <img src="./assets/ust.jpg" class="logo-nav" />
+      </div>
+      <mat-accordion>
+        <div>
+          <app-side-nav-item
+            [item]="item"
+            *ngFor="let item of navItems"
+            (sidenavToggle)="sidenav.toggle()"
+          ></app-side-nav-item>
+        </div>
+      </mat-accordion>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <router-outlet>
+      <app-toolbar (sidenavToggle)="sidenav.toggle()"></app-toolbar>
+    </router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

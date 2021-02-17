@@ -1,0 +1,33 @@
+<mat-toolbar class="toolbar" color="accent">
+  <div>
+    <button mat-icon-button (click)="onToggleSidenav()">
+      <mat-icon>menu</mat-icon>
+    </button>
+  </div>
+  <span>{{ "navbar.home" | translate }}</span>
+  <span class="example-spacer"></span>
+  <button
+    mat-icon-button
+    class="example-icon"
+    aria-label="Example icon-button with share icon"
+    (click)="logOut()"
+  >
+    <mat-icon>LG</mat-icon>
+  </button>
+  <button
+    mat-icon-button
+    class="example-icon favorite-icon"
+    aria-label="Example icon-button with heart icon"
+    (click)="cambiarLenguaje('es')"
+  >
+    <span>{{ "navbar.spanish" | translate }}</span>
+  </button>
+  <button
+    mat-icon-button
+    class="example-icon"
+    aria-label="Example icon-button with share icon"
+    (click)="cambiarLenguaje('en')"
+  >
+    <mat-icon>{{ "navbar.english" | translate }}</mat-icon>
+  </button>
+</mat-toolbar>

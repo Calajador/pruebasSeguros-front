@@ -1,0 +1,55 @@
+<app-header
+  id="section1"
+  [titulo]="'people.lists.title' | translate"
+></app-header>
+
+<app-button
+  *ngIf="acceso"
+  [color]="ButtonColors.PRIMARY"
+  [displayType]="ButtonTypes.RAISED"
+  [text]="'Añadir Persona'"
+  rightIcon="add"
+  (click)="addPerson()"
+></app-button>
+<hr />
+
+<div id="section2" class="container">
+  <app-grid
+    [tableData]="personas$ | async"
+    [columnHeader]="personasColumns"
+    (editData)="getEditData($event)"
+    (deleteData)="getDeleteData($event)"
+  >
+  </app-grid>
+</div>
+
+<div id="section3" class="container">
+  <app-grid
+    [tableData]="personas$ | async"
+    [columnHeader]="personasColumns"
+    (editData)="getEditData($event)"
+    (deleteData)="getDeleteData($event)"
+  >
+  </app-grid>
+</div>
+
+<div id="section4" class="container">
+  <app-grid
+    [tableData]="personas$ | async"
+    [columnHeader]="personasColumns"
+    (editData)="getEditData($event)"
+    (deleteData)="getDeleteData($event)"
+  >
+  </app-grid>
+</div>
+
+<div class="menu">
+  <ul>
+    <li (click)="goToSection1()">section 1</li>
+    <li (click)="goToSection2()">section 2</li>
+    <li (click)="goToSection3()">section 3</li>
+    <li (click)="goToSection4()">section 4</li>
+  </ul>
+</div>
+
+<hr />

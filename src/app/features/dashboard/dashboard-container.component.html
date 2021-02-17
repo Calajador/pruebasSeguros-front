@@ -1,0 +1,218 @@
+<section class="jumbotron text-center">
+  <div class="container">
+    <h1 class="jumbotron-heading">{{ "dashboard.title" | translate }}</h1>
+    <p>
+      <app-button
+        [color]="ButtonColors.ACCENT"
+        [displayType]="ButtonTypes.BASIC"
+        [text]="'HOLA'"
+      ></app-button>
+      <app-button
+        [color]="ButtonColors.PRIMARY"
+        [displayType]="ButtonTypes.RAISED"
+        [text]="'HOLA'"
+        rightIcon="add"
+        (click)="onClick()"
+      ></app-button>
+    </p>
+  </div>
+</section>
+
+<div class="container">
+  <div class="row">
+    <div class="col-3">
+      <h6>Para fechas</h6>
+      <input matInput mask="00/00/0000" />
+    </div>
+    <div class="col-3">
+      <h6>Para fechas Mostrando ayuda</h6>
+      <input matInput mask="00/00/0000" [showMaskTyped]="true" />
+    </div>
+    <div class="col-3">
+      <h6>Para Numero fijo</h6>
+      <input matInput mask="(00) 000 00 00" />
+    </div>
+    <div class="col-3">
+      <h6>Para Numero mvl</h6>
+      <input matInput mask="000 00 00 00" />
+    </div>
+  </div>
+  <hr />
+
+  <div class="row">
+    <div class="col-3">
+      <h6>Para Precios</h6>
+      <input type="text" suffix=" $" mask="0000" />
+    </div>
+    <div class="col-3">
+      <h6>Para Miles Sin simbolo</h6>
+      <input type="text" mask="separator" />
+    </div>
+    <div class="col-3">
+      <h6>Para Miles Con puntos</h6>
+      <input type="text" mask="separator" thousandSeparator="." />
+    </div>
+    <div class="col-3">
+      <h6>Para Miles Con comas</h6>
+      <input type="text" mask="separator" thousandSeparator="," />
+    </div>
+  </div>
+  <hr />
+
+  <div class="row">
+    <div class="col-6">
+      <h6>Miles con Punto y 2 Decimales con Coma</h6>
+      <input type="text" mask="separator.2" thousandSeparator="." />
+    </div>
+    <div class="col-6">
+      <h6>Miles con Coma y 2 Decimales con Punto</h6>
+      <input type="text" mask="separator.2" thousandSeparator="," />
+    </div>
+  </div>
+  <hr />
+
+  <div class="row">
+    <div class="col-6">
+      <h6>Cuenta Bancaria</h6>
+      <input matInput mask="SS 00 0000 0000 00 0000000000" />
+    </div>
+    <div class="col-3">
+      <h6>DNI</h6>
+      <input matInput mask="00000000S" />
+    </div>
+  </div>
+</div>
+
+<div class="container" *ngIf="siniestros">
+  <h2>Seccion Para Siniestros</h2>
+  <div class="row">
+    <div class="col-3">
+      <mat-form-field appearance="fill">
+        <mat-label>Input</mat-label>
+        <input matInput />
+      </mat-form-field>
+    </div>
+    <div class="col-3">
+      <mat-form-field appearance="fill">
+        <mat-label>Select</mat-label>
+        <mat-select>
+          <mat-option value="one">First option</mat-option>
+          <mat-option value="two">Second option</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="col-3">
+      <mat-form-field appearance="fill">
+        <mat-label>Textarea</mat-label>
+        <textarea matInput></textarea>
+      </mat-form-field>
+    </div>
+    <div class="col-3">
+      <mat-form-field appearance="outline">
+        <mat-label>Outline form field</mat-label>
+        <input matInput placeholder="Placeholder" />
+        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+        <mat-hint>Hint</mat-hint>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-3">
+      <mat-form-field appearance="fill">
+        <mat-label>Input</mat-label>
+        <input matInput />
+      </mat-form-field>
+    </div>
+    <div class="col-3">
+      <mat-form-field appearance="fill">
+        <mat-label>Select</mat-label>
+        <mat-select>
+          <mat-option value="one">First option</mat-option>
+          <mat-option value="two">Second option</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="col-3">
+      <mat-form-field appearance="fill">
+        <mat-label>Textarea</mat-label>
+        <textarea matInput></textarea>
+      </mat-form-field>
+    </div>
+    <div class="col-3">
+      <mat-form-field appearance="outline">
+        <mat-label>Outline form field</mat-label>
+        <input matInput placeholder="Placeholder" />
+        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+        <mat-hint>Hint</mat-hint>
+      </mat-form-field>
+    </div>
+  </div>
+</div>
+
+<div class="container" *ngIf="personas">
+  <h2>Seccion Para Personas</h2>
+  <div class="row">
+    <div class="col-3">
+      <mat-form-field appearance="fill">
+        <mat-label>Input</mat-label>
+        <input matInput />
+      </mat-form-field>
+    </div>
+    <div class="col-3">
+      <mat-form-field appearance="fill">
+        <mat-label>Select</mat-label>
+        <mat-select>
+          <mat-option value="one">First option</mat-option>
+          <mat-option value="two">Second option</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="col-3">
+      <mat-form-field appearance="fill">
+        <mat-label>Textarea</mat-label>
+        <textarea matInput></textarea>
+      </mat-form-field>
+    </div>
+    <div class="col-3">
+      <mat-form-field appearance="outline">
+        <mat-label>Outline form field</mat-label>
+        <input matInput placeholder="Placeholder" />
+        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+        <mat-hint>Hint</mat-hint>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-3">
+      <mat-form-field appearance="fill">
+        <mat-label>Input</mat-label>
+        <input matInput />
+      </mat-form-field>
+    </div>
+    <div class="col-3">
+      <mat-form-field appearance="fill">
+        <mat-label>Select</mat-label>
+        <mat-select>
+          <mat-option value="one">First option</mat-option>
+          <mat-option value="two">Second option</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="col-3">
+      <mat-form-field appearance="fill">
+        <mat-label>Textarea</mat-label>
+        <textarea matInput></textarea>
+      </mat-form-field>
+    </div>
+    <div class="col-3">
+      <mat-form-field appearance="outline">
+        <mat-label>Outline form field</mat-label>
+        <input matInput placeholder="Placeholder" />
+        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+        <mat-hint>Hint</mat-hint>
+      </mat-form-field>
+    </div>
+  </div>
+</div>
+
+<hr />

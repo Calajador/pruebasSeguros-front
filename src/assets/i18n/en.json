@@ -1,0 +1,67 @@
+
+{
+    "navbar": {
+        "home": "Rivadavia Aplication",
+        "spanish": "ES",
+        "english": "EN"
+    },
+
+    "sidebar": {
+        "dashboard":{
+            "menu_title":"Dashboard"
+        },
+
+        "people": {
+            "menu_title":"People",
+            "menu_subtitle_1": "Lists",
+            "menu_subtitle_2": "Maintenance",
+            "menu_subtitle_3": "Position"
+        },
+
+        "ensurence": {
+            "menu_title":"Ensurence",
+            "menu_subtitle_1": "Unsuscribe",
+            "menu_subtitle_2": "Consulta",
+            "menu_subtitle_3": "Consult"
+        },
+
+        "accidents": {
+            "menu_title":"Accidents",
+            "menu_subtitle_1": "Unsuscribe",
+            "menu_subtitle_2": "Consulta",
+            "menu_subtitle_3": "Consult"
+        }
+    },
+
+    "dashboard": {    
+        "title": "Addminisstration Panel"
+    },
+
+    "people": {
+
+        "lists": {
+            "title": "People List Screen"
+        },
+
+        "maintenance": {
+            "title": "People Maintenance Screen"
+        }
+        
+    },
+
+    "ensurence": {
+        "consult": {
+            "title": "Ensurance Consult Screen"
+        }
+    },
+
+    "accidents": {
+        "drop_out": {
+            "title": "Accidents Drop Out"
+        },
+        "options": {
+            "title": "Accidents Optiopns Screen"
+        }
+    }
+}
+

@@ -1,0 +1,66 @@
+{
+    "navbar": {
+        "home": "Aplicación Rivadavia",
+        "spanish": "ES",
+        "english": "EN"
+    },
+
+    "sidebar": {
+        "dashboard":{
+            "menu_title":"Panel de Administracion"
+        },
+
+        "people": {
+            "menu_title":"Personas",
+            "menu_subtitle_1": "Listas",
+            "menu_subtitle_2": "Mantenimiento",
+            "menu_subtitle_3": "Posicion"
+        },
+
+        "ensurence": {
+            "menu_title":"Seguros",
+            "menu_subtitle_1": "Baja",
+            "menu_subtitle_2": "Consulta",
+            "menu_subtitle_3": "Opciones"
+        },
+
+        "accidents": {
+            "menu_title":"Siniestros",
+            "menu_subtitle_1": "Baja",
+            "menu_subtitle_2": "Consulta",
+            "menu_subtitle_3": "Opciones"
+        }
+    },
+
+    "dashboard": {    
+        "title": "Panel de Administracion"
+    },
+
+    "people": {
+
+        "lists": {
+            "title": "Personas Listas Pantalla"
+        },
+
+        "maintenance": {
+            "title": "Personas Mantenimiento Pantalla"
+        }
+        
+    },
+
+    "ensurence": {
+        "consult": {
+            "title": "Seguros Mantenimiento Pantalla"
+        }
+    },
+
+    "accidents": {
+        "drop_out": {
+            "title": "Siniestros Baja"
+        },
+        "options": {
+            "title": "Siniestro Pantalla"
+        }
+    }
+}
+
