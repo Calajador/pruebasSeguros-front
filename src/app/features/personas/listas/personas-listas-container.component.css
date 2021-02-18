@@ -16,4 +16,5 @@
 .menu ul li:hover {
   background-color: black; /* Dark grey background on mouse-over */
   color: azure;
+  cursor: pointer;
 }

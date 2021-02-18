@@ -28,8 +28,6 @@ export class GridComponent implements OnInit {
   @Output() editData = new EventEmitter<any>();
   @Output() deleteData = new EventEmitter<any>();
   private paginator: MatPaginator;
-
-  @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) set matPaginator(mp: MatPaginator) {
     this.paginator = mp;
     this.dataSource.paginator = this.paginator;
@@ -39,7 +37,6 @@ export class GridComponent implements OnInit {
 
   ngOnInit() {
     this.dataSource = new MatTableDataSource(this.tableData);
-    this.dataSource.sort = this.sort;
   }
 
   applyFilter(filterValue: string) {

@@ -7,7 +7,7 @@
 
     "sidebar": {
         "dashboard":{
-            "menu_title":"Panel de Administracion"
+            "menu_title":"Dashboard"
         },
 
         "people": {

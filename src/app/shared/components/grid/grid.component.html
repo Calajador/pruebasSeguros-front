@@ -6,14 +6,13 @@
       placeholder="Filter"
     />
   </mat-form-field>
-  <button>Añadir</button>
 
-  <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
     <ng-container
       [matColumnDef]="tableData"
       *ngFor="let tableData of objectKeys(columnHeader)"
     >
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+      <th mat-header-cell *matHeaderCellDef>
         <mat-checkbox
           *ngIf="columnHeader[tableData] == ''"
           (change)="$event ? masterToggle() : null"

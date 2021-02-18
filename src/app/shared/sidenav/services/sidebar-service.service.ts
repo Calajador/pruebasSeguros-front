@@ -9,13 +9,8 @@ export class SidebarService {
   public menuItems: NavItem[] = [
     {
       displayName: 'sidebar.dashboard.menu_title',
-      iconName: 'library_books',
-      children: [
-        {
-          displayName: 'sidebar.dashboard.menu_title',
-          route: '/dashboard',
-        },
-      ],
+      iconName: 'home',
+      route: '/dashboard',
     },
     {
       displayName: 'sidebar.ensurence.menu_title',
