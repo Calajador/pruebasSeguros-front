@@ -8,26 +8,27 @@
   <span class="example-spacer"></span>
   <button
     mat-icon-button
-    class="example-icon"
-    aria-label="Example icon-button with share icon"
-    (click)="logOut()"
+    class="example-icon favorite-icon"
+    [matMenuTriggerFor]="languageMenu"
   >
-    <mat-icon>LG</mat-icon>
+    <mat-icon>language</mat-icon>
   </button>
+  <mat-menu #languageMenu="matMenu">
+    <button mat-menu-item (click)="cambiarLenguaje('es')">
+      {{ "navbar.spanish" | translate }}
+    </button>
+    <button mat-menu-item (click)="cambiarLenguaje('en')">
+      {{ "navbar.english" | translate }}
+    </button>
+  </mat-menu>
   <button
     mat-icon-button
     class="example-icon favorite-icon"
-    aria-label="Example icon-button with heart icon"
-    (click)="cambiarLenguaje('es')"
+    [matMenuTriggerFor]="personMenu"
   >
-    <span>{{ "navbar.spanish" | translate }}</span>
+    <mat-icon>person</mat-icon>
   </button>
-  <button
-    mat-icon-button
-    class="example-icon"
-    aria-label="Example icon-button with share icon"
-    (click)="cambiarLenguaje('en')"
-  >
-    <mat-icon>{{ "navbar.english" | translate }}</mat-icon>
-  </button>
+  <mat-menu #personMenu="matMenu">
+    <button mat-menu-item (click)="logOut()">LogOut</button>
+  </mat-menu>
 </mat-toolbar>

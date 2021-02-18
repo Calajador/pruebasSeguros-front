@@ -1,24 +1,42 @@
-.form {   
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-  
-.container {
-    display: flex;
-    flex-direction: column;
+
+.container-Login {
+  display: flex;
+  flex-direction: column;
 }
-   
-.button{
-    width: 100%
+
+.button {
+  width: 100%;
 }
-    
-.card{
-    min-width: 150px;
-    max-width: 500px;
-    width: 100%;
+
+.card {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
 }
-  
-mat-card-title{
-    text-align: center;
+
+.message {
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    0deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(9, 9, 121, 1) 9%,
+    rgba(0, 212, 255, 1) 93%
+  );
+  color: aliceblue;
+}
+
+mat-card-title {
+  text-align: center;
+}
+
+.logo {
+  height: 50px;
+  width: 50px;
+  position: relative;
+  top: -20px;
 }
