@@ -35,16 +35,25 @@ export class SidebarService {
       iconName: 'face',
       children: [
         {
-          displayName: 'sidebar.people.menu_subtitle_1',
-          route: '/personas/listas',
+          displayName: 'sidebar.people.sub_menu_1',
+          children: [
+            {
+              displayName: 'sidebar.people.menu_subtitle_1',
+              route: '/personas/listas',
+            },
+            {
+              displayName: 'sidebar.people.menu_subtitle_2',
+              route: '/personas/mantenimiento',
+            },
+            {
+              displayName: 'sidebar.people.menu_subtitle_3',
+              route: '/personas/posicion',
+            },
+          ],
         },
         {
-          displayName: 'sidebar.people.menu_subtitle_2',
-          route: '/personas/mantenimiento',
-        },
-        {
-          displayName: 'sidebar.people.menu_subtitle_3',
-          route: '/personas/posicion',
+          displayName: 'sidebar.people.sub_menu_2',
+          children: [],
         },
       ],
     },

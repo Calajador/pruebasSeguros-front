@@ -1,13 +1,63 @@
-<mat-tab-group mat-align-tabs="start">
-  <mat-tab>
-    <ng-template mat-tab-label>
-      First
-      <mat-icon matBadge="15" matBadgeColor="warn" class="example-tab-icon"
-        >thumb_up</mat-icon
-      >
-    </ng-template>
-    Content 1
-  </mat-tab>
-  <mat-tab label="Second">Content 2</mat-tab>
-  <mat-tab label="Third">Content 3</mat-tab>
-</mat-tab-group>
+<div class="container">
+  <mat-tab-group mat-align-tabs="start">
+    <mat-tab>
+      <ng-template mat-tab-label>
+        Popuesta de Alta
+        <mat-icon matBadge="" matBadgeColor="warn" class="example-tab-icon"
+          >thumb_up</mat-icon
+        >
+      </ng-template>
+
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <h6>Seleccionar Agente</h6>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-3 input">
+            <label for="agentCode">Código de Agente</label>
+            <mat-form-field appearance="outline">
+              <input matInput id="agentCode" placeholder="Código de Agente" />
+            </mat-form-field>
+          </div>
+          <div class="col-6 input">
+            <label for="agentName">Nombre de Agente</label>
+            <mat-form-field appearance="outline">
+              <input matInput id="agentName" placeholder="Nombre de Agente" />
+            </mat-form-field>
+          </div>
+          <div class="col-3 input">
+            <label for="agentCode">Código de Agente</label>
+            <mat-form-field appearance="outline">
+              <input matInput id="agentCode" placeholder="Código de Agente" />
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-12">
+            <p>Resultados</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <app-grid
+              [tableData]="personas$ | async"
+              [columnHeader]="personasColumns"
+              [filter]="false"
+              [pagination]="false"
+            >
+            </app-grid>
+          </div>
+        </div>
+      </div>
+    </mat-tab>
+    <mat-tab label="Tomadores">Content 2</mat-tab>
+    <mat-tab label="Asegurados">Content 3</mat-tab>
+    <mat-tab label="Pagador">Content 3</mat-tab>
+    <mat-tab label="Gastos de Gestión">Content 3</mat-tab>
+    <mat-tab label="Riesgos">Content 3</mat-tab>
+  </mat-tab-group>
+</div>

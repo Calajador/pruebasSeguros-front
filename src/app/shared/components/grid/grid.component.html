@@ -1,5 +1,5 @@
 <div>
-  <mat-form-field>
+  <mat-form-field *ngIf="filter">
     <input
       matInput
       (keyup)="applyFilter($event.target.value)"
@@ -84,5 +84,11 @@
     </mat-progress-spinner>
   </div>
 
-  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+  <mat-paginator
+    *ngIf="pagination"
+    [pageSizeOptions]="paginationSizes"
+    [pageSize]="defaultPageSize"
+    showFirstLastButtons
+  >
+  </mat-paginator>
 </div>

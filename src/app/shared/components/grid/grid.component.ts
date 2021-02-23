@@ -18,25 +18,31 @@ import { MatTableDataSource } from '@angular/material/table';
 })
 export class GridComponent implements OnInit {
   isLoading = true;
+  @Input() filter: boolean;
+  @Input() pagination: boolean;
+  @Input() paginationSizes: number[] = [5, 10, 15];
+  @Input() defaultPageSize = this.paginationSizes[1];
   @Input() public set tableData(tableData: any[]) {
     this.isLoading = false;
-    this.dataSource = new MatTableDataSource(tableData);
+    this.setTableDataSource(tableData);
   }
   @Input() columnHeader;
   objectKeys = Object.keys;
-  dataSource;
+  dataSource: MatTableDataSource<any>;
   @Output() editData = new EventEmitter<any>();
   @Output() deleteData = new EventEmitter<any>();
-  private paginator: MatPaginator;
-  @ViewChild(MatPaginator) set matPaginator(mp: MatPaginator) {
-    this.paginator = mp;
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  selection = new SelectionModel<any>(true, []);
+
+  ngOnInit() {}
+  ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
 
-  selection = new SelectionModel<any>(true, []);
-
-  ngOnInit() {
-    this.dataSource = new MatTableDataSource(this.tableData);
+  setTableDataSource(data: any) {
+    this.dataSource = new MatTableDataSource<any>(data);
+    this.dataSource.paginator = this.paginator;
   }
 
   applyFilter(filterValue: string) {

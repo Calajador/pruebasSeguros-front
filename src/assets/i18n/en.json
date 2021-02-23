@@ -15,7 +15,10 @@
             "menu_title":"People",
             "menu_subtitle_1": "Lists",
             "menu_subtitle_2": "Maintenance",
-            "menu_subtitle_3": "Position"
+            "menu_subtitle_3": "Position",
+            "sub_menu_1": "SubMenu1",
+            "sub_menu_2": "SubMenu2"
+
         },
 
         "ensurence": {

@@ -11,6 +11,11 @@
       <mat-label>Nombre y Apellidos del Agente</mat-label>
       <input matInput />
     </mat-form-field>
-    <app-grid [tableData]="seguros" [columnHeader]="segurosColumns"></app-grid>
+    <app-grid
+      [tableData]="seguros"
+      [columnHeader]="segurosColumns"
+      [filter]="true"
+      [pagination]="false"
+    ></app-grid>
   </mat-expansion-panel>
 </div>

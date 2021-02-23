@@ -6,6 +6,7 @@ import { DashboardContainerComponent } from './dashboard-container.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 
 import { NgxMaskModule, IConfig } from 'ngx-mask';
+import { BreadcrumbModule } from 'xng-breadcrumb';
 
 export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
 
@@ -16,6 +17,7 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
     DashboardRoutingModule,
     NgxMaskModule.forRoot(),
     SharedModule,
+    BreadcrumbModule,
   ],
 })
 export class DashboardModule {}

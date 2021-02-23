@@ -1,7 +1,9 @@
-<a *ngIf="!item.children" mat-list-item [routerLink]="item.route">
-  <mat-icon class="icon">{{ item.iconName }}</mat-icon>
-  {{ item.displayName | translate }}
-</a>
+<mat-nav-list *ngIf="!item.children" class="home">
+  <a mat-list-item [routerLink]="item.route" (click)="onToggleSidenav()">
+    <mat-icon class="icon">{{ item.iconName }}</mat-icon>
+    {{ item.displayName | translate }}
+  </a>
+</mat-nav-list>
 
 <ng-container *ngIf="item.children">
   <mat-expansion-panel>
@@ -10,10 +12,30 @@
       {{ item.displayName | translate }}
     </mat-expansion-panel-header>
 
-    <mat-nav-list *ngFor="let child of item.children">
-      <a mat-list-item [routerLink]="child.route" (click)="onToggleSidenav()">{{
-        child.displayName | translate
-      }}</a>
-    </mat-nav-list>
+    <ng-container *ngFor="let child of item.children">
+      <mat-nav-list *ngIf="!child.children">
+        <a
+          mat-list-item
+          [routerLink]="child.route"
+          (click)="onToggleSidenav()"
+          >{{ child.displayName | translate }}</a
+        >
+      </mat-nav-list>
+      <mat-accordion *ngIf="child.children">
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            {{ child.displayName | translate }}
+          </mat-expansion-panel-header>
+          <mat-nav-list *ngFor="let subChild of child.children">
+            <a
+              mat-list-item
+              [routerLink]="subChild.route"
+              (click)="onToggleSidenav()"
+              >{{ subChild.displayName | translate }}</a
+            >
+          </mat-nav-list>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </ng-container>
   </mat-expansion-panel>
 </ng-container>

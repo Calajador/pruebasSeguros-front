@@ -17,6 +17,10 @@
   <app-grid
     [tableData]="personas$ | async"
     [columnHeader]="personasColumns"
+    [filter]="true"
+    [pagination]="true"
+    [paginationSizes]="[2, 4, 6]"
+    [defaultPageSize]="4"
     (editData)="getEditData($event)"
     (deleteData)="getDeleteData($event)"
   >
@@ -27,16 +31,8 @@
   <app-grid
     [tableData]="personas$ | async"
     [columnHeader]="personasColumns"
-    (editData)="getEditData($event)"
-    (deleteData)="getDeleteData($event)"
-  >
-  </app-grid>
-</div>
-
-<div id="section4" class="container">
-  <app-grid
-    [tableData]="personas$ | async"
-    [columnHeader]="personasColumns"
+    [paginationSizes]="[2, 4, 6]"
+    [defaultPageSize]="4"
     (editData)="getEditData($event)"
     (deleteData)="getDeleteData($event)"
   >
