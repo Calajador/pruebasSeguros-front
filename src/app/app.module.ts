@@ -21,6 +21,7 @@ import { InterceptorService } from './core/auth/services/interceptor.service';
 
 import { AgmCoreModule } from '@agm/core';
 import { NavigationService } from './core/services/navigation.service';
+import { BreadcrumbModule } from 'xng-breadcrumb';
 
 @NgModule({
   declarations: [AppComponent, RegisterComponent, LoginComponent],
@@ -31,6 +32,7 @@ import { NavigationService } from './core/services/navigation.service';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    BreadcrumbModule,
     SweetAlert2Module.forRoot(),
     TranslateModule.forRoot({
       loader: {

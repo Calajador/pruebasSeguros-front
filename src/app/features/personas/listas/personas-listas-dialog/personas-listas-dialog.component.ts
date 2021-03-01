@@ -36,7 +36,7 @@ export class PersonasListasDialogComponent implements OnInit {
         direccion: [data.direccion, Validators.required],
         telefono: [data.telefono, Validators.required],
         email: [data.email, Validators.required],
-        seguro: [data.seguro, Validators.required],
+        idSeguro: [data.idSeguro, Validators.required],
       });
     } else {
       this.createForm();
@@ -59,12 +59,13 @@ export class PersonasListasDialogComponent implements OnInit {
       direccion: ['', Validators.required],
       telefono: ['', Validators.required],
       email: ['', Validators.required],
-      seguro: ['', Validators.required],
+      idSeguro: ['', Validators.required],
     });
   }
 
   agregar() {
     this.dialogRef.close(this.formularioPersona.value);
+    console.log(this.formularioPersona.value);
   }
 
   cerrar() {

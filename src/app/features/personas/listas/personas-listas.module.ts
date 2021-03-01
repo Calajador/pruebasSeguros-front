@@ -7,6 +7,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { PersonasListasDialogComponent } from './personas-listas-dialog/personas-listas-dialog.component';
 import { PersonasListasFiltroComponent } from './personas-listas-filtro/personas-listas-filtro.component';
 import { PersonaDetalleComponent } from './persona-detalle/persona-detalle.component';
+import { BreadcrumbModule } from 'xng-breadcrumb';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,11 @@ import { PersonaDetalleComponent } from './persona-detalle/persona-detalle.compo
     PersonasListasFiltroComponent,
     PersonaDetalleComponent,
   ],
-  imports: [CommonModule, PersonasListasRoutingModule, SharedModule],
+  imports: [
+    CommonModule,
+    PersonasListasRoutingModule,
+    SharedModule,
+    BreadcrumbModule,
+  ],
 })
 export class PersonasListasModule {}

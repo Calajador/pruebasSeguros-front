@@ -15,6 +15,12 @@ const routes: Routes = [
     path: '',
     component: HomeComponent,
     canActivate: [AuthGuard],
+    data: {
+      breadcrumb: {
+        label: 'Home',
+        info: 'home',
+      },
+    },
     children: [
       {
         path: 'dashboard',
@@ -28,6 +34,7 @@ const routes: Routes = [
         canLoad: [AuthGuard],
         loadChildren: async () =>
           (await import('./features/personas/personas.module')).PersonasModule,
+        data: { breadcrumb: { skip: true } },
       },
       {
         path: 'polizas',

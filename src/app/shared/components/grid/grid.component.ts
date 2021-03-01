@@ -31,6 +31,7 @@ export class GridComponent implements OnInit {
   dataSource: MatTableDataSource<any>;
   @Output() editData = new EventEmitter<any>();
   @Output() deleteData = new EventEmitter<any>();
+  @Output() checkData = new EventEmitter<any>();
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   selection = new SelectionModel<any>(true, []);
@@ -88,7 +89,7 @@ export class GridComponent implements OnInit {
     }`;
   }
 
-  seeCheck(row) {
-    console.log(row);
+  takeCheck(row) {
+    this.checkData.emit(row);
   }
 }

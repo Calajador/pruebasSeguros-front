@@ -63,6 +63,11 @@
         "options": {
             "title": "Siniestro Pantalla"
         }
-    }
+    },
+
+    "grid": {
+        "edit":"Editar",
+        "delete": "Borrar",
+        "detail": "Detalle"    }
 }
 

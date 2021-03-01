@@ -5,6 +5,7 @@ import { PersonasListasContainerComponent } from './personas-listas-container.co
 const routes: Routes = [
   {
     path: '',
+    data: { breadcrumb: 'personas listas' },
     component: PersonasListasContainerComponent,
   },
 ];

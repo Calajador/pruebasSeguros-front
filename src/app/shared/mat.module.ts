@@ -19,7 +19,6 @@ import { MatTableModule } from '@angular/material/table';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTabsModule } from '@angular/material/tabs';
-import { PortalModule } from '@angular/cdk/portal';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatBadgeModule } from '@angular/material/badge';
@@ -33,24 +32,44 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { ScrollingModule } from '@angular/cdk/scrolling';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { ObserversModule } from '@angular/cdk/observers';
 import { MatRadioModule } from '@angular/material/radio';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { DrawerRailModule } from 'angular-material-rail-drawer';
+
+import { A11yModule } from '@angular/cdk/a11y';
+import { BidiModule } from '@angular/cdk/bidi';
+import { ObserversModule } from '@angular/cdk/observers';
+import { OverlayModule } from '@angular/cdk/overlay';
+import { PlatformModule } from '@angular/cdk/platform';
+import { PortalModule } from '@angular/cdk/portal';
+import { ScrollingModule } from '@angular/cdk/scrolling';
+import { CdkStepperModule } from '@angular/cdk/stepper';
+import { CdkTableModule } from '@angular/cdk/table';
+import { CdkTreeModule } from '@angular/cdk/tree';
 
 @NgModule({
   declarations: [],
   imports: [],
   exports: [
+    //CDK
+    A11yModule,
+    BidiModule,
+    ObserversModule,
+    OverlayModule,
+    PlatformModule,
+    PortalModule,
+    ScrollingModule,
+    CdkStepperModule,
+    CdkTableModule,
+    CdkTreeModule,
+
+    //Material
     MatRippleModule,
     MatTreeModule,
     MatBadgeModule,
     MatExpansionModule,
     MatProgressSpinnerModule,
-    ObserversModule,
-    ScrollingModule,
     MatSortModule,
     MatPaginatorModule,
     MatDialogModule,
@@ -71,7 +90,6 @@ import { DrawerRailModule } from 'angular-material-rail-drawer';
     MatCheckboxModule,
     MatTooltipModule,
     MatTabsModule,
-    PortalModule,
     MatSnackBarModule,
     MatDatepickerModule,
     MatNativeDateModule,

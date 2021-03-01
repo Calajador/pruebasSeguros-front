@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router, RoutesRecognized } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { filter, map, pairwise } from 'rxjs/operators';
 import { NavigationService } from 'src/app/core/services/navigation.service';
 import {
@@ -14,7 +15,6 @@ import {
 export class DashboardContainerComponent implements OnInit {
   siniestros = true;
   personas = true;
-
   public readonly ButtonTypes = TypeButtonEnum;
   public readonly ButtonColors = ColorButtonEnum;
 
