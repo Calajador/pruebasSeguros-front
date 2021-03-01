@@ -6,7 +6,12 @@ const routes: Routes = [
   {
     path: '',
     component: DashboardContainerComponent,
-    data: { breadcrumb: 'Home' },
+    data: {
+      breadcrumb: {
+        label: 'dashboard.title',
+        info: 'dashboard',
+      },
+    },
   },
 ];
 

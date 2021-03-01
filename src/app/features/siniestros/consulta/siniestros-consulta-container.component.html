@@ -14,7 +14,6 @@
             <h6>Seleccionar Agente</h6>
           </div>
         </div>
-
         <div class="row">
           <div class="col-3 input">
             <label for="agentCode">Código de Agente</label>
@@ -36,9 +35,79 @@
           </div>
         </div>
 
+        <div fxLayout="row" fxLayoutAlign="end center">
+          <app-button
+            [color]="ButtonColors.PRIMARY"
+            [displayType]="ButtonTypes.RAISED"
+            [text]="'Buscar'"
+          ></app-button>
+        </div>
+
+        <hr />
         <div class="row">
           <div class="col-12">
             <p>Resultados</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <app-grid
+              [tableData]="personas$ | async"
+              [columnHeader]="personasColumns"
+              [filter]="false"
+              [pagination]="false"
+              [paginationSizes]="[2, 4, 6]"
+              [defaultPageSize]="2"
+              (checkData)="getSelected($event)"
+            >
+            </app-grid>
+          </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="end end">
+          <div class="col-3 input">
+            <label for="seguro">Canal de Venta</label>
+            <mat-form-field appearance="outline">
+              <mat-select id="seguro">
+                <mat-option>
+                  {{ seguros }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="end center">
+          <app-button
+            [color]="ButtonColors.PRIMARY"
+            [displayType]="ButtonTypes.RAISED"
+            [text]="'Seleccionar Agente'"
+          ></app-button>
+        </div>
+        <hr />
+        <div class="row">
+          <div class="col-12">
+            <h6>Seleccionar Producto</h6>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-3 input">
+            <label for="ramos">Ramos</label>
+            <mat-form-field appearance="outline">
+              <mat-select multiple id="ramos">
+                <mat-select-trigger>
+                  {{ ramos.values ? ramos.values[0] : "" }}
+                  <span
+                    *ngIf="ramos.values?.length > 1"
+                    class="example-additional-selection"
+                  >
+                    (+{{ ramos.values.length - 1 }}
+                    {{ ramos.values?.length === 2 ? "other" : "others" }})
+                  </span>
+                </mat-select-trigger>
+                <mat-option *ngFor="let ramo of ramos" [value]="ramo">{{
+                  ramo
+                }}</mat-option>
+              </mat-select>
+            </mat-form-field>
           </div>
         </div>
         <div class="row">
@@ -48,13 +117,60 @@
               [columnHeader]="personasColumns"
               [filter]="false"
               [pagination]="false"
+              [paginationSizes]="[2, 4, 6]"
+              [defaultPageSize]="2"
+            >
+            </app-grid>
+          </div>
+        </div>
+        <hr />
+        <div fxLayout="row" fxLayoutAlign="end center">
+          <app-button
+            [color]="ButtonColors.PRIMARY"
+            [displayType]="ButtonTypes.RAISED"
+            [text]="'Seleccionar Producto'"
+          ></app-button>
+        </div>
+        <hr />
+        <hr />
+      </div>
+    </mat-tab>
+    <mat-tab label="Tomadores">
+      <div class="container">
+        <div class="row">
+          <div class="col-6">
+            <h6>Tomadores</h6>
+          </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
+          <app-button
+            [color]="ButtonColors.PRIMARY"
+            [displayType]="ButtonTypes.RAISED"
+            [text]="'Añadir Tomador'"
+            leftIcon="add"
+          ></app-button>
+          <app-button
+            [color]="ButtonColors.PRIMARY"
+            [displayType]="ButtonTypes.RAISED"
+            [text]="'Crear Nuevo Tomador'"
+            leftIcon="add"
+          ></app-button>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <app-grid
+              [tableData]="personas$ | async"
+              [columnHeader]="tomadorColumns"
+              [filter]="false"
+              [pagination]="false"
+              [paginationSizes]="[2, 4, 6]"
+              [defaultPageSize]="2"
             >
             </app-grid>
           </div>
         </div>
       </div>
     </mat-tab>
-    <mat-tab label="Tomadores">Content 2</mat-tab>
     <mat-tab label="Asegurados">Content 3</mat-tab>
     <mat-tab label="Pagador">Content 3</mat-tab>
     <mat-tab label="Gastos de Gestión">Content 3</mat-tab>

@@ -10,7 +10,6 @@ import {
 import { PersonasListasDialogComponent } from './personas-listas-dialog/personas-listas-dialog.component';
 import Swal from 'sweetalert2';
 import { AuthService } from '../../auth/services/auth.service';
-import { TableColumn } from 'src/app/shared/components/table/tableColumn';
 
 @Component({
   selector: 'app-personas-listas-container',
@@ -27,16 +26,15 @@ export class PersonasListasContainerComponent implements OnInit, OnDestroy {
   public readonly ButtonTypes = TypeButtonEnum;
   public readonly ButtonColors = ColorButtonEnum;
 
-  peopleColumns: TableColumn[];
   public personasColumns = {
     Select: '',
     nombre: 'Nombre',
     apellidos: 'Apellidos',
     sex: 'Sex',
     fechaNacimiento: 'Nacido',
-    Detalle: 'Detalle',
-    Editar: 'Editar',
-    Borrar: 'Borrar',
+    Detalle: 'grid.detail',
+    Editar: 'grid.edit',
+    Borrar: 'grid.delete',
   };
 
   constructor(

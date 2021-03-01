@@ -11,5 +11,5 @@ export interface Persona {
   telefono?: number;
   email?: string;
   direccion?: string;
-  seguro?: Seguro;
+  idSeguro?: Seguro;
 }

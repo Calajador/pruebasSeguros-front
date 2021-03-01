@@ -24,8 +24,7 @@ import { ButtonComponent } from './components/button/button.component';
 import { AlertDialogComponent } from './components/alert-dialog/alert-dialog.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxMaskModule, IConfig } from 'ngx-mask';
-import { TableComponent } from './components/table/table.component';
-import { GetDataTablePipePipe } from './components/table/get-data-table-pipe.pipe';
+import { FormTableComponent } from './components/form-table/form-table.component';
 
 export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
 export function HttpLoaderFactory(http: HttpClient) {
@@ -40,12 +39,11 @@ export function HttpLoaderFactory(http: HttpClient) {
     ToolbarComponent,
     HomeComponent,
     GridComponent,
-    TableComponent,
+    FormTableComponent,
     HeaderComponent,
     MapComponent,
     ButtonComponent,
     AlertDialogComponent,
-    GetDataTablePipePipe,
   ],
   imports: [
     CommonModule,
@@ -78,12 +76,11 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatModule,
     HeaderComponent,
     GridComponent,
-    TableComponent,
+    FormTableComponent,
     NgxMaskModule,
     MapComponent,
     ButtonComponent,
     AlertDialogComponent,
-    GetDataTablePipePipe,
   ],
 })
 export class SharedModule {
