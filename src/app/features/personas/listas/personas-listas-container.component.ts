@@ -37,6 +37,8 @@ export class PersonasListasContainerComponent implements OnInit, OnDestroy {
     Borrar: 'grid.delete',
   };
 
+  public personaSeleccionada: Persona;
+
   constructor(
     private _personas: PersonaService,
     private dialog: MatDialog,
@@ -119,6 +121,11 @@ export class PersonasListasContainerComponent implements OnInit, OnDestroy {
 
   onClick() {
     this.dialog.open(PersonasListasDialogComponent);
+  }
+
+  getSelected(data) {
+    this.personaSeleccionada = data;
+    console.log(this.personaSeleccionada);
   }
 
   goToSection1() {

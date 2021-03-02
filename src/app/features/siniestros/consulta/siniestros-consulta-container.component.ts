@@ -37,6 +37,9 @@ export class SiniestrosConsultaContainerComponent implements OnInit {
 
   ngOnInit(): void {
     this.listarPersopnas();
+    if (!this.seguros) {
+      console.log('No hay Seguro');
+    }
   }
 
   listarPersopnas() {

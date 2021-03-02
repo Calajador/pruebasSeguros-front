@@ -64,7 +64,7 @@
           </div>
         </div>
         <div fxLayout="row" fxLayoutAlign="end end">
-          <div class="col-3 input">
+          <div class="col-3 input" *ngIf="seguros">
             <label for="seguro">Canal de Venta</label>
             <mat-form-field appearance="outline">
               <mat-select id="seguro">
