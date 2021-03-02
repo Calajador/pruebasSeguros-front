@@ -16,7 +16,8 @@
             "menu_subtitle_2": "Mantenimiento",
             "menu_subtitle_3": "Posicion",
             "sub_menu_1": "SubMenu1",
-            "sub_menu_2": "SubMenu2"
+            "sub_menu_2": "SubMenu2",
+            "menu_posicion" : "Posicion global"
         },
 
         "ensurence": {

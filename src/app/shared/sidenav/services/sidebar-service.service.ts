@@ -31,6 +31,25 @@ export class SidebarService {
       ],
     },
     {
+      //Nueva opción agregada
+      displayName: 'sidebar.people.menu_title',
+      iconName: 'face',
+      children: [
+        {
+          displayName: 'sidebar.people.menu_posicion',
+          route: '/personas/posicion-global',
+        },
+        {
+          displayName: 'sidebar.ensurence.menu_subtitle_2',
+          route: '/polizas/consulta',
+        },
+        {
+          displayName: 'sidebar.ensurence.menu_subtitle_3',
+          route: '/polizas/gestion',
+        },
+      ],
+    },
+    {
       displayName: 'sidebar.people.menu_title',
       iconName: 'face',
       children: [
