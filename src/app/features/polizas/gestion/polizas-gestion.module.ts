@@ -4,12 +4,8 @@ import { CommonModule } from '@angular/common';
 import { PolizasGestionRoutingModule } from './polizas-gestion-routing.module';
 import { PolizasGestionContainerComponent } from './polizas-gestion-container.component';
 
-
 @NgModule({
   declarations: [PolizasGestionContainerComponent],
-  imports: [
-    CommonModule,
-    PolizasGestionRoutingModule
-  ]
+  imports: [CommonModule, PolizasGestionRoutingModule],
 })
-export class PolizasGestionModule { }
+export class PolizasGestionModule {}

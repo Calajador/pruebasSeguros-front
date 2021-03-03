@@ -70,7 +70,10 @@
     "grid": {
         "edit":"Edit",
         "delete": "Delete",
-        "detail": "Detail"
+        "detail": "Detail",
+        "select_one": "Select One",
+        "no_records": "No records found",
+        "doc": "doc"
     }
 }
 

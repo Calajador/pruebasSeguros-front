@@ -10,6 +10,7 @@ import {
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-grid',
@@ -18,19 +19,27 @@ import { MatTableDataSource } from '@angular/material/table';
 })
 export class GridComponent implements OnInit {
   isLoading = true;
+  noData: any;
   @Input() filter: boolean;
   @Input() pagination: boolean;
+  @Input() uniqueSelection: boolean;
   @Input() paginationSizes: number[] = [5, 10, 15];
   @Input() defaultPageSize = this.paginationSizes[1];
   @Input() public set tableData(tableData: any[]) {
     this.isLoading = false;
     this.setTableDataSource(tableData);
+    this.noData = this.dataSource
+      .connect()
+      .pipe(map((data) => data.length === 0));
   }
   @Input() columnHeader;
   objectKeys = Object.keys;
   dataSource: MatTableDataSource<any>;
   @Output() editData = new EventEmitter<any>();
   @Output() deleteData = new EventEmitter<any>();
+  @Output() detailData = new EventEmitter<any>();
+  @Output() pdfData = new EventEmitter<any>();
+  @Output() selectData = new EventEmitter<any>();
   @Output() checkData = new EventEmitter<any>();
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -50,12 +59,20 @@ export class GridComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  selectRow(row) {
-    console.log(row);
+  detailRow(row) {
+    this.detailData.emit(row);
   }
 
   editRow(row) {
     this.editData.emit(row);
+  }
+
+  pdfRow(row) {
+    this.pdfData.emit(row);
+  }
+
+  selectRow(row) {
+    this.selectData.emit(row);
   }
 
   deleteRow(row) {

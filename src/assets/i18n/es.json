@@ -68,6 +68,10 @@
     "grid": {
         "edit":"Editar",
         "delete": "Borrar",
-        "detail": "Detalle"    }
+        "detail": "Detalle",
+        "select_one": "Seleccione Uno",
+        "no_records": "No se hay registros",
+        "doc": "doc"
+    }
 }
 

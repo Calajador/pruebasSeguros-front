@@ -10,7 +10,10 @@ import {
 import { PersonasListasDialogComponent } from './personas-listas-dialog/personas-listas-dialog.component';
 import Swal from 'sweetalert2';
 import { AuthService } from '../../auth/services/auth.service';
-
+import { PersonasListasDetailComponent } from './personas-listas-detail/personas-listas-detail.component';
+import pdfMake from 'pdfmake/build/pdfmake';
+import pdfFonts from 'pdfmake/build/vfs_fonts';
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
 @Component({
   selector: 'app-personas-listas-container',
   templateUrl: './personas-listas-container.component.html',
@@ -22,11 +25,24 @@ export class PersonasListasContainerComponent implements OnInit, OnDestroy {
   personasSubs: Subscription;
   acceso = false;
   identity;
+  PersonasVacias: Persona[] = [];
 
   public readonly ButtonTypes = TypeButtonEnum;
   public readonly ButtonColors = ColorButtonEnum;
 
   public personasColumns = {
+    Select: 'grid.select_one',
+    nombre: 'Nombre',
+    apellidos: 'Apellidos',
+    sex: 'Sex',
+    fechaNacimiento: 'Nacido',
+    Detalle: 'grid.detail',
+    PDF: 'grid.doc',
+    Editar: 'grid.edit',
+    Borrar: 'grid.delete',
+  };
+
+  public personasColumns2 = {
     Select: '',
     nombre: 'Nombre',
     apellidos: 'Apellidos',
@@ -98,6 +114,69 @@ export class PersonasListasContainerComponent implements OnInit, OnDestroy {
         });
       }
     });
+  }
+
+  getDeatilData(data: Persona) {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = false;
+    dialogConfig.autoFocus = true;
+    dialogConfig.data = data;
+    const dialogref = this.dialog.open(
+      PersonasListasDetailComponent,
+      dialogConfig
+    );
+  }
+
+  getPdfData(data: Persona) {
+    console.log(data);
+    let docDefinition = {
+      content: [
+        // Previous configuration
+        {
+          text: data.nombre + data.apellidos,
+          fontSize: 16,
+          alignment: 'center',
+          color: '#047886',
+        },
+        {
+          text: 'Detalles de la Persona',
+          style: 'sectionHeader',
+        },
+        {
+          text: 'Email',
+          style: 'sectionSubHeader',
+        },
+        {
+          text: data.email,
+          style: 'text',
+        },
+        {
+          text: 'Licencia',
+          style: 'sectionSubHeader',
+        },
+        {
+          text: data.licenciaConducir,
+          style: 'text',
+        },
+      ],
+      styles: {
+        sectionHeader: {
+          bold: true,
+          decoration: 'underline',
+          fontSize: 14,
+          margin: [0, 15, 0, 15],
+        },
+        sectionSubHeader: {
+          fontSize: 14,
+          margin: [0, 15, 0, 5],
+        },
+        text: {
+          fontSize: 11,
+        },
+      },
+    };
+
+    pdfMake.createPdf(docDefinition).open();
   }
 
   getDeleteData(data: Persona) {

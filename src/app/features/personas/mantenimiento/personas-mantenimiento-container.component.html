@@ -1,8 +1,68 @@
 <app-header [titulo]="title"></app-header>
 
+<div class="container root">
+  <div class="row">
+    <div class="col-12">
+      <h6>Datos de Persona</h6>
+    </div>
+  </div>
+
+  <div class="row mb-5">
+    <div class="col-12">
+      <app-grid
+        [tableData]="personas$ | async"
+        [columnHeader]="personasColumns"
+        (selectData)="getSelectedData($event)"
+      >
+      </app-grid>
+      <hr />
+    </div>
+  </div>
+
+  <div class="row" *ngIf="personaSelected">
+    <div class="col-12">
+      <h6>
+        Datos Generales | {{ personaSelected.nombre }}
+        {{ personaSelected.apellidos }}
+      </h6>
+    </div>
+  </div>
+  <hr />
+  <div class="form" *ngIf="personaSelected">
+    <div class="row">
+      <div class="col-2 input">
+        <label for="agentCode">Código</label>
+        <mat-form-field appearance="outline">
+          <input id="agentCode" matInput placeholder="Código" />
+        </mat-form-field>
+      </div>
+      <div class="col-4 input">
+        <label for="name">Nombre y apellidos</label>
+        <mat-form-field appearance="outline">
+          <input id="name" matInput placeholder="Nombre y apellidos" />
+        </mat-form-field>
+      </div>
+      <div class="col-3 input">
+        <label for="description">Descirpción</label>
+        <mat-form-field appearance="outline">
+          <input id="description" matInput placeholder="Descirpción" />
+        </mat-form-field>
+      </div>
+      <div class="col-3 input">
+        <label for="estado">Estado</label>
+        <mat-form-field appearance="outline">
+          <input id="estado" matInput placeholder="Descirpción" />
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+</div>
+<hr />
 <app-button
   [color]="ButtonColors.PRIMARY"
   [displayType]="ButtonTypes.BASIC"
   [text]="'Ir A Panel de ADMIN'"
   (click)="onClick()"
 ></app-button>
+<hr />
+<hr />

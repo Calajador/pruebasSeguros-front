@@ -22,14 +22,30 @@
     [defaultPageSize]="4"
     (checkData)="getSelected($event)"
     (editData)="getEditData($event)"
+    (detailData)="getDeatilData($event)"
+    (pdfData)="getPdfData($event)"
     (deleteData)="getDeleteData($event)"
   >
   </app-grid>
+  <hr />
 </div>
 
 <div id="section3" class="container">
   <app-grid
     [tableData]="personas$ | async"
+    [columnHeader]="personasColumns2"
+    [paginationSizes]="[2, 4, 6]"
+    [defaultPageSize]="4"
+    (editData)="getEditData($event)"
+    (deleteData)="getDeleteData($event)"
+  >
+  </app-grid>
+  <hr />
+</div>
+
+<div id="section4" class="container">
+  <app-grid
+    [tableData]="PersonasVacias"
     [columnHeader]="personasColumns"
     [paginationSizes]="[2, 4, 6]"
     [defaultPageSize]="4"
@@ -37,6 +53,7 @@
     (deleteData)="getDeleteData($event)"
   >
   </app-grid>
+  <hr />
 </div>
 
 <div class="menu">

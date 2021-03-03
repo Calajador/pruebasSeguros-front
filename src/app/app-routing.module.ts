@@ -41,6 +41,7 @@ const routes: Routes = [
         canLoad: [AuthGuard],
         loadChildren: async () =>
           (await import('./features/polizas/polizas.module')).PolizasModule,
+        data: { breadcrumb: { skip: true } },
       },
       {
         path: 'siniestros',
@@ -48,6 +49,7 @@ const routes: Routes = [
         loadChildren: async () =>
           (await import('./features/siniestros/siniestros.module'))
             .SiniestrosModule,
+        data: { breadcrumb: { skip: true } },
       },
     ],
   },

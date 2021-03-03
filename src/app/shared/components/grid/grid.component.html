@@ -7,69 +7,90 @@
     />
   </mat-form-field>
 
-  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-    <ng-container
-      [matColumnDef]="tableData"
-      *ngFor="let tableData of objectKeys(columnHeader)"
-    >
-      <th mat-header-cell *matHeaderCellDef>
-        <mat-checkbox
-          *ngIf="columnHeader[tableData] == ''"
-          (change)="$event ? masterToggle() : null"
-          [checked]="selection.hasValue() && isAllSelected()"
-          [indeterminate]="selection.hasValue() && !isAllSelected()"
-          [aria-label]="checkboxLabel()"
-        >
-        </mat-checkbox>
-        {{ columnHeader[tableData] | translate }}
-      </th>
-      <div
-        *ngIf="
-          columnHeader[tableData] != 'grid.edit' &&
-          columnHeader[tableData] != 'grid.delete' &&
-          columnHeader[tableData] != 'grid.detail' &&
-          columnHeader[tableData] != ''
-        "
+  <mat-radio-group>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <ng-container
+        [matColumnDef]="tableData"
+        *ngFor="let tableData of objectKeys(columnHeader)"
       >
-        <td mat-cell *matCellDef="let element">{{ element[tableData] }}</td>
-      </div>
-      <div *ngIf="columnHeader[tableData] == ''">
-        <td mat-cell *matCellDef="let row">
+        <th mat-header-cell *matHeaderCellDef>
           <mat-checkbox
-            (click)="$event.stopPropagation(); takeCheck(row)"
-            (change)="$event ? selection.toggle(row) : null"
-            [checked]="selection.isSelected(row)"
-            [aria-label]="checkboxLabel(row)"
+            *ngIf="columnHeader[tableData] == ''"
+            (change)="$event ? masterToggle() : null"
+            [checked]="selection.hasValue() && isAllSelected()"
+            [indeterminate]="selection.hasValue() && !isAllSelected()"
+            [aria-label]="checkboxLabel()"
           >
           </mat-checkbox>
-        </td>
-      </div>
-      <div *ngIf="columnHeader[tableData] == 'grid.edit'">
-        <td mat-cell *matCellDef="let element">
-          <mat-icon (click)="editRow(element)" style="cursor: pointer"
-            >edit</mat-icon
-          >
-        </td>
-      </div>
-      <div *ngIf="columnHeader[tableData] == 'grid.delete'">
-        <td mat-cell *matCellDef="let element">
-          <mat-icon (click)="deleteRow(element)" style="cursor: pointer"
-            >delete</mat-icon
-          >
-        </td>
-      </div>
-      <div *ngIf="columnHeader[tableData] == 'grid.detail'">
-        <td mat-cell *matCellDef="let element">
-          <mat-icon (click)="selectRow(element)" style="cursor: pointer"
-            >add</mat-icon
-          >
-        </td>
-      </div>
-    </ng-container>
+          {{ columnHeader[tableData] | translate }}
+        </th>
+        <div
+          *ngIf="
+            columnHeader[tableData] != 'grid.edit' &&
+            columnHeader[tableData] != 'grid.delete' &&
+            columnHeader[tableData] != 'grid.detail' &&
+            columnHeader[tableData] != 'grid.select_one' &&
+            columnHeader[tableData] != 'grid.doc' &&
+            columnHeader[tableData] != ''
+          "
+        >
+          <td mat-cell *matCellDef="let element">{{ element[tableData] }}</td>
+        </div>
+        <div *ngIf="columnHeader[tableData] == ''">
+          <td mat-cell *matCellDef="let row">
+            <mat-checkbox
+              (click)="$event.stopPropagation(); takeCheck(row)"
+              (change)="$event ? selection.toggle(row) : null"
+              [checked]="selection.isSelected(row)"
+              [aria-label]="checkboxLabel(row)"
+            >
+            </mat-checkbox>
+          </td>
+        </div>
+        <div *ngIf="columnHeader[tableData] == 'grid.edit'">
+          <td mat-cell *matCellDef="let element">
+            <mat-icon (click)="editRow(element)" style="cursor: pointer"
+              >edit</mat-icon
+            >
+          </td>
+        </div>
+        <div *ngIf="columnHeader[tableData] == 'grid.delete'">
+          <td mat-cell *matCellDef="let element">
+            <mat-icon (click)="deleteRow(element)" style="cursor: pointer"
+              >delete</mat-icon
+            >
+          </td>
+        </div>
+        <div *ngIf="columnHeader[tableData] == 'grid.detail'">
+          <td mat-cell *matCellDef="let element">
+            <mat-icon (click)="detailRow(element)" style="cursor: pointer"
+              >add</mat-icon
+            >
+          </td>
+        </div>
+        <div *ngIf="columnHeader[tableData] == 'grid.doc'">
+          <td mat-cell *matCellDef="let element">
+            <mat-icon (click)="pdfRow(element)" style="cursor: pointer"
+              >description</mat-icon
+            >
+          </td>
+        </div>
+        <div *ngIf="columnHeader[tableData] == 'grid.select_one'">
+          <td mat-cell *matCellDef="let element">
+            <mat-radio-button [value]="element" (click)="selectRow(element)">
+            </mat-radio-button>
+          </td>
+        </div>
+      </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="objectKeys(columnHeader)"></tr>
-    <tr mat-row *matRowDef="let row; columns: objectKeys(columnHeader)"></tr>
-  </table>
+      <tr mat-header-row *matHeaderRowDef="objectKeys(columnHeader)"></tr>
+      <tr mat-row *matRowDef="let row; columns: objectKeys(columnHeader)"></tr>
+    </table>
+  </mat-radio-group>
+
+  <div *ngIf="noData | async" class="no-records">
+    {{ "grid.no_records" | translate }}
+  </div>
 
   <div
     *ngIf="isLoading"

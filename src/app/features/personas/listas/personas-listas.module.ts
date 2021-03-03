@@ -8,6 +8,7 @@ import { PersonasListasDialogComponent } from './personas-listas-dialog/personas
 import { PersonasListasFiltroComponent } from './personas-listas-filtro/personas-listas-filtro.component';
 import { PersonaDetalleComponent } from './persona-detalle/persona-detalle.component';
 import { BreadcrumbModule } from 'xng-breadcrumb';
+import { PersonasListasDetailComponent } from './personas-listas-detail/personas-listas-detail.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { BreadcrumbModule } from 'xng-breadcrumb';
     PersonasListasDialogComponent,
     PersonasListasFiltroComponent,
     PersonaDetalleComponent,
+    PersonasListasDetailComponent,
   ],
   imports: [
     CommonModule,

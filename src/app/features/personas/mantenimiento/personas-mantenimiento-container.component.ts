@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { Observable } from 'rxjs';
+import { Persona } from 'src/app/core/models/persona.model';
 import {
   ColorButtonEnum,
   TypeButtonEnum,
 } from 'src/app/shared/components/button/button.component';
+import { PersonaService } from '../services/persona.service';
 
 @Component({
   selector: 'app-personas-mantenimiento-container',
@@ -13,16 +16,37 @@ import {
 })
 export class PersonasMantenimientoContainerComponent implements OnInit {
   title: string;
+  personas$: Observable<Persona>;
+  personaSelected: Persona;
   public readonly ButtonTypes = TypeButtonEnum;
   public readonly ButtonColors = ColorButtonEnum;
 
-  constructor(private _translate: TranslateService, private router: Router) {}
+  public personasColumns = {
+    Select: 'grid.select_one',
+    nombre: 'Nombre',
+    apellidos: 'Apellidos',
+  };
+
+  constructor(
+    private _translate: TranslateService,
+    private router: Router,
+    private _personas: PersonaService
+  ) {}
 
   ngOnInit(): void {
+    this.listarPersopnas();
     this.title = this._translate.instant('people.maintenance.title');
   }
 
   onClick() {
     this.router.navigate(['dashboard']);
+  }
+
+  listarPersopnas() {
+    this.personas$ = this._personas.getPersonas();
+  }
+
+  getSelectedData(data: Persona) {
+    this.personaSelected = data;
   }
 }

@@ -1,0 +1,43 @@
+<section fxLayout="row wrap" fxLayoutAlign="center center">
+  <mat-card fxFlex="500px" fxFlex.xs="100%">
+    <mat-card-title
+      >Detalles de {{ persona.nombre }} {{ persona.apellidos }}</mat-card-title
+    >
+    <mat-card-content>
+      <div fxLayout="column wrap" fxLayoutGap="20px">
+        <div fxLayout="row wrap" fxFlex>
+          <div fxFlex><strong>Fecha de Nacimiento</strong></div>
+          <div fxFlex>{{ persona.fechaNacimiento }}</div>
+        </div>
+        <div fxLayout="row wrap" fxFlex>
+          <div fxFlex><strong>Sexo</strong></div>
+          <div fxFlex>{{ persona.sex }}</div>
+        </div>
+        <div fxLayout="row wrap" fxFlex>
+          <div fxFlex><strong>DNI</strong></div>
+          <div fxFlex>{{ persona.indentificacion }}</div>
+        </div>
+        <div fxLayout="row wrap" fxFlex>
+          <div fxFlex><strong>Licencia</strong></div>
+          <div fxFlex>{{ persona.licenciaConducir }}</div>
+        </div>
+        <div fxLayout="row wrap" fxFlex>
+          <div fxFlex><strong>Telefono</strong></div>
+          <div fxFlex>{{ persona.telefono }}</div>
+        </div>
+        <div fxLayout="row wrap" fxFlex>
+          <div fxFlex><strong>Email</strong></div>
+          <div fxFlex>{{ persona.email }}</div>
+        </div>
+        <div fxLayout="row wrap" fxFlex>
+          <div fxFlex><strong>Direccion</strong></div>
+          <div fxFlex>{{ persona.direccion }}</div>
+        </div>
+        <div fxLayout="row wrap" fxFlex>
+          <div fxFlex><strong>Seguro</strong></div>
+          <div fxFlex>{{ persona.idSeguro.titulo }}</div>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</section>
