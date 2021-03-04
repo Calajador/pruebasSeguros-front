@@ -39,7 +39,7 @@ export class PersonasMantenimientoContainerComponent implements OnInit {
   }
 
   onClick() {
-    this.router.navigate(['dashboard']);
+    this.router.navigate(['']);
   }
 
   listarPersopnas() {
