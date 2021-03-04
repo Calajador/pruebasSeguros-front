@@ -11,14 +11,21 @@
     <h1 class="jumbotron-heading">{{ "dashboard.title" | translate }}</h1>
     <p>
       <app-button
+        [color]="ButtonColors.WARN"
+        [displayType]="ButtonTypes.RAISED"
+        [text]="'Ejemplo con Icono'"
+        leftIcon="get_app"
+        (click)="onClick()"
+      ></app-button>
+      <app-button
         [color]="ButtonColors.ACCENT"
         [displayType]="ButtonTypes.BASIC"
-        [text]="'HOLA'"
+        [text]="'Ejemplo sin Icono'"
       ></app-button>
       <app-button
         [color]="ButtonColors.PRIMARY"
         [displayType]="ButtonTypes.RAISED"
-        [text]="'HOLA'"
+        [text]="'Ejemplo con Icono'"
         rightIcon="add"
         (click)="onClick()"
       ></app-button>
@@ -90,6 +97,8 @@
     </div>
   </div>
 </div>
+<hr />
+<hr />
 
 <div class="container" *ngIf="siniestros">
   <h2>Seccion Para Siniestros</h2>
@@ -156,7 +165,8 @@
     </div>
   </div>
 </div>
-
+<hr />
+<hr />
 <div class="container" *ngIf="personas">
   <h2>Seccion Para Personas</h2>
   <div class="row">
@@ -224,7 +234,7 @@
 </div>
 <hr />
 
-<div class="container">
+<!-- <div class="container">
   <app-form-table></app-form-table>
-</div>
+</div> -->
 <hr />

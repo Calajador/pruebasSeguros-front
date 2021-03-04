@@ -23,7 +23,7 @@ const routes: Routes = [
     },
     children: [
       {
-        path: 'dashboard',
+        path: '',
         canLoad: [AuthGuard],
         loadChildren: async () =>
           (await import('./features/dashboard/dashboard.module'))

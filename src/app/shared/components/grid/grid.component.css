@@ -7,8 +7,12 @@ table {
   width: 50%;
 }
 
+.spacer {
+  flex: 1 1 auto;
+}
+
 .mat-row:hover {
-  background-color: red;
+  background-color: rgba(180, 35, 35, 0.836);
 }
 
 .mat-row:hover > .mat-cell {
@@ -21,4 +25,15 @@ table {
   align-items: center;
   justify-content: center;
   background: white;
+}
+
+.xlsx {
+  background-color: green;
+  color: aliceblue;
+  margin-right: 5px;
+}
+.csv {
+  background-color: rgb(0, 0, 0);
+  color: aliceblue;
+  margin-right: 5px;
 }

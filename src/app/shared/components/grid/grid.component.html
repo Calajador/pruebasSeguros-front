@@ -8,7 +8,14 @@
   </mat-form-field>
 
   <mat-radio-group>
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <table
+      mat-table
+      matTableExporter
+      [dataSource]="dataSource"
+      #exporter="matTableExporter"
+      [hiddenColumns]="hiddenColumns"
+      class="mat-elevation-z8"
+    >
       <ng-container
         [matColumnDef]="tableData"
         *ngFor="let tableData of objectKeys(columnHeader)"
@@ -105,11 +112,32 @@
     </mat-progress-spinner>
   </div>
 
-  <mat-paginator
-    *ngIf="pagination"
-    [pageSizeOptions]="paginationSizes"
-    [pageSize]="defaultPageSize"
-    showFirstLastButtons
-  >
-  </mat-paginator>
+  <mat-toolbar>
+    <mat-toolbar-row>
+      <button
+        class="xlsx"
+        *ngIf="export"
+        mat-button
+        (click)="exporter.exportTable('xlsx')"
+      >
+        Exportar a XLSX
+      </button>
+      <button
+        class="csv"
+        *ngIf="export"
+        mat-button
+        (click)="exporter.exportTable('csv')"
+      >
+        Exportar a CSV
+      </button>
+      <span class="spacer"></span>
+      <mat-paginator
+        *ngIf="pagination"
+        [pageSizeOptions]="paginationSizes"
+        [pageSize]="defaultPageSize"
+        showFirstLastButtons
+      >
+      </mat-paginator>
+    </mat-toolbar-row>
+  </mat-toolbar>
 </div>

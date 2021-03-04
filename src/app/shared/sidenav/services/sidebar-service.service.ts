@@ -10,7 +10,7 @@ export class SidebarService {
     {
       displayName: 'sidebar.dashboard.menu_title',
       iconName: 'home',
-      route: '/dashboard',
+      route: '',
     },
     {
       displayName: 'sidebar.ensurence.menu_title',

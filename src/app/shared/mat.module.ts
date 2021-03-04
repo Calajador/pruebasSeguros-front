@@ -36,6 +36,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatRadioModule } from '@angular/material/radio';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { DrawerRailModule } from 'angular-material-rail-drawer';
+import { MatTableExporterModule } from 'mat-table-exporter';
 
 import { A11yModule } from '@angular/cdk/a11y';
 import { BidiModule } from '@angular/cdk/bidi';
@@ -103,6 +104,7 @@ import { CdkTreeModule } from '@angular/cdk/tree';
     FlexLayoutModule,
     DragDropModule,
     DrawerRailModule,
+    MatTableExporterModule,
   ],
 })
 export class MatModule {}

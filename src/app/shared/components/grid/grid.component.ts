@@ -23,14 +23,18 @@ export class GridComponent implements OnInit {
   @Input() filter: boolean;
   @Input() pagination: boolean;
   @Input() uniqueSelection: boolean;
+  @Input() export: boolean;
+  @Input() hiddenColumns: number[] = [];
   @Input() paginationSizes: number[] = [5, 10, 15];
   @Input() defaultPageSize = this.paginationSizes[1];
   @Input() public set tableData(tableData: any[]) {
-    this.isLoading = false;
-    this.setTableDataSource(tableData);
-    this.noData = this.dataSource
-      .connect()
-      .pipe(map((data) => data.length === 0));
+    setTimeout(() => {
+      this.isLoading = false;
+      this.setTableDataSource(tableData);
+      this.noData = this.dataSource
+        .connect()
+        .pipe(map((data) => data.length === 0));
+    }, 2000);
   }
   @Input() columnHeader;
   objectKeys = Object.keys;
