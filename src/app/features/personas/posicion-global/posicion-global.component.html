@@ -1,0 +1,69 @@
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-12">
+      <p>TOMADORES</p>
+    </div>
+  </div>
+  <div class="row mb-5">
+    <div class="col-12">
+      <app-grid
+        [tableData]="tomadores"
+        [columnHeader]="tomadoresColumns"
+        [filter]="false"
+        [pagination]="false"
+      >
+      </app-grid>
+    </div>
+  </div>
+
+  <div class="row mt-5">
+    <div class="col-12">
+      <p>ASEGURADOS</p>
+    </div>
+  </div>
+  <div class="row mb-5">
+    <div class="col-12">
+      <app-grid
+        [tableData]="tomadores"
+        [columnHeader]="tomadoresColumns"
+        [filter]="false"
+        [pagination]="false"
+      >
+      </app-grid>
+    </div>
+  </div>
+
+  <div class="row mt-5">
+    <div class="col-12">
+      <p>RECIBOS</p>
+    </div>
+  </div>
+  <div class="row mb-5">
+    <div class="col-12">
+      <app-grid
+        [tableData]="recibos"
+        [columnHeader]="recibosColumns"
+        [filter]="false"
+        [pagination]="false"
+      >
+      </app-grid>
+    </div>
+  </div>
+
+  <div class="row mt-5">
+    <div class="col-12">
+      <p>CONDUCTOR</p>
+    </div>
+  </div>
+  <div class="row mb-5">
+    <div class="col-12">
+      <app-grid
+        [tableData]="conductores"
+        [columnHeader]="conductorColumns"
+        [filter]="false"
+        [pagination]="false"
+      >
+      </app-grid>
+    </div>
+  </div>
+</div>

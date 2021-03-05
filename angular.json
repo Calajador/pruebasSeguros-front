@@ -125,5 +125,8 @@
       }
     }
   },
-  "defaultProject": "pruebas-itaca"
+  "defaultProject": "pruebas-itaca",
+  "cli": {
+    "analytics": false
+  }
 }

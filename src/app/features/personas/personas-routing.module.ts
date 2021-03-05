@@ -19,6 +19,12 @@ const routes: Routes = [
       (await import('./posicion/personas-posicion.module'))
         .PersonasPosicionModule,
   },
+  {
+    path: 'posicion-global',
+    loadChildren: async () =>
+      (await import('./posicion-global/posicion-global.module'))
+        .PosicionGlobalModule,
+  },
 ];
 
 @NgModule({

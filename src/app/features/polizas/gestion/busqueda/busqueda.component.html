@@ -1,0 +1,162 @@
+<div class="container root">
+  <div class="row">
+    <div class="col-12">
+      <h6>BUSQUEDA DE PERFILES</h6>
+    </div>
+  </div>
+
+  <div class="form">
+    <form autocomplete="off" [formGroup]="forma" (ngSubmit)="save()">
+      <div class="row">
+        <div class="col-2 input">
+          <label for="agentCode">Código</label>
+          <mat-form-field appearance="outline">
+            <input
+              matInput
+              placeholder="Código"
+              formControlName="code"
+              [class.is-invalid]="invalidCode"
+            />
+            <mat-hint *ngIf="invalidCode" class="text-danger">
+              Campo obligatorio
+            </mat-hint>
+          </mat-form-field>
+        </div>
+        <div class="col-4 input">
+          <label for="agentCode">Nombre y apellidos</label>
+          <mat-form-field appearance="outline">
+            <input
+              matInput
+              placeholder="Nombre y apellidos"
+              formControlName="fullName"
+              [class.is-invalid]="invalidFullName"
+            />
+            <mat-hint *ngIf="invalidFullName" class="text-danger">
+              Campo obligatorio
+            </mat-hint>
+          </mat-form-field>
+        </div>
+        <div class="col-3 input">
+          <label for="agentCode">Descirpción</label>
+          <mat-form-field appearance="outline">
+            <input
+              matInput
+              placeholder="Descirpción"
+              formControlName="description"
+              [class.is-invalid]="invalidDescription"
+            />
+            <mat-hint *ngIf="invalidDescription" class="text-danger">
+              Campo obligatorio
+            </mat-hint>
+          </mat-form-field>
+        </div>
+        <div class="col-3 input">
+          <label for="agentCode">Estado</label>
+          <mat-form-field appearance="outline">
+            <mat-select
+              placeholder="Selecciona"
+              formControlName="state"
+              [class.is-invalid]="invalidState"
+            >
+              <mat-option value="one">First option</mat-option>
+              <mat-option value="two">Second option</mat-option>
+            </mat-select>
+            <mat-hint *ngIf="invalidState" class="text-danger">
+              Campo obligatorio
+            </mat-hint>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row mt-2">
+        <div class="col-3 input">
+          <label for="agentCode">Modulo</label>
+          <mat-form-field appearance="outline">
+            <mat-select
+              placeholder="Selecciona"
+              formControlName="module"
+              [class.is-invalid]="invalidModule"
+            >
+              <mat-option value="one">First option</mat-option>
+              <mat-option value="two">Second option</mat-option>
+            </mat-select>
+            <mat-hint *ngIf="invalidModule" class="text-danger">
+              Campo obligatorio
+            </mat-hint>
+          </mat-form-field>
+        </div>
+        <div class="col-3 input">
+          <label for="agentCode">Perfil funcional</label>
+          <mat-form-field appearance="outline">
+            <mat-select
+              placeholder="Selecciona"
+              formControlName="profile"
+              [class.is-invalid]="invalidProfile"
+            >
+              <mat-option value="one">First option</mat-option>
+              <mat-option value="two">Second option</mat-option>
+            </mat-select>
+            <mat-hint *ngIf="invalidProfile" class="text-danger">
+              Campo obligatorio
+            </mat-hint>
+          </mat-form-field>
+        </div>
+        <div class="col-3 input">
+          <label for="agentCode">Etiquetas</label>
+          <mat-form-field appearance="outline">
+            <input
+              matInput
+              placeholder="Etiquetas"
+              formControlName="tags"
+              [class.is-invalid]="invalidTags"
+            />
+            <mat-hint *ngIf="invalidTags" class="text-danger">
+              Campo obligatorio
+            </mat-hint>
+          </mat-form-field>
+        </div>
+      </div>
+      <small *ngIf="invalidSearch" class="text-danger">
+        * Es necesario algún campo para hacer la busqueda
+      </small>
+      <div class="row mt-3">
+        <div class="col text-right">
+          <app-button
+            [color]="ButtonColors.PRIMARY"
+            class="button"
+            [displayType]="ButtonTypes.RAISED"
+            [text]="'AÑADIR NUEVO'"
+          >
+          </app-button>
+        </div>
+        <div class="col-3 text-right">
+          <app-button
+            [btnType]="'button'"
+            [color]="ButtonColors.PRIMARY"
+            class="button"
+            [displayType]="ButtonTypes.RAISED"
+            [text]="'BUSCAR'"
+            (click)="search()"
+          >
+          </app-button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="row mt-5">
+    <div class="col-12">
+      <p>Resultados</p>
+    </div>
+  </div>
+  <div class="row mb-5">
+    <div class="col-12">
+      <app-grid
+        [tableData]="perfiles"
+        [columnHeader]="perfilesColumns"
+        [filter]="false"
+        [pagination]="false"
+      >
+      </app-grid>
+    </div>
+  </div>
+</div>
