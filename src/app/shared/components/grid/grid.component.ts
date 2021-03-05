@@ -115,6 +115,7 @@ export class GridComponent implements AfterViewInit {
       this.noData = this.dataSource
         .connect()
         .pipe(map((data) => data.length === 0));
+      this.dataSource.sort = this.sort;
     }, 2000);
   }
 
