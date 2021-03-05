@@ -15,11 +15,14 @@ import { PersonaService } from '../services/persona.service';
   styleUrls: ['./personas-mantenimiento-container.component.css'],
 })
 export class PersonasMantenimientoContainerComponent implements OnInit {
+  moreData: boolean = false;
+  moreDataText: string;
   title: string;
   personas$: Observable<Persona>;
   personaSelected: Persona;
   public readonly ButtonTypes = TypeButtonEnum;
   public readonly ButtonColors = ColorButtonEnum;
+  PersonasVacias: Persona[] = [];
 
   public personasColumns = {
     Select: 'grid.select_one',
@@ -36,6 +39,7 @@ export class PersonasMantenimientoContainerComponent implements OnInit {
   ngOnInit(): void {
     this.listarPersopnas();
     this.title = this._translate.instant('people.maintenance.title');
+    this.moreDataText = 'Ver Mas Datos';
   }
 
   onClick() {
@@ -48,5 +52,14 @@ export class PersonasMantenimientoContainerComponent implements OnInit {
 
   getSelectedData(data: Persona) {
     this.personaSelected = data;
+  }
+
+  viewMoreData() {
+    this.moreData = !this.moreData;
+    if (this.moreData) {
+      this.moreDataText = 'Ver Menos Datos';
+    } else {
+      this.moreDataText = 'Ver Mas Datos';
+    }
   }
 }

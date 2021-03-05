@@ -58,6 +58,24 @@
   <hr />
 </div>
 
+<div class="container">
+  <app-table
+    [tableData]="personas$ | async"
+    [columnHeader]="personasColumns3"
+    [filter]="true"
+    [order]="true"
+    [paginationSizes]="[2, 4, 6]"
+    [defaultPageSize]="4"
+    [export]="true"
+    [hiddenColumns]="[5, 6, 7, 8]"
+    (checkData)="getSelected($event)"
+    (editData)="getEditData($event)"
+    (detailData)="getDeatilData($event)"
+    (pdfData)="getPdfData($event)"
+    (deleteData)="getDeleteData($event)"
+  ></app-table>
+</div>
+
 <div class="menu">
   <ul>
     <li (click)="goToSection1()">section 1</li>

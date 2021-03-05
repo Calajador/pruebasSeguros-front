@@ -23,8 +23,8 @@ export class SiniestrosGestionContainerComponent implements OnInit {
     titulo: 'Titulo',
     nivel: 'Nivel',
 
-    Editar: 'Editar',
-    Borrar: 'Borrar',
+    Editar: 'grid.edit',
+    Borrar: 'grid.delete',
   };
   constructor(private _seguro: SegurosService) {}
 

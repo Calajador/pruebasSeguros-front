@@ -25,6 +25,7 @@ import { AlertDialogComponent } from './components/alert-dialog/alert-dialog.com
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxMaskModule, IConfig } from 'ngx-mask';
 import { FormTableComponent } from './components/form-table/form-table.component';
+import { TableComponent } from './components/table/table.component';
 
 export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
 export function HttpLoaderFactory(http: HttpClient) {
@@ -44,6 +45,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     MapComponent,
     ButtonComponent,
     AlertDialogComponent,
+    TableComponent,
   ],
   imports: [
     CommonModule,
@@ -81,6 +83,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     MapComponent,
     ButtonComponent,
     AlertDialogComponent,
+    TableComponent,
   ],
 })
 export class SharedModule {

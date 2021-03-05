@@ -31,7 +31,7 @@ export class PersonasListasContainerComponent implements OnInit, OnDestroy {
   public readonly ButtonColors = ColorButtonEnum;
 
   public personasColumns = {
-    Select: 'grid.select_one',
+    select: 'grid.select_one',
     nombre: 'Nombre',
     apellidos: 'Apellidos',
     sex: 'Sex',
@@ -49,6 +49,17 @@ export class PersonasListasContainerComponent implements OnInit, OnDestroy {
     sex: 'Sex',
     email: 'Email',
     Detalle: 'grid.detail',
+    Editar: 'grid.edit',
+    Borrar: 'grid.delete',
+  };
+
+  public personasColumns3 = {
+    nombre: 'Nombre',
+    apellidos: 'Apellidos',
+    sex: 'Sex',
+    email: 'Email',
+    Detalle: 'grid.detail',
+    PDF: 'grid.doc',
     Editar: 'grid.edit',
     Borrar: 'grid.delete',
   };

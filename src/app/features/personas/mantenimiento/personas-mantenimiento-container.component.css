@@ -13,3 +13,9 @@ label {
   display: inline-block;
   width: 150px;
 }
+
+.moreData {
+  font-size: 15px;
+  cursor: pointer;
+  color: rgb(16, 116, 82);
+}

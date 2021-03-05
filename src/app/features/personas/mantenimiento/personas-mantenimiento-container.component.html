@@ -31,21 +31,165 @@
   <div class="form" *ngIf="personaSelected">
     <div class="row">
       <div class="col-2 input">
-        <label for="agentCode">Código</label>
-        <p id="agentCode"></p>
-      </div>
-      <div class="col-4 input">
-        <label for="name">Nombre y apellidos</label>
-        <p dir="name"></p>
+        <label for="agentCode">Tipo de Persona</label>
+        <p id="agentCode">XXX</p>
       </div>
       <div class="col-3 input">
-        <label for="description">Descirpción</label>
-        <p id="description"></p>
+        <label for="name">Tipo de Identificacion</label>
+        <p dir="name">XXX</p>
       </div>
       <div class="col-3 input">
-        <label for="estado">Estado</label>
+        <label for="name">Número de Identificacion</label>
+        <p dir="name">XXX</p>
+      </div>
+      <div class="col-2 input">
+        <label for="description">Genero</label>
+        <p id="description">XXX</p>
+      </div>
+      <div class="col-2 input">
+        <label for="estado">Fecha de Nacimiento</label>
         <p id="estado">XXX</p>
       </div>
+    </div>
+    <mat-divider></mat-divider>
+    <hr />
+
+    <div class="row">
+      <div class="col-2 input">
+        <label for="agentCode">Nombre</label>
+        <p id="agentCode">XXX</p>
+      </div>
+      <div class="col-3 input">
+        <label for="name">Segundo Nombre</label>
+        <p dir="name">XXX</p>
+      </div>
+      <div class="col-3 input">
+        <label for="name">Primer Apellido</label>
+        <p dir="name">XXX</p>
+      </div>
+      <div class="col-2 input">
+        <label for="description">Segundo Apellido</label>
+        <p id="description">XXX</p>
+      </div>
+    </div>
+    <hr />
+    <div class="row">
+      <div class="col-4 input">
+        <label for="agentCode">Profesión</label>
+        <p id="agentCode">XXX</p>
+      </div>
+      <div class="col-4 input">
+        <label for="name">Ocupación</label>
+        <p dir="name">XXX</p>
+      </div>
+      <div class="col-4 input">
+        <label for="name">Pais de Procedencia</label>
+        <p dir="name">XXX</p>
+      </div>
+    </div>
+    <hr />
+    <div class="row">
+      <div class="col-2 input">
+        <label for="agentCode">Estado de Persona</label>
+        <p id="agentCode">XXX</p>
+      </div>
+      <div class="col-3 input">
+        <label for="name">Fecha de Jubilación</label>
+        <p dir="name">XXX</p>
+      </div>
+      <div class="col-3 input">
+        <label for="name">Estado Civil</label>
+        <p dir="name">XXX</p>
+      </div>
+    </div>
+    <mat-divider></mat-divider>
+    <hr />
+    <div class="row">
+      <div class="col-2 input">
+        <label class="moreData" (click)="viewMoreData()">{{
+          moreDataText
+        }}</label>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="moreData" class="container root">
+  <div class="row">
+    <div class="col-12">
+      <h6>Direcciones</h6>
+    </div>
+  </div>
+
+  <div class="row mb-5">
+    <div class="col-12">
+      <app-grid [tableData]="PersonasVacias" [columnHeader]="personasColumns">
+      </app-grid>
+    </div>
+  </div>
+  <hr />
+  <div class="row">
+    <div class="col-12">
+      <h6>Tarjetas Bancarias</h6>
+    </div>
+  </div>
+
+  <div class="row mb-5">
+    <div class="col-12">
+      <app-grid [tableData]="PersonasVacias" [columnHeader]="personasColumns">
+      </app-grid>
+    </div>
+  </div>
+  <hr />
+  <div class="row">
+    <div class="col-12">
+      <h6>Nacionalidades</h6>
+    </div>
+  </div>
+
+  <div class="row mb-5">
+    <div class="col-12">
+      <app-grid [tableData]="PersonasVacias" [columnHeader]="personasColumns">
+      </app-grid>
+      <hr />
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <h6>Identificadores</h6>
+    </div>
+  </div>
+
+  <div class="row mb-5">
+    <div class="col-12">
+      <app-grid [tableData]="PersonasVacias" [columnHeader]="personasColumns">
+      </app-grid>
+      <hr />
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <h6>Personas Relacionadas</h6>
+    </div>
+  </div>
+
+  <div class="row mb-5">
+    <div class="col-12">
+      <app-grid [tableData]="PersonasVacias" [columnHeader]="personasColumns">
+      </app-grid>
+      <hr />
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <h6>Regimen Fiscalidad</h6>
+    </div>
+  </div>
+
+  <div class="row mb-5">
+    <div class="col-12">
+      <app-grid [tableData]="PersonasVacias" [columnHeader]="personasColumns">
+      </app-grid>
+      <hr />
     </div>
   </div>
 </div>

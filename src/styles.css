@@ -37,3 +37,7 @@ body {
   background: rgb(6, 101, 117);
   border-radius: 10px;
 }
+
+.mat-divider {
+  border-top-color: red;
+}
