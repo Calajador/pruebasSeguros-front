@@ -19,6 +19,7 @@ import { map } from 'rxjs/operators';
 })
 export class GridComponent implements AfterViewInit {
   optionsReserved = ['grid.edit', 'grid.delete', 'grid.detail', 'grid.doc'];
+  itemSelected: any[] = [];
   multipleSelected: boolean = false;
   dataSource: MatTableDataSource<any>;
   selection = new SelectionModel<any>(false, []);
@@ -45,7 +46,6 @@ export class GridComponent implements AfterViewInit {
   @Output() detailData = new EventEmitter<any>();
   @Output() pdfData = new EventEmitter<any>();
   @Output() selectData = new EventEmitter<any>();
-  @Output() checkData = new EventEmitter<any>();
 
   //Expone las cabeceras de la tabla, si tiene selección crea la cabecera de dicha columna
   get displayedColumns() {
@@ -131,7 +131,7 @@ export class GridComponent implements AfterViewInit {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   ngAfterViewInit() {
-    this.dataSource.sort = this.sort;
+    //this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
   }
 
@@ -152,5 +152,35 @@ export class GridComponent implements AfterViewInit {
   //------------------
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  selectItem(row, event) {
+    if (this.multipleSelected) {
+      if (event.checked) {
+        this.itemSelected.push(row);
+      } else {
+        let i = this.itemSelected.indexOf(row);
+        if (i !== -1) {
+          this.itemSelected.splice(i, 1);
+        }
+      }
+    } else {
+      this.itemSelected = [];
+      if (event.checked) {
+        this.itemSelected.push(row);
+      }
+    }
+    console.log(this.itemSelected);
+    this.selectData.emit(this.itemSelected);
+  }
+
+  selectAll(event) {
+    if (event.checked) {
+      this.itemSelected = this.dataSource.data;
+    } else {
+      this.itemSelected = [];
+    }
+    console.log(this.itemSelected);
+    this.selectData.emit(this.itemSelected);
   }
 }
