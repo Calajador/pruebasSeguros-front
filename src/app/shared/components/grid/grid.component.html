@@ -7,137 +7,114 @@
     />
   </mat-form-field>
 
-  <mat-radio-group>
+  <div class="mat-elevation-z8">
     <table
+      matSort
       mat-table
       matTableExporter
-      [dataSource]="dataSource"
       #exporter="matTableExporter"
-      [hiddenColumns]="hiddenColumns"
+      [dataSource]="dataSource"
+      [hiddenColumns]="columnsHidden"
       class="mat-elevation-z8"
     >
-      <ng-container
-        [matColumnDef]="tableData"
-        *ngFor="let tableData of objectKeys(columnHeader)"
-      >
+      <!-- Checkbox Column -->
+      <ng-container matColumnDef="select">
         <th mat-header-cell *matHeaderCellDef>
           <mat-checkbox
-            *ngIf="columnHeader[tableData] == ''"
+            *ngIf="multipleSelected; else elseMultiple"
             (change)="$event ? masterToggle() : null"
             [checked]="selection.hasValue() && isAllSelected()"
             [indeterminate]="selection.hasValue() && !isAllSelected()"
-            [aria-label]="checkboxLabel()"
           >
           </mat-checkbox>
-          {{ columnHeader[tableData] | translate }}
+          <ng-template #elseMultiple> Select </ng-template>
         </th>
-        <div
-          *ngIf="
-            columnHeader[tableData] != 'grid.edit' &&
-            columnHeader[tableData] != 'grid.delete' &&
-            columnHeader[tableData] != 'grid.detail' &&
-            columnHeader[tableData] != 'grid.select_one' &&
-            columnHeader[tableData] != 'grid.doc' &&
-            columnHeader[tableData] != ''
-          "
-        >
-          <td mat-cell *matCellDef="let element">{{ element[tableData] }}</td>
-        </div>
-        <div *ngIf="columnHeader[tableData] == ''">
-          <td mat-cell *matCellDef="let row">
-            <mat-checkbox
-              (click)="$event.stopPropagation(); takeCheck(row)"
-              (change)="$event ? selection.toggle(row) : null"
-              [checked]="selection.isSelected(row)"
-              [aria-label]="checkboxLabel(row)"
-            >
-            </mat-checkbox>
-          </td>
-        </div>
-        <div *ngIf="columnHeader[tableData] == 'grid.edit'">
-          <td mat-cell *matCellDef="let element">
-            <mat-icon (click)="editRow(element)" style="cursor: pointer"
-              >edit</mat-icon
-            >
-          </td>
-        </div>
-        <div *ngIf="columnHeader[tableData] == 'grid.delete'">
-          <td mat-cell *matCellDef="let element">
-            <mat-icon (click)="deleteRow(element)" style="cursor: pointer"
-              >delete</mat-icon
-            >
-          </td>
-        </div>
-        <div *ngIf="columnHeader[tableData] == 'grid.detail'">
-          <td mat-cell *matCellDef="let element">
-            <mat-icon (click)="detailRow(element)" style="cursor: pointer"
-              >add</mat-icon
-            >
-          </td>
-        </div>
-        <div *ngIf="columnHeader[tableData] == 'grid.doc'">
-          <td mat-cell *matCellDef="let element">
-            <mat-icon (click)="pdfRow(element)" style="cursor: pointer"
-              >description</mat-icon
-            >
-          </td>
-        </div>
-        <div *ngIf="columnHeader[tableData] == 'grid.select_one'">
-          <td mat-cell *matCellDef="let element">
-            <mat-radio-button [value]="element" (click)="selectRow(element)">
-            </mat-radio-button>
-          </td>
-        </div>
+        <td mat-cell *matCellDef="let row">
+          <mat-checkbox
+            *ngIf="selectedItem"
+            (click)="$event.stopPropagation()"
+            (change)="$event ? selection.toggle(row) : null"
+            [checked]="selection.isSelected(row)"
+          >
+          </mat-checkbox>
+        </td>
       </ng-container>
 
-      <tr mat-header-row *matHeaderRowDef="objectKeys(columnHeader)"></tr>
-      <tr mat-row *matRowDef="let row; columns: objectKeys(columnHeader)"></tr>
+      <!-- Column -->
+      <ng-container
+        *ngFor="let col of objectKeys(columnHeader)"
+        matColumnDef="{{ col }}"
+      >
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          mat-sort-header
+          [disabled]="!order || reserverCol(columnHeader[col])"
+        >
+          {{ columnHeader[col] }}
+        </th>
+        <td mat-cell *matCellDef="let element">
+          <mat-icon
+            *ngIf="reserverCol(columnHeader[col]); else elseReservedCol"
+            (click)="actionTable(element, columnHeader[col])"
+            style="cursor: pointer"
+          >
+            {{ textActionTable(columnHeader[col]) }}
+          </mat-icon>
+          <ng-template #elseReservedCol> {{ element[col] }}</ng-template>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
     </table>
-  </mat-radio-group>
 
-  <div *ngIf="noData | async" class="no-records">
-    {{ "grid.no_records" | translate }}
+    <div *ngIf="noData | async" class="no-records">
+      {{ "grid.no_records" | translate }}
+    </div>
+
+    <div
+      *ngIf="isLoading"
+      style="
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: white;
+      "
+    >
+      <mat-progress-spinner
+        color="primary"
+        mode="indeterminate"
+        [diameter]="30"
+      >
+      </mat-progress-spinner>
+    </div>
+
+    <mat-toolbar>
+      <mat-toolbar-row>
+        <button
+          class="xlsx"
+          *ngIf="export"
+          mat-button
+          (click)="exporter.exportTable('xlsx')"
+        >
+          Exportar a XLSX
+        </button>
+        <button
+          class="csv"
+          *ngIf="export"
+          mat-button
+          (click)="exporter.exportTable('csv')"
+        >
+          Exportar a CSV
+        </button>
+        <span class="spacer"></span>
+        <mat-paginator
+          *ngIf="paginationSizes.length > 0"
+          [pageSizeOptions]="paginationSizes"
+          showFirstLastButtons
+        ></mat-paginator>
+      </mat-toolbar-row>
+    </mat-toolbar>
   </div>
-
-  <div
-    *ngIf="isLoading"
-    style="
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: white;
-    "
-  >
-    <mat-progress-spinner color="primary" mode="indeterminate">
-    </mat-progress-spinner>
-  </div>
-
-  <mat-toolbar>
-    <mat-toolbar-row>
-      <button
-        class="xlsx"
-        *ngIf="export"
-        mat-button
-        (click)="exporter.exportTable('xlsx')"
-      >
-        Exportar a XLSX
-      </button>
-      <button
-        class="csv"
-        *ngIf="export"
-        mat-button
-        (click)="exporter.exportTable('csv')"
-      >
-        Exportar a CSV
-      </button>
-      <span class="spacer"></span>
-      <mat-paginator
-        *ngIf="pagination"
-        [pageSizeOptions]="paginationSizes"
-        [pageSize]="defaultPageSize"
-        showFirstLastButtons
-      >
-      </mat-paginator>
-    </mat-toolbar-row>
-  </mat-toolbar>
 </div>

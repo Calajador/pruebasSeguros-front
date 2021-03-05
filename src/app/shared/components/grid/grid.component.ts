@@ -1,15 +1,15 @@
 import { SelectionModel } from '@angular/cdk/collections';
 import {
   Component,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output,
+  AfterViewInit,
   ViewChild,
+  Input,
+  Output,
+  EventEmitter,
 } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatSort } from '@angular/material/sort';
+import { MatPaginator } from '@angular/material/paginator';
 import { map } from 'rxjs/operators';
 
 @Component({
@@ -17,28 +17,29 @@ import { map } from 'rxjs/operators';
   templateUrl: './grid.component.html',
   styleUrls: ['./grid.component.css'],
 })
-export class GridComponent implements OnInit {
-  isLoading = true;
-  noData: any;
-  @Input() filter: boolean;
-  @Input() pagination: boolean;
-  @Input() uniqueSelection: boolean;
-  @Input() export: boolean;
-  @Input() hiddenColumns: number[] = [];
-  @Input() paginationSizes: number[] = [5, 10, 15];
-  @Input() defaultPageSize = this.paginationSizes[1];
-  @Input() public set tableData(tableData: any[]) {
-    setTimeout(() => {
-      this.isLoading = false;
-      this.setTableDataSource(tableData);
-      this.noData = this.dataSource
-        .connect()
-        .pipe(map((data) => data.length === 0));
-    }, 2000);
-  }
-  @Input() columnHeader;
-  objectKeys = Object.keys;
+export class GridComponent implements AfterViewInit {
+  optionsReserved = ['grid.edit', 'grid.delete', 'grid.detail', 'grid.doc'];
+  multipleSelected: boolean = false;
   dataSource: MatTableDataSource<any>;
+  selection = new SelectionModel<any>(false, []);
+  objectKeys = Object.keys;
+  noData: any;
+  isLoading = true;
+
+  @Input() filter: boolean;
+  @Input() order: boolean = false;
+  @Input() export: boolean;
+  @Input() columnHeader;
+  @Input() selectedItem: boolean;
+  @Input() public set isMultipleSelected(multiple: boolean) {
+    this.setSelectionModel(multiple);
+  }
+  @Input() public set tableData(data: any[]) {
+    this.loadData(data);
+  }
+  @Input() paginationSizes: number[] = [];
+  @Input() hiddenColumns: number[] = [];
+
   @Output() editData = new EventEmitter<any>();
   @Output() deleteData = new EventEmitter<any>();
   @Output() detailData = new EventEmitter<any>();
@@ -46,71 +47,109 @@ export class GridComponent implements OnInit {
   @Output() selectData = new EventEmitter<any>();
   @Output() checkData = new EventEmitter<any>();
 
+  //Expone las cabeceras de la tabla, si tiene selección crea la cabecera de dicha columna
+  get displayedColumns() {
+    let displayedColumns = Object.keys(this.columnHeader);
+    if (this.selectedItem) {
+      displayedColumns.unshift('select');
+    }
+    return displayedColumns;
+  }
+
+  //Validación de campo reservado
+  reserverCol(option: string) {
+    return this.optionsReserved.includes(option);
+  }
+
+  //Obtiene el valor del campo correspondiente a la acción
+  textActionTable(columHeader: string) {
+    switch (columHeader) {
+      case this.optionsReserved[0]:
+        return 'edit';
+      case this.optionsReserved[1]:
+        return 'delete';
+      case this.optionsReserved[2]:
+        return 'add';
+      case this.optionsReserved[3]:
+        return 'description';
+      default:
+        return '';
+    }
+  }
+
+  // ejecuta la acción de cada botón
+  actionTable(row: any, columHeader: string) {
+    console.log(row, columHeader);
+    switch (columHeader) {
+      case this.optionsReserved[0]:
+        this.editData.emit(row);
+        break;
+      case this.optionsReserved[1]:
+        this.deleteData.emit(row);
+        break;
+      case this.optionsReserved[2]:
+        this.detailData.emit(row);
+        break;
+      case this.optionsReserved[3]:
+        this.pdfData.emit(row);
+        break;
+      default:
+        break;
+    }
+  }
+
+  // *acá se puede generar para que se oculten las de edición y demás*
+  get columnsHidden() {
+    let columns = this.hiddenColumns;
+    if (this.selectedItem) {
+      columns.unshift(0);
+    }
+    return columns;
+  }
+
+  //Carga la información en la tabla tan pronto recibe la data
+  loadData(data: any[]) {
+    setTimeout(() => {
+      this.isLoading = false;
+      this.dataSource = new MatTableDataSource<any>(data);
+      this.noData = this.dataSource
+        .connect()
+        .pipe(map((data) => data.length === 0));
+    }, 2000);
+  }
+
+  //Crea el selectionModel nuevamente si se permite selección múltiple
+  setSelectionModel(multipleSelected: boolean) {
+    if (multipleSelected) {
+      this.multipleSelected = multipleSelected;
+      this.selection = new SelectionModel<any>(multipleSelected, []);
+    }
+  }
+
+  // Maneja el ordenamiento y la páginación
+  @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  selection = new SelectionModel<any>(true, []);
-
-  ngOnInit() {}
   ngAfterViewInit() {
+    this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
   }
 
-  setTableDataSource(data: any) {
-    this.dataSource = new MatTableDataSource<any>(data);
-    this.dataSource.paginator = this.paginator;
-  }
-
-  applyFilter(filterValue: string) {
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
-
-  detailRow(row) {
-    this.detailData.emit(row);
-  }
-
-  editRow(row) {
-    this.editData.emit(row);
-  }
-
-  pdfRow(row) {
-    this.pdfData.emit(row);
-  }
-
-  selectRow(row) {
-    this.selectData.emit(row);
-  }
-
-  deleteRow(row) {
-    this.deleteData.emit(row);
-  }
-
+  //Manejo de la selección de items en la tabla
   /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {
     const numSelected = this.selection.selected.length;
     const numRows = this.dataSource.data.length;
     return numSelected === numRows;
   }
-
   /** Selects all rows if they are not all selected; otherwise clear selection. */
   masterToggle() {
     this.isAllSelected()
       ? this.selection.clear()
-      : this.dataSource.data.forEach((row) => {
-          this.selection.select(row);
-          console.log(row);
-        });
+      : this.dataSource.data.forEach((row) => this.selection.select(row));
   }
 
-  /** The label for the checkbox on the passed row */
-  checkboxLabel(row?: any): string {
-    if (!row) {
-      return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
-    }
-    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${
-      row.position + 1
-    }`;
-  }
-
-  takeCheck(row) {
-    this.checkData.emit(row);
+  //------------------
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 }

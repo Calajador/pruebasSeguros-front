@@ -55,9 +55,6 @@
               [tableData]="personas$ | async"
               [columnHeader]="personasColumns"
               [filter]="false"
-              [pagination]="false"
-              [paginationSizes]="[2, 4, 6]"
-              [defaultPageSize]="2"
               (checkData)="getSelected($event)"
             >
             </app-grid>
@@ -116,9 +113,6 @@
               [tableData]="personas$ | async"
               [columnHeader]="personasColumns"
               [filter]="false"
-              [pagination]="false"
-              [paginationSizes]="[2, 4, 6]"
-              [defaultPageSize]="2"
             >
             </app-grid>
           </div>
@@ -162,9 +156,6 @@
               [tableData]="personas$ | async"
               [columnHeader]="tomadorColumns"
               [filter]="false"
-              [pagination]="false"
-              [paginationSizes]="[2, 4, 6]"
-              [defaultPageSize]="2"
             >
             </app-grid>
           </div>
