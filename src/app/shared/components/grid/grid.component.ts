@@ -50,9 +50,7 @@ export class GridComponent implements OnInit {
   selection = new SelectionModel<any>(true, []);
 
   ngOnInit() {}
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-  }
+  ngAfterViewInit() {}
 
   setTableDataSource(data: any) {
     this.dataSource = new MatTableDataSource<any>(data);
