@@ -1,0 +1,20 @@
+.root {
+    margin-top: 2rem;
+  }
+  .form {
+    margin-top: 1rem;
+  }
+  .input {
+    font-size: 12px;
+    display: flex;
+    flex-direction: column;
+  }
+  label {
+    display: inline-block;
+    width: 150px;
+  }
+  .button {
+    width: 15rem;
+    height: 2.5rem;
+  }
+  
