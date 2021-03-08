@@ -33,6 +33,13 @@
             "menu_subtitle_1": "Unsuscribe",
             "menu_subtitle_2": "Consulta",
             "menu_subtitle_3": "Consult"
+        },
+
+        "users": {
+            "menu_title":"Users",
+            "menu_subtitle_1": "Functional Profiles",
+            "menu_subtitle_2": "Profiles",
+            "menu_subtitle_3": "Users"
         }
     },
 

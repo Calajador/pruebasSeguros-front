@@ -32,6 +32,13 @@
             "menu_subtitle_1": "Baja",
             "menu_subtitle_2": "Consulta",
             "menu_subtitle_3": "Opciones"
+        },
+
+        "users": {
+            "menu_title":"Usuarios",
+            "menu_subtitle_1": "Perfiles Funcionales",
+            "menu_subtitle_2": "Perfiles",
+            "menu_subtitle_3": "Usuarios"
         }
     },
 

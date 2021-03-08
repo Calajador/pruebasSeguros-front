@@ -94,6 +94,24 @@ export class SidebarService {
         },
       ],
     },
+    {
+      displayName: 'sidebar.users.menu_title',
+      iconName: 'manage_accounts',
+      children: [
+        {
+          displayName: 'sidebar.users.menu_subtitle_1',
+          route: '/usuarios/perfilesFuncionales',
+        },
+        {
+          displayName: 'sidebar.users.menu_subtitle_2',
+          route: '/usuarios/perfiles',
+        },
+        {
+          displayName: 'sidebar.users.menu_subtitle_3',
+          route: '/usuarios/usuarios',
+        },
+      ],
+    },
   ];
 
   constructor() {}

@@ -51,6 +51,13 @@ const routes: Routes = [
             .SiniestrosModule,
         data: { breadcrumb: { skip: true } },
       },
+      {
+        path: 'usuarios',
+        canLoad: [AuthGuard],
+        loadChildren: async () =>
+          (await import('./features/usuarios/usuarios.module')).UsuariosModule,
+        data: { breadcrumb: { skip: true } },
+      },
     ],
   },
 ];
