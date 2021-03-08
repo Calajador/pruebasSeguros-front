@@ -19,6 +19,7 @@ import { map } from 'rxjs/operators';
 })
 export class TableComponent implements AfterViewInit {
   optionsReserved = ['grid.edit', 'grid.delete', 'grid.detail', 'grid.doc'];
+  typesExport = ['xlsx', 'csv'];
   itemSelected: any[] = [];
   multipleSelected: boolean = false;
   dataSource: MatTableDataSource<any>;
@@ -27,11 +28,11 @@ export class TableComponent implements AfterViewInit {
   noData: any;
   isLoading = true;
 
-  @Input() filter: boolean;
+  @Input() filter: boolean = false;
   @Input() order: boolean = false;
-  @Input() export: boolean;
+  @Input() export: boolean = false;
   @Input() columnHeader;
-  @Input() selectedItem: boolean;
+  @Input() selectedItem: boolean = false;
   @Input() public set isMultipleSelected(multiple: boolean) {
     this.setSelectionModel(multiple);
   }
@@ -105,7 +106,7 @@ export class TableComponent implements AfterViewInit {
   // *acá se puede generar para que se oculten las de edición y demás*
   get columnsHidden() {
     let columns = this.hiddenColumns;
-    if (this.selectedItem) {
+    if (this.selectedItem && !columns.includes(0)) {
       columns.unshift(0);
     }
     return columns;
@@ -132,12 +133,7 @@ export class TableComponent implements AfterViewInit {
     }
   }
 
-  // Maneja el ordenamiento y la páginación
-
-  ngAfterViewInit() {
-    this.dataSource.sort = this.sort;
-    // this.dataSource.paginator = this.paginator;
-  }
+  ngAfterViewInit() {}
 
   //Manejo de la selección de items en la tabla
   /** Whether the number of selected elements matches the total number of rows. */

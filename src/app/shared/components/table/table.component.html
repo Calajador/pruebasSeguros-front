@@ -94,22 +94,16 @@
 
     <mat-toolbar>
       <mat-toolbar-row>
-        <button
-          class="xlsx"
-          *ngIf="export"
-          mat-button
-          (click)="exporter.exportTable('xlsx')"
-        >
-          Exportar a XLSX
-        </button>
-        <button
-          class="csv"
-          *ngIf="export"
-          mat-button
-          (click)="exporter.exportTable('csv')"
-        >
-          Exportar a CSV
-        </button>
+        <div *ngIf="export">
+          <button
+            *ngFor="let type of typesExport"
+            class="{{ type }}"
+            mat-button
+            (click)="exporter.exportTable(type)"
+          >
+            Exportar a {{ type }}
+          </button>
+        </div>
         <span class="spacer"></span>
         <mat-paginator
           *ngIf="paginationSizes.length > 0"

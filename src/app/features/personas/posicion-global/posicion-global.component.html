@@ -6,13 +6,17 @@
   </div>
   <div class="row mb-5">
     <div class="col-12">
-      <app-grid
+      <app-table
         [tableData]="tomadores"
         [columnHeader]="tomadoresColumns"
         [filter]="false"
-        [pagination]="false"
+        [paginationSizes]="[2, 4, 6]"
+        [order]="true"
+        [filter]="true"
+        [selectedItem]="true"
+        [export]="true"
       >
-      </app-grid>
+      </app-table>
     </div>
   </div>
 
@@ -23,13 +27,15 @@
   </div>
   <div class="row mb-5">
     <div class="col-12">
-      <app-grid
+      <app-table
         [tableData]="tomadores"
         [columnHeader]="tomadoresColumns"
         [filter]="false"
-        [pagination]="false"
+        [order]="true"
+        [selectedItem]="true"
+        [isMultipleSelected]="true"
       >
-      </app-grid>
+      </app-table>
     </div>
   </div>
 
@@ -40,13 +46,8 @@
   </div>
   <div class="row mb-5">
     <div class="col-12">
-      <app-grid
-        [tableData]="recibos"
-        [columnHeader]="recibosColumns"
-        [filter]="false"
-        [pagination]="false"
-      >
-      </app-grid>
+      <app-table [tableData]="recibos" [columnHeader]="recibosColumns">
+      </app-table>
     </div>
   </div>
 
@@ -60,8 +61,7 @@
       <app-grid
         [tableData]="conductores"
         [columnHeader]="conductorColumns"
-        [filter]="false"
-        [pagination]="false"
+        [export]="true"
       >
       </app-grid>
     </div>
