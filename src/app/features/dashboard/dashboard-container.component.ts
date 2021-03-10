@@ -24,9 +24,7 @@ export class DashboardContainerComponent implements OnInit {
     this.getPrevious();
   }
 
-  onClick() {
-    console.log('recibido por el boton');
-  }
+  onClick() {}
 
   getPrevious() {
     let prevURL = this._nav.getPreviousUrl();

@@ -11,9 +11,7 @@ export class SideNavItemComponent implements OnInit {
   @Output() sidenavToggle = new EventEmitter<void>();
   constructor() {}
 
-  ngOnInit(): void {
-    console.log(this.item);
-  }
+  ngOnInit(): void {}
 
   onToggleSidenav() {
     this.sidenavToggle.emit();

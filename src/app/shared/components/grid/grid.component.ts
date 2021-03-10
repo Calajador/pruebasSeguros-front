@@ -94,7 +94,6 @@ export class GridComponent implements OnInit {
       ? this.selection.clear()
       : this.dataSource.data.forEach((row) => {
           this.selection.select(row);
-          console.log(row);
         });
   }
 

@@ -72,7 +72,6 @@ export class PersonasListasContainerComponent implements OnInit, OnDestroy {
     private _auth: AuthService
   ) {
     this.identity = this._auth.getIdentity();
-    console.log(this.identity.role);
   }
 
   ngOnInit(): void {
@@ -99,7 +98,6 @@ export class PersonasListasContainerComponent implements OnInit, OnDestroy {
 
     dialogref.afterClosed().subscribe((result) => {
       if (result.event !== 'Cancel') {
-        console.log(result);
         this._personas.postPersona(result).subscribe((res) => {
           this.listarPersopnas();
         });
@@ -119,7 +117,6 @@ export class PersonasListasContainerComponent implements OnInit, OnDestroy {
 
     dialogref.afterClosed().subscribe((result) => {
       if (result.event !== 'Cancel') {
-        console.log(result);
         this._personas.editPersona(data._id, result).subscribe((res) => {
           this.listarPersopnas();
         });
@@ -139,7 +136,6 @@ export class PersonasListasContainerComponent implements OnInit, OnDestroy {
   }
 
   getPdfData(data: Persona) {
-    console.log(data);
     let docDefinition = {
       content: [
         // Previous configuration

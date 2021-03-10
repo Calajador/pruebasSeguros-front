@@ -16,7 +16,5 @@ export class PersonasListasDetailComponent implements OnInit {
     this.persona = data;
   }
 
-  ngOnInit(): void {
-    console.log(this.persona);
-  }
+  ngOnInit(): void {}
 }
