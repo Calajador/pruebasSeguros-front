@@ -1,6 +1,6 @@
 import { Modulo } from './models/modulo.model';
 
-export const modulos: Modulo[] = [
+export const moduloCross: Modulo[] = [
   {
     name: 'cross',
     children: [

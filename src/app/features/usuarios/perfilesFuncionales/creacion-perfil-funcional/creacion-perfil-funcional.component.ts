@@ -3,7 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { MatTreeNestedDataSource } from '@angular/material/tree';
 import { Funcionalidad } from 'src/app/core/models/funcionalitie.model';
 import { Modulo } from 'src/app/core/models/modulo.model';
-import { modulos } from '../../../../core/grupos';
+import { moduloCross } from 'src/app/core/modulos/moduloCross';
+import { moduloProductos } from 'src/app/core/modulos/moduloProductos';
 
 @Component({
   selector: 'app-creacion-perfil-funcional',
@@ -18,9 +19,7 @@ export class CreacionPerfilFuncionalComponent implements OnInit {
   dataSource = new MatTreeNestedDataSource<Modulo>();
   funcionalities: Funcionalidad[] = [];
 
-  constructor() {
-    this.dataSource.data = modulos;
-  }
+  constructor() {}
   hasChild = (_: number, node: Modulo) =>
     !!node.children && node.children.length > 0;
   hasfuncionality = (_: number, node: Modulo) => {
@@ -29,18 +28,18 @@ export class CreacionPerfilFuncionalComponent implements OnInit {
     return !!node.funcionalidades && node.funcionalidades.length > 0;
   };
 
-  ngOnInit(): void {
-    this.modulos = modulos;
-    this.modulos.forEach((element) => {
-      this.modulesToSelect.push(element.name);
-    });
-  }
+  ngOnInit(): void {}
 
   cargarFuncionalidades(modulo: string) {
+    this.SelectedModule = modulo;
     if (modulo === 'cross') {
+      console.log('Cross Seleccionado');
+      this.dataSource.data = moduloCross;
     }
 
-    if (modulo === 'Productos') {
+    if (modulo === 'productos') {
+      console.log('Productos Seleccionado');
+      this.dataSource.data = moduloProductos;
     }
   }
 }
