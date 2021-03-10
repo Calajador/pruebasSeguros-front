@@ -15,6 +15,7 @@ export class CreacionPerfilFuncionalComponent implements OnInit {
   modulos: Modulo[] = [];
   modulesToSelect = [];
   SelectedModule: string;
+  selectedOption: string = 'Sin seleccion';
   treeControl = new NestedTreeControl<Modulo>((node) => node.children);
   dataSource = new MatTreeNestedDataSource<Modulo>();
   funcionalities: Funcionalidad[] = [];
@@ -22,11 +23,6 @@ export class CreacionPerfilFuncionalComponent implements OnInit {
   constructor() {}
   hasChild = (_: number, node: Modulo) =>
     !!node.children && node.children.length > 0;
-  hasfuncionality = (_: number, node: Modulo) => {
-    this.funcionalities = node.funcionalidades;
-    console.log(this.funcionalities);
-    return !!node.funcionalidades && node.funcionalidades.length > 0;
-  };
 
   ngOnInit(): void {}
 
@@ -41,5 +37,10 @@ export class CreacionPerfilFuncionalComponent implements OnInit {
       console.log('Productos Seleccionado');
       this.dataSource.data = moduloProductos;
     }
+  }
+
+  detail(microProfile) {
+    this.selectedOption = microProfile;
+    console.log(microProfile);
   }
 }

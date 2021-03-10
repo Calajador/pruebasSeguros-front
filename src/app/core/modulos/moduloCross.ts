@@ -3,47 +3,45 @@ import { Modulo } from '../models/modulo.model';
 export const moduloCross: Modulo[] = [
   {
     name: 'Cross',
+    microProfile: 'cross',
     children: [
       {
         name: 'Personas',
+        microProfile: 'V-PER',
         children: [
           {
             name: 'Alta de personas',
-            funcionalidades: [
+            microProfile: 'SV-ALT-PER',
+            children: [
               {
                 name: 'Alta Medios de Pago',
-                granted: 'Denegado',
-                microProfile: 'OP003',
+                microProfile: 'ALTA-MEDIOS',
               },
               {
                 name: 'Alta Contactos',
-                granted: 'Denegado',
-                microProfile: 'OP003',
+                microProfile: 'ALTA-CONTACTO',
               },
               {
                 name: 'Alta Direcciones',
-                granted: 'Denegado',
-                microProfile: 'OP005',
+                microProfile: 'ALTA-DIRECCION',
               },
             ],
           },
           {
             name: 'Consulta de Personas',
-            funcionalidades: [
+            microProfile: 'SV-CON-PER',
+            children: [
               {
                 name: 'Consulta de Medios de Pago',
-                granted: 'Denegado',
-                microProfile: 'OP001',
+                microProfile: 'CONSULTA-MEDIOS',
               },
               {
                 name: 'COnsulta de Contactos',
-                granted: 'Denegado',
-                microProfile: 'OP001',
+                microProfile: 'CONSULTA-CONTACTOS',
               },
               {
                 name: 'COnsulta de Direcciones',
-                granted: 'Denegado',
-                microProfile: 'OP001',
+                microProfile: 'CONSULTA-DIRECCIONES',
               },
             ],
           },
@@ -51,43 +49,40 @@ export const moduloCross: Modulo[] = [
       },
       {
         name: 'Usuarios y Roles',
+        microProfile: 'V-USE',
         children: [
           {
             name: 'Grupo1',
-            funcionalidades: [
+            microProfile: 'SV-GP1',
+            children: [
               {
                 name: 'Funcionalidad 1',
-                granted: 'Denegado',
                 microProfile: 'OP003',
               },
               {
                 name: 'Funcionalidad 2',
-                granted: 'Denegado',
                 microProfile: 'OP003',
               },
               {
                 name: 'Funcionalidad 3',
-                granted: 'Denegado',
                 microProfile: 'OP005',
               },
             ],
           },
           {
             name: 'Grupo2',
-            funcionalidades: [
+            microProfile: 'SV-GP2',
+            children: [
               {
-                name: 'Funcionalidad 1',
-                granted: 'Denegado',
+                name: 'Funcionalidad 4',
                 microProfile: 'OP003',
               },
               {
-                name: 'Funcionalidad 2',
-                granted: 'Denegado',
+                name: 'Funcionalidad 5',
                 microProfile: 'OP003',
               },
               {
-                name: 'Funcionalidad 3',
-                granted: 'Denegado',
+                name: 'Funcionalidad 6',
                 microProfile: 'OP005',
               },
             ],

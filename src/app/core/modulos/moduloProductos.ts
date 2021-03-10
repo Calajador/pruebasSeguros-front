@@ -9,40 +9,34 @@ export const moduloProductos: Modulo[] = [
         children: [
           {
             name: 'Alta de productos',
-            funcionalidades: [
+            children: [
               {
                 name: 'funcionalidad 1',
-                granted: 'Denegado',
                 microProfile: 'OP003',
               },
               {
                 name: 'funcionalidad 1',
-                granted: 'Denegado',
-                microProfile: 'OP003',
+                microProfile: 'OP004',
               },
               {
                 name: 'funcionalidad 1',
-                granted: 'Denegado',
                 microProfile: 'OP005',
               },
             ],
           },
           {
             name: 'Consulta de Productos',
-            funcionalidades: [
+            children: [
               {
                 name: 'funcionalidad 1',
-                granted: 'Denegado',
                 microProfile: 'OP001',
               },
               {
                 name: 'funcionalidad 1',
-                granted: 'Denegado',
                 microProfile: 'OP001',
               },
               {
                 name: 'funcionalidad 1',
-                granted: 'Denegado',
                 microProfile: 'OP001',
               },
             ],
@@ -54,40 +48,34 @@ export const moduloProductos: Modulo[] = [
         children: [
           {
             name: 'Grupo1',
-            funcionalidades: [
+            children: [
               {
                 name: 'Funcionalidad 1',
-                granted: 'Denegado',
                 microProfile: 'OP003',
               },
               {
                 name: 'Funcionalidad 2',
-                granted: 'Denegado',
                 microProfile: 'OP003',
               },
               {
                 name: 'Funcionalidad 3',
-                granted: 'Denegado',
                 microProfile: 'OP005',
               },
             ],
           },
           {
             name: 'Grupo2',
-            funcionalidades: [
+            children: [
               {
                 name: 'Funcionalidad 1',
-                granted: 'Denegado',
                 microProfile: 'OP003',
               },
               {
                 name: 'Funcionalidad 2',
-                granted: 'Denegado',
                 microProfile: 'OP003',
               },
               {
                 name: 'Funcionalidad 3',
-                granted: 'Denegado',
                 microProfile: 'OP005',
               },
             ],

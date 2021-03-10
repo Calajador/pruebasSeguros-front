@@ -78,7 +78,7 @@
         "delete": "Borrar",
         "detail": "Detalle",
         "select_one": "Seleccione Uno",
-        "no_records": "No se hay registros",
+        "no_records": "No hay registros",
         "doc": "doc"
     }
 }
