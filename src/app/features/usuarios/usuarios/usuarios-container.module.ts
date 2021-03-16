@@ -3,13 +3,14 @@ import { CommonModule } from '@angular/common';
 
 import { UsuariosContainerRoutingModule } from './usuarios-container-routing.module';
 import { UsuariosContainerComponent } from './usuarios-container.component';
-
+import { CreacionUsuariosComponent } from './creacion-usuarios/creacion-usuarios.component';
+import { SharedModule } from 'src/app/shared/shared.module';
+import { ModificacionUsuariosComponent } from './modificacion-usuarios/modificacion-usuarios.component';
+import { BusquedaUsuariosComponent } from './busqueda-usuarios/busqueda-usuarios.component';
+import { AsignacionMasivaPerfilesComponent } from './asignacion-masiva-perfiles/asignacion-masiva-perfiles.component';
 
 @NgModule({
-  declarations: [UsuariosContainerComponent],
-  imports: [
-    CommonModule,
-    UsuariosContainerRoutingModule
-  ]
+  declarations: [UsuariosContainerComponent, CreacionUsuariosComponent, ModificacionUsuariosComponent, BusquedaUsuariosComponent, AsignacionMasivaPerfilesComponent],
+  imports: [CommonModule, UsuariosContainerRoutingModule, SharedModule],
 })
-export class UsuariosContainerModule { }
+export class UsuariosContainerModule {}

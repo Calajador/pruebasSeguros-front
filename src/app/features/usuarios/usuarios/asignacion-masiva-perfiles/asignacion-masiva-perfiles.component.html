@@ -1,0 +1,130 @@
+<div class="container mt-4">
+  <div fxLayout="row">
+    <div fxLayout="column " fxFlex>
+      <h6>Asignación Masiva de Perfiles</h6>
+    </div>
+  </div>
+  <hr />
+  <form [formGroup]="forma">
+    <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="20px">
+      <div fxLayout="column " fxFlex>
+        <mat-form-field appearance="outline">
+          <input matInput placeholder="Usuario" formControlName="usuario" />
+          <mat-hint *ngIf="usuarioInvalid" class="text-danger">
+            Campo obligatorio
+          </mat-hint>
+        </mat-form-field>
+      </div>
+      <div fxLayout="column " fxFlex>
+        <mat-form-field appearance="outline">
+          <input matInput placeholder="Nombre" formControlName="nombre" />
+          <mat-hint *ngIf="nombreInvalid" class="text-danger">
+            Campo obligatorio
+          </mat-hint>
+        </mat-form-field>
+      </div>
+      <div fxLayout="column " fxFlex>
+        <mat-form-field appearance="outline">
+          <mat-select placeholder="Estado" formControlName="estado">
+            <mat-option value="activo"> Activo</mat-option>
+            <mat-option value="inactivo"> Inactivo</mat-option>
+          </mat-select>
+          <mat-hint *ngIf="estadoInvalid" class="text-danger">
+            Campo obligatorio
+          </mat-hint>
+        </mat-form-field>
+      </div>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="20px">
+      <div fxLayout="column " fxFlex>
+        <mat-form-field appearance="outline">
+          <mat-select placeholder="Perfil" formControlName="perfil">
+            <mat-option *ngFor="let item of perfiles" [value]="item._id">{{
+              item.nombre
+            }}</mat-option>
+          </mat-select>
+          <mat-hint *ngIf="perfilInvalid" class="text-danger">
+            Campo obligatorio
+          </mat-hint>
+        </mat-form-field>
+      </div>
+      <div fxLayout="column " fxFlex>
+        <mat-form-field appearance="outline">
+          <input
+            matInput
+            placeholder="Fecha de Alta"
+            formControlName="addDate"
+            [matDatepicker]="picker"
+            (dateChange)="formatDate($event)"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-hint *ngIf="addDateInvalid" class="text-danger">
+            Campo obligatorio
+          </mat-hint>
+        </mat-form-field>
+      </div>
+    </div>
+  </form>
+  <hr />
+  <app-table
+    [tableData]="usuarios$ | async"
+    [columnHeader]="usuariosColumns"
+    [filter]="true"
+    [selectedItem]="true"
+    [isMultipleSelected]="false"
+    [paginationSizes]="[2, 4, 6]"
+    [defaultPageSize]="4"
+    (selectData)="getSelected($event)"
+  ></app-table>
+  <hr />
+  <mat-divider></mat-divider>
+  <hr />
+
+  <form [formGroup]="forma2">
+    <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="20px">
+      <div fxLayout="column " fxFlex>
+        <mat-form-field appearance="outline">
+          <mat-select placeholder="Perfil" formControlName="perfil">
+            <mat-option *ngFor="let item of perfiles" [value]="item._id">{{
+              item.nombre
+            }}</mat-option>
+          </mat-select>
+          <mat-hint *ngIf="perfilInvalid" class="text-danger">
+            Campo obligatorio
+          </mat-hint>
+        </mat-form-field>
+      </div>
+      <div fxLayout="column " fxFlex>
+        <mat-form-field appearance="outline">
+          <input
+            matInput
+            placeholder="Fecha de Alta"
+            formControlName="addDate"
+            [matDatepicker]="picker"
+            (dateChange)="formatDate($event)"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-hint *ngIf="addDateInvalid" class="text-danger">
+            Campo obligatorio
+          </mat-hint>
+        </mat-form-field>
+      </div>
+    </div>
+  </form>
+  <hr />
+  <app-table
+    [tableData]="usuariosSeleccionados"
+    [columnHeader]="usuariosColumns"
+  ></app-table>
+  <hr />
+</div>

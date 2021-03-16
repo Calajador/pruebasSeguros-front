@@ -84,7 +84,6 @@ export class TableComponent implements AfterViewInit {
 
   // ejecuta la acción de cada botón
   actionTable(row: any, columHeader: string) {
-    console.log(row, columHeader);
     switch (columHeader) {
       case this.optionsReserved[0]:
         this.editData.emit(row);
@@ -170,7 +169,6 @@ export class TableComponent implements AfterViewInit {
         this.itemSelected.push(row);
       }
     }
-    console.log(this.itemSelected);
     this.selectData.emit(this.itemSelected);
   }
 
@@ -180,7 +178,6 @@ export class TableComponent implements AfterViewInit {
     } else {
       this.itemSelected = [];
     }
-    console.log(this.itemSelected);
     this.selectData.emit(this.itemSelected);
   }
 }
