@@ -105,15 +105,15 @@
             matInput
             placeholder="Fecha de Alta"
             formControlName="addDate"
-            [matDatepicker]="picker"
+            [matDatepicker]="picker2"
             (dateChange)="formatDate($event)"
           />
           <mat-datepicker-toggle
             matSuffix
-            [for]="picker"
+            [for]="picker2"
           ></mat-datepicker-toggle>
 
-          <mat-datepicker #picker></mat-datepicker>
+          <mat-datepicker #picker2></mat-datepicker>
           <mat-hint *ngIf="addDateInvalid" class="text-danger">
             Campo obligatorio
           </mat-hint>
@@ -123,8 +123,10 @@
   </form>
   <hr />
   <app-table
+    #tableSelec
     [tableData]="usuariosSeleccionados"
-    [columnHeader]="usuariosColumns"
+    [columnHeader]="usuariosSelColumns"
+    (deleteData)="getRemoveData($event)"
   ></app-table>
   <hr />
 </div>

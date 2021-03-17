@@ -19,4 +19,8 @@ export class UsuariosService {
   postUsuario(data) {
     return this._web.post('registrar', data);
   }
+
+  editUsuario(id, data) {
+    return this._web.patch('usuarios/editar/' + id, data);
+  }
 }

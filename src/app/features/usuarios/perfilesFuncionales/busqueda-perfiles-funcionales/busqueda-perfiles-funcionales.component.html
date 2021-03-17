@@ -1,0 +1,129 @@
+<div class="container mt-4">
+  <div fxLayout="row">
+    <div fxLayout="column " fxFlex>
+      <h6>Busqueda de Perfiles Funcionales</h6>
+    </div>
+  </div>
+  <hr />
+  <form [formGroup]="forma">
+    <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="20px">
+      <div fxLayout="column " fxFlex>
+        <mat-form-field appearance="outline">
+          <input matInput placeholder="Código" formControlName="codigo" />
+          <mat-hint *ngIf="codigoInvalid" class="text-danger">
+            Campo obligatorio
+          </mat-hint>
+        </mat-form-field>
+      </div>
+      <div fxLayout="column " fxFlex>
+        <mat-form-field appearance="outline">
+          <input matInput placeholder="Nombre" formControlName="nombre" />
+          <mat-hint *ngIf="nombreInvalid" class="text-danger">
+            Campo obligatorio
+          </mat-hint>
+        </mat-form-field>
+      </div>
+      <div fxLayout="column " fxFlex>
+        <mat-form-field appearance="outline">
+          <input
+            matInput
+            placeholder="Desde"
+            formControlName="desde"
+            [matDatepicker]="desdepicker"
+            (dateChange)="formatDate($event)"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="desdepicker"
+          ></mat-datepicker-toggle>
+
+          <mat-datepicker #desdepicker></mat-datepicker>
+          <mat-hint *ngIf="desdeInvalid" class="text-danger">
+            Campo obligatorio
+          </mat-hint>
+        </mat-form-field>
+      </div>
+      <div fxLayout="column " fxFlex>
+        <mat-form-field appearance="outline">
+          <input
+            matInput
+            placeholder="hasta"
+            formControlName="hasta"
+            [matDatepicker]="hastapicker"
+            (dateChange)="formatDate($event)"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="hastapicker"
+          ></mat-datepicker-toggle>
+
+          <mat-datepicker #hastapicker></mat-datepicker>
+          <mat-hint *ngIf="hastaInvalid" class="text-danger">
+            Campo obligatorio
+          </mat-hint>
+        </mat-form-field>
+      </div>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="20px">
+      <div fxLayout="column " fxFlex>
+        <mat-form-field appearance="outline">
+          <mat-select placeholder="Modulo" formControlName="modulo">
+            <mat-option value="cross"> Cross</mat-option>
+            <mat-option value="productos"> Productos</mat-option>
+          </mat-select>
+          <mat-hint *ngIf="moduloInvalid" class="text-danger">
+            Campo obligatorio
+          </mat-hint>
+        </mat-form-field>
+      </div>
+      <div fxLayout="column " fxFlex>
+        <mat-form-field appearance="outline">
+          <mat-select
+            placeholder="Funcionalidad"
+            formControlName="funcionalidad"
+          >
+            <mat-option value="xxx"> xxx</mat-option>
+            <mat-option value="yyy"> yyy</mat-option>
+          </mat-select>
+          <mat-hint *ngIf="funcionalidadInvalid" class="text-danger">
+            Campo obligatorio
+          </mat-hint>
+        </mat-form-field>
+      </div>
+      <div fxLayout="column " fxFlex>
+        <mat-form-field appearance="outline">
+          <input
+            matInput
+            placeholder="Micro Perfil"
+            formControlName="microPerfil"
+          />
+          <mat-hint *ngIf="microPerfilInvalid" class="text-danger">
+            Campo obligatorio
+          </mat-hint>
+        </mat-form-field>
+      </div>
+      <div fxLayout="column " fxFlex>
+        <mat-form-field appearance="outline">
+          <mat-select placeholder="Estado" formControlName="estado">
+            <mat-option value="activo"> activo</mat-option>
+            <mat-option value="inactivo"> inactivo</mat-option>
+          </mat-select>
+          <mat-hint *ngIf="estadoInvalid" class="text-danger">
+            Campo obligatorio
+          </mat-hint>
+        </mat-form-field>
+      </div>
+    </div>
+  </form>
+  <hr />
+  <app-table
+    [tableData]="perfilesFuncionales"
+    [columnHeader]="pfColumns"
+    [filter]="true"
+    [order]="true"
+    [paginationSizes]="[2, 4, 6]"
+    [defaultPageSize]="4"
+    [export]="true"
+    [hiddenColumns]="[5, 6, 7, 8]"
+  ></app-table>
+</div>

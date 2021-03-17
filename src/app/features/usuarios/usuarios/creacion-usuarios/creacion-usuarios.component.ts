@@ -35,7 +35,7 @@ export class CreacionUsuariosComponent implements OnInit {
       usuario: ['', Validators.required],
       nombre: ['', Validators.required],
       email: ['', Validators.required],
-      password: ['', Validators.required, Validators.min(6)],
+      password: ['', Validators.required],
       estado: ['', Validators.required],
       idioma: ['', Validators.required],
       addDate: ['', Validators.required],

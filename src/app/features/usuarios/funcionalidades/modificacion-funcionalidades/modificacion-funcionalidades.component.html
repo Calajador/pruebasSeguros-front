@@ -1,0 +1,69 @@
+<div class="container mt-4">
+  <div fxLayout="row">
+    <div fxLayout="column " fxFlex>
+      <h6>Modificacion de Funcionalidades</h6>
+    </div>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="20px">
+    <div fxLayout="column " fxFlex>
+      <mat-form-field appearance="outline">
+        <input matInput placeholder="Modulo" />
+      </mat-form-field>
+    </div>
+    <div fxLayout="column " fxFlex>
+      <mat-form-field appearance="outline">
+        <input matInput placeholder="Submodulo" />
+      </mat-form-field>
+    </div>
+    <div fxLayout="column " fxFlex>
+      <mat-form-field appearance="outline">
+        <input matInput placeholder="Grupo" />
+      </mat-form-field>
+    </div>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="20px">
+    <div fxLayout="column " fxFlex>
+      <mat-form-field appearance="outline">
+        <input matInput placeholder="Codigo" />
+      </mat-form-field>
+    </div>
+    <div fxLayout="column " fxFlex>
+      <mat-form-field appearance="outline">
+        <input matInput placeholder="Fecha de Alta" [matDatepicker]="picker" />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div fxLayout="row">
+    <div fxLayout="column " fxFlex>
+      <h6>Funcionalidades</h6>
+    </div>
+  </div>
+  <hr />
+  <div fxLayout="row">
+    <div fxLayout="column " fxFlex>
+      <app-table
+        [tableData]="funcionalidadesVacias"
+        [columnHeader]="funcionalidadesColumns"
+      ></app-table>
+    </div>
+  </div>
+  <hr />
+  <div fxLayout="row">
+    <div fxLayout="column " fxFlex>
+      <h6>Micro Perfiles DIsponibles</h6>
+    </div>
+  </div>
+  <hr />
+  <div fxLayout="row">
+    <div fxLayout="column " fxFlex>
+      <app-table
+        [tableData]="funcionalidadesVacias"
+        [columnHeader]="microPerfilesColumns"
+      ></app-table>
+    </div>
+  </div>
+</div>

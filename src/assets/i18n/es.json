@@ -36,9 +36,10 @@
 
         "users": {
             "menu_title":"Usuarios",
-            "menu_subtitle_1": "Perfiles Funcionales",
-            "menu_subtitle_2": "Perfiles",
-            "menu_subtitle_3": "Usuarios"
+            "menu_subtitle_1": "Funcionalidades",
+            "menu_subtitle_2": "Perfiles Funcionales",
+            "menu_subtitle_3": "Perfiles",
+            "menu_subtitle_4": "Usuarios"
         }
     },
 

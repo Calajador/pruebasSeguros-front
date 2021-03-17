@@ -7,6 +7,7 @@ import {
   HttpRequest,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { AuthService } from 'src/app/features/auth/services/auth.service';
@@ -15,7 +16,10 @@ import { AuthService } from 'src/app/features/auth/services/auth.service';
   providedIn: 'root',
 })
 export class InterceptorService implements HttpInterceptor {
-  constructor(private _auth: AuthService) {}
+  constructor(
+    private _auth: AuthService,
+    private _translate: TranslateService
+  ) {}
 
   intercept(
     req: HttpRequest<any>,
@@ -24,6 +28,7 @@ export class InterceptorService implements HttpInterceptor {
     const headers = new HttpHeaders({
       Authorization: 'Bearer ' + this._auth.getToken(),
       //Habrá que mandar tambien el idioma desde el translate service
+      Mensaje: 'HOLA',
     });
 
     const reqClone = req.clone({

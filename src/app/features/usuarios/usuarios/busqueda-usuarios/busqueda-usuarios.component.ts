@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { Perfil } from 'src/app/core/models/perfil.model';
@@ -17,12 +17,14 @@ export class BusquedaUsuariosComponent implements OnInit {
   @Input() public set usuariosData(values: any) {
     this.usuarios$ = values;
   }
+  @Output() editDataSearch = new EventEmitter<Usuario>();
   perfiles: Perfil[] = [];
   usuarios$: Observable<Usuario>;
   usuariosColumns = {
     usuario: 'Usuario',
     nombre: 'Nombre',
     estado: 'Estado',
+    Editar: 'grid.edit',
   };
 
   constructor(private fb: FormBuilder) {}
@@ -39,6 +41,10 @@ export class BusquedaUsuariosComponent implements OnInit {
       perfil: ['', Validators.required],
       addDate: ['', Validators.required],
     });
+  }
+
+  getEditData(data: Usuario) {
+    this.editDataSearch.emit(data);
   }
 
   get usuarioInvalid() {

@@ -27,6 +27,7 @@ export class ToolbarComponent implements OnInit {
   public cambiarLenguaje(lang) {
     this.activeLang = lang;
     this.translate.use(lang);
+    console.log(this.translate.currentLang);
   }
 
   public logOut() {

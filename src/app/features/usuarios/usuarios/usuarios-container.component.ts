@@ -7,6 +7,7 @@ import {
   ColorButtonEnum,
   TypeButtonEnum,
 } from 'src/app/shared/components/button/button.component';
+import { AlertsService } from 'src/app/shared/services/alerts.service';
 import { UsuariosService } from '../services/usuarios.service';
 
 @Component({
@@ -19,11 +20,16 @@ export class UsuariosContainerComponent implements OnInit, OnDestroy {
   usuarios$: Observable<Usuario>;
   @ViewChild('creacion') creacionCompopnent: any;
   @ViewChild('modificacion') modificacionCompopnent: any;
+  @ViewChild('asignacionMasiva') asignacionMasivaComponent: any;
   index = 0;
+  public usuarioEditable: Usuario;
   public readonly ButtonTypes = TypeButtonEnum;
   public readonly ButtonColors = ColorButtonEnum;
   private subscriptions = new Subscription();
-  constructor(private _users: UsuariosService) {}
+  constructor(
+    private _users: UsuariosService,
+    private _alerts: AlertsService
+  ) {}
 
   ngOnInit(): void {
     this.listarPerfiles();
@@ -39,6 +45,10 @@ export class UsuariosContainerComponent implements OnInit, OnDestroy {
     this.subscriptions.add(
       this._users.postUsuario(usuario).subscribe((res) => {
         if (res) {
+          this._alerts.mensajeCorrecto(
+            'Conseguido',
+            'Usuario Creado Correctamente'
+          );
           this.creacionCompopnent.forma.reset();
           this.listarUsuarios();
         }
@@ -46,8 +56,33 @@ export class UsuariosContainerComponent implements OnInit, OnDestroy {
     );
   }
 
+  getEditDataSearch(data: Usuario) {
+    this.usuarioEditable = data;
+    this.index = 1;
+  }
+
   editarUsuario() {
-    console.log(this.modificacionCompopnent.forma.value);
+    let usuario = this.modificacionCompopnent.forma.value;
+    console.log(usuario);
+    this.subscriptions.add(
+      this._users
+        .editUsuario(this.usuarioEditable._id, usuario)
+        .subscribe((res) => {
+          if (res) {
+            this._alerts.mensajeCorrecto(
+              'Conseguido',
+              'Usuario Modificado Correctamente'
+            );
+            this.listarUsuarios();
+            this.index = 2;
+          }
+        })
+    );
+  }
+
+  asignarPerfiles() {
+    console.log(this.asignacionMasivaComponent.forma2.value);
+    console.log(this.asignacionMasivaComponent.usuariosSeleccionados);
   }
 
   listarUsuarios() {
@@ -60,6 +95,9 @@ export class UsuariosContainerComponent implements OnInit, OnDestroy {
 
   onLinkClick(event: MatTabChangeEvent) {
     this.index = event.index;
-    console.log(this.index);
+  }
+
+  changeTAB() {
+    this.index = 2;
   }
 }

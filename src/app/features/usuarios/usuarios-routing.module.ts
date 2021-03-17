@@ -3,6 +3,12 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   {
+    path: 'funcionalidades',
+    loadChildren: async () =>
+      (await import('./funcionalidades/funcionalidades.module'))
+        .FuncionalidadesModule,
+  },
+  {
     path: 'perfiles',
     loadChildren: async () =>
       (await import('./perfiles/perfiles-container.module'))

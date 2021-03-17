@@ -1,6 +1,7 @@
 import { Perfil } from './perfil.model';
 
 export interface Usuario {
+  _id?: string;
   usuario?: string;
   nombre?: string;
   email?: string;

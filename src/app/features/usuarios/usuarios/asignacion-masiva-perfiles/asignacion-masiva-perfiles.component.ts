@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { Perfil } from 'src/app/core/models/perfil.model';
@@ -25,6 +25,12 @@ export class AsignacionMasivaPerfilesComponent implements OnInit {
     usuario: 'Usuario',
     nombre: 'Nombre',
     estado: 'Estado',
+  };
+  usuariosSelColumns = {
+    usuario: 'Usuario',
+    nombre: 'Nombre',
+    estado: 'Estado',
+    Borrar: 'grid.delete',
   };
   constructor(private fb: FormBuilder) {}
 
@@ -74,13 +80,24 @@ export class AsignacionMasivaPerfilesComponent implements OnInit {
     this.forma.get('addDate').setValue(convertDate, {
       onlyself: true,
     });
+    this.forma2.get('addDate').setValue(convertDate, {
+      onlyself: true,
+    });
   }
 
   getSelected(data: Usuario[]) {
-    let usuarios = [];
     data.forEach((element) => {
-      usuarios.push(element);
-      this.usuariosSeleccionados = [...usuarios];
+      this.usuariosSeleccionados.push(element);
+      this.usuariosSeleccionados = [...this.usuariosSeleccionados];
     });
+  }
+
+  getRemoveData(data: Usuario) {
+    for (let i = this.usuariosSeleccionados.length - 1; i >= 0; i--) {
+      if (this.usuariosSeleccionados[i].email == data.email) {
+        this.usuariosSeleccionados.splice(i, 1);
+      }
+    }
+    this.usuariosSeleccionados = [...this.usuariosSeleccionados];
   }
 }

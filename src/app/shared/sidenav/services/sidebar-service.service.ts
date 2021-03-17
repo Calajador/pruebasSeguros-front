@@ -100,14 +100,18 @@ export class SidebarService {
       children: [
         {
           displayName: 'sidebar.users.menu_subtitle_1',
-          route: '/usuarios/perfilesFuncionales',
+          route: '/usuarios/funcionalidades',
         },
         {
           displayName: 'sidebar.users.menu_subtitle_2',
-          route: '/usuarios/perfiles',
+          route: '/usuarios/perfilesFuncionales',
         },
         {
           displayName: 'sidebar.users.menu_subtitle_3',
+          route: '/usuarios/perfiles',
+        },
+        {
+          displayName: 'sidebar.users.menu_subtitle_4',
           route: '/usuarios/usuarios',
         },
       ],

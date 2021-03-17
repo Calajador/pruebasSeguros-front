@@ -1,0 +1,67 @@
+<div class="container mt-4">
+  <div fxLayout="row">
+    <div fxLayout="column " fxFlex>
+      <h6>Modificacion de Funcionalidades</h6>
+    </div>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="20px">
+    <div fxLayout="column " fxFlex>
+      <mat-form-field appearance="outline">
+        <mat-select placeholder="Modulo">
+          <mat-option value="Cross"> Cross</mat-option>
+          <mat-option value="Productos"> Productos</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div fxLayout="column " fxFlex>
+      <mat-form-field appearance="outline">
+        <mat-select placeholder="Submodulo">
+          <mat-option value="XXX"> XXX</mat-option>
+          <mat-option value="YYY"> YYY</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div fxLayout="column " fxFlex>
+      <mat-form-field appearance="outline">
+        <mat-select placeholder="Grupo">
+          <mat-option value="XXX"> XXX</mat-option>
+          <mat-option value="YYY"> YYY</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="20px">
+    <div fxLayout="column " fxFlex>
+      <mat-form-field appearance="outline">
+        <mat-select placeholder="Estado">
+          <mat-option value="XXX"> XXX</mat-option>
+          <mat-option value="YYY"> YYY</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div fxLayout="column " fxFlex>
+      <mat-form-field appearance="outline">
+        <input matInput placeholder="Fecha de Alta" [matDatepicker]="picker" />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div fxLayout="row">
+    <div fxLayout="column " fxFlex>
+      <h6>Funcionalidades</h6>
+    </div>
+  </div>
+  <hr />
+  <div fxLayout="row">
+    <div fxLayout="column " fxFlex>
+      <app-table
+        [tableData]="funcionalidadesVacias"
+        [columnHeader]="funcionalidadesColumns"
+      ></app-table>
+    </div>
+  </div>
+  <hr />
+</div>
