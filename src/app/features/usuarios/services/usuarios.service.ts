@@ -16,8 +16,16 @@ export class UsuariosService {
     return this._web.get('usuarios').pipe(map((res: any) => res.users));
   }
 
+  getPerfilesFuncionales() {
+    return this._web.get('pf').pipe(map((res: any) => res.pf));
+  }
+
   postUsuario(data) {
     return this._web.post('registrar', data);
+  }
+
+  postPerfil(data) {
+    return this._web.post('perfil/registrar', data);
   }
 
   editUsuario(id, data) {

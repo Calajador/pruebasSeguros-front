@@ -5,9 +5,11 @@ import { PerfilesContainerRoutingModule } from './perfiles-container-routing.mod
 import { PerfilesContainerComponent } from './perfiles-container.component';
 import { BusquedaComponent } from './busqueda/busqueda.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { CreacionComponent } from './creacion/creacion.component';
+import { ModificacionComponent } from './modificacion/modificacion.component';
 
 @NgModule({
-  declarations: [PerfilesContainerComponent, BusquedaComponent],
+  declarations: [PerfilesContainerComponent, BusquedaComponent, CreacionComponent, ModificacionComponent],
   imports: [CommonModule, PerfilesContainerRoutingModule, SharedModule],
 })
 export class PerfilesContainerModule {}

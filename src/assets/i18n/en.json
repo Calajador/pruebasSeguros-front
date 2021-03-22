@@ -20,6 +20,13 @@
             "sub_menu_2": "SubMenu2"
 
         },
+        "products": {
+            "menu_title":"Product",
+            "menu_subtitle_1": "Product Registration",
+            "menu_subtitle_2": "Product Maintenance",
+            "menu_subtitle_3": "Parameter Maintenance",
+            "menu_subtitle_4": "Formula Management"
+        },
 
         "ensurence": {
             "menu_title":"Ensurence",

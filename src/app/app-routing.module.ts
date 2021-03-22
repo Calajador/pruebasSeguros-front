@@ -14,7 +14,6 @@ const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
-    canActivate: [AuthGuard],
     data: {
       breadcrumb: {
         label: 'Home',
@@ -24,28 +23,36 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        canLoad: [AuthGuard],
+        canActivate: [AuthGuard],
         loadChildren: async () =>
           (await import('./features/dashboard/dashboard.module'))
             .DashboardModule,
       },
       {
         path: 'personas',
-        canLoad: [AuthGuard],
+        canActivate: [AuthGuard],
         loadChildren: async () =>
           (await import('./features/personas/personas.module')).PersonasModule,
         data: { breadcrumb: { skip: true } },
       },
       {
+        path: 'productos',
+        canActivate: [AuthGuard],
+        loadChildren: async () =>
+          (await import('./features/productos/productos.module'))
+            .ProductosModule,
+        data: { breadcrumb: { skip: true } },
+      },
+      {
         path: 'polizas',
-        canLoad: [AuthGuard],
+        canActivate: [AuthGuard],
         loadChildren: async () =>
           (await import('./features/polizas/polizas.module')).PolizasModule,
         data: { breadcrumb: { skip: true } },
       },
       {
         path: 'siniestros',
-        canLoad: [AuthGuard],
+        canActivate: [AuthGuard],
         loadChildren: async () =>
           (await import('./features/siniestros/siniestros.module'))
             .SiniestrosModule,
@@ -53,7 +60,7 @@ const routes: Routes = [
       },
       {
         path: 'usuarios',
-        canLoad: [AuthGuard],
+        canActivate: [AuthGuard],
         loadChildren: async () =>
           (await import('./features/usuarios/usuarios.module')).UsuariosModule,
         data: { breadcrumb: { skip: true } },

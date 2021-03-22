@@ -20,6 +20,14 @@
             "menu_posicion" : "Posicion global"
         },
 
+        "products": {
+            "menu_title":"Productos",
+            "menu_subtitle_1": "Alta de Productos",
+            "menu_subtitle_2": "Mantenimiento de Productos",
+            "menu_subtitle_3": "Mantenimiento de Parámetros",
+            "menu_subtitle_4": "Gestión de Fórmulas"
+        },
+
         "ensurence": {
             "menu_title":"Seguros",
             "menu_subtitle_1": "Baja",

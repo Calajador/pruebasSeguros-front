@@ -31,21 +31,24 @@ export class SidebarService {
       ],
     },
     {
-      //Nueva opción agregada
-      displayName: 'sidebar.people.menu_title',
-      iconName: 'face',
+      displayName: 'sidebar.products.menu_title',
+      iconName: 'inventory_2',
       children: [
         {
-          displayName: 'sidebar.people.menu_posicion',
-          route: '/personas/posicion-global',
+          displayName: 'sidebar.products.menu_subtitle_1',
+          route: '/productos/alta-productos',
         },
         {
-          displayName: 'sidebar.ensurence.menu_subtitle_2',
-          route: '/polizas/consulta',
+          displayName: 'sidebar.products.menu_subtitle_2',
+          route: '/productos/mantenimiento-productos',
         },
         {
-          displayName: 'sidebar.ensurence.menu_subtitle_3',
-          route: '/polizas/gestion',
+          displayName: 'sidebar.products.menu_subtitle_3',
+          route: '/productos/mantenimiento-parametros',
+        },
+        {
+          displayName: 'sidebar.products.menu_subtitle_4',
+          route: '/productos/gestion-formulas',
         },
       ],
     },

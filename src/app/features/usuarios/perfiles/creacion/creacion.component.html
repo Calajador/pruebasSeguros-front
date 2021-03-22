@@ -1,0 +1,66 @@
+<div class="container mt-4">
+  <div fxLayout="row">
+    <div fxLayout="column " fxFlex>
+      <h6>Creación de Perfiles</h6>
+    </div>
+  </div>
+  <hr />
+  <form [formGroup]="forma">
+    <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="20px">
+      <div fxLayout="column " fxFlex>
+        <mat-form-field appearance="outline">
+          <input matInput placeholder="Codigp" formControlName="code" />
+          <mat-hint *ngIf="codeInvalid" class="text-danger">
+            Campo obligatorio
+          </mat-hint>
+        </mat-form-field>
+      </div>
+      <div fxLayout="column " fxFlex>
+        <mat-form-field appearance="outline">
+          <input matInput placeholder="Nombre" formControlName="nombre" />
+          <mat-hint *ngIf="nombreInvalid" class="text-danger">
+            Campo obligatorio
+          </mat-hint>
+        </mat-form-field>
+      </div>
+      <div fxLayout="column " fxFlex>
+        <mat-form-field appearance="outline">
+          <input
+            matInput
+            placeholder="Descripcion"
+            formControlName="descripcion"
+          />
+          <mat-hint *ngIf="descripcionInvalid" class="text-danger">
+            Campo obligatorio
+          </mat-hint>
+        </mat-form-field>
+      </div>
+      <div fxLayout="column " fxFlex>
+        <mat-form-field appearance="outline">
+          <textarea
+            matInput
+            placeholder="Ex. It makes me feel..."
+            formControlName="observaciones"
+          ></textarea>
+          <mat-hint *ngIf="observacionesInvalid" class="text-danger">
+            Campo obligatorio
+          </mat-hint>
+        </mat-form-field>
+      </div>
+    </div>
+  </form>
+</div>
+<hr />
+<hr />
+<div class="container">
+  <app-table
+    [tableData]="pf$ | async"
+    [columnHeader]="pfColumns"
+    [filter]="true"
+    [selectedItem]="true"
+    [isMultipleSelected]="false"
+    [paginationSizes]="[2, 4, 6]"
+    [defaultPageSize]="4"
+    (selectData)="getSelected($event)"
+  ></app-table>
+</div>

@@ -18,6 +18,7 @@ import { UsuariosService } from '../services/usuarios.service';
 export class UsuariosContainerComponent implements OnInit, OnDestroy {
   perfiles$: Observable<Perfil>;
   usuarios$: Observable<Usuario>;
+
   @ViewChild('creacion') creacionCompopnent: any;
   @ViewChild('modificacion') modificacionCompopnent: any;
   @ViewChild('asignacionMasiva') asignacionMasivaComponent: any;

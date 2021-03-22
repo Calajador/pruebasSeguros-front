@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { Perfil } from 'src/app/core/models/perfil.model';
 import {
   ColorButtonEnum,
   TypeButtonEnum,
@@ -14,14 +16,16 @@ export class BusquedaComponent implements OnInit {
   public readonly ButtonTypes = TypeButtonEnum;
   public readonly ButtonColors = ColorButtonEnum;
   forma: FormGroup;
+  @Input() public set perfilesData(values: any) {
+    this.perfiles$ = values;
+  }
+  perfiles$: Observable<Perfil>;
   invalidSearch = false;
-  perfiles: any[];
+  // perfiles: any[];
   perfilesColumns = {
-    codigo: 'Código',
+    code: 'Código',
     nombre: 'Nombre',
-    menu: 'Menú',
-    estado: 'Estado',
-    etiquetas: 'Etiquetas',
+    descripcion: 'Descripcion',
   };
 
   constructor(private fb: FormBuilder) {
@@ -81,54 +85,54 @@ export class BusquedaComponent implements OnInit {
     return this.invalidSearch;
   }
 
-  save() {
-    console.log(this.forma);
+  // save() {
+  //   console.log(this.forma);
 
-    if (this.forma.invalid) {
-      return Object.values(this.forma.controls).forEach((control) => {
-        control.markAsTouched();
-      });
-    }
-    /*
-    // Posteo de información
-    this.forma.reset();*/
-  }
+  //   if (this.forma.invalid) {
+  //     return Object.values(this.forma.controls).forEach((control) => {
+  //       control.markAsTouched();
+  //     });
+  //   }
+  //   /*
+  //   // Posteo de información
+  //   this.forma.reset();*/
+  // }
 
-  search() {
-    console.log(this.forma);
+  // search() {
+  //   console.log(this.forma);
 
-    let aux = true;
-    Object.values(this.forma.value).forEach((value) => {
-      if (value !== '' && value !== null) {
-        aux = false;
-      }
-    });
+  //   let aux = true;
+  //   Object.values(this.forma.value).forEach((value) => {
+  //     if (value !== '' && value !== null) {
+  //       aux = false;
+  //     }
+  //   });
 
-    this.invalidSearch = aux;
-    if (!this.invalidSearch) {
-      this.perfiles = [
-        {
-          codigo: 'CON1',
-          nombre: 'Usuario de consulta general',
-          menu: 'MCON',
-          estado: '0',
-          etiquetas: 'Etiqueta',
-        },
-        {
-          codigo: 'CON2',
-          nombre: 'Usuario de consulta sucursal',
-          menu: 'MCON',
-          estado: '0',
-          etiquetas: 'Etiqueta',
-        },
-        {
-          codigo: 'SUP',
-          nombre: 'Super usuario',
-          menu: 'MADM',
-          estado: 'TOTAL',
-          etiquetas: 'Etiqueta',
-        },
-      ];
-    }
-  }
+  //   this.invalidSearch = aux;
+  //   if (!this.invalidSearch) {
+  //     this.perfiles = [
+  //       {
+  //         codigo: 'CON1',
+  //         nombre: 'Usuario de consulta general',
+  //         menu: 'MCON',
+  //         estado: '0',
+  //         etiquetas: 'Etiqueta',
+  //       },
+  //       {
+  //         codigo: 'CON2',
+  //         nombre: 'Usuario de consulta sucursal',
+  //         menu: 'MCON',
+  //         estado: '0',
+  //         etiquetas: 'Etiqueta',
+  //       },
+  //       {
+  //         codigo: 'SUP',
+  //         nombre: 'Super usuario',
+  //         menu: 'MADM',
+  //         estado: 'TOTAL',
+  //         etiquetas: 'Etiqueta',
+  //       },
+  //     ];
+  //   }
+  // }
 }

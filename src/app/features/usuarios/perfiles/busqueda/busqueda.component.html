@@ -6,7 +6,7 @@
   </div>
 
   <div class="form">
-    <form autocomplete="off" [formGroup]="forma" (ngSubmit)="save()">
+    <form autocomplete="off" [formGroup]="forma">
       <div class="row">
         <div class="col-2 input">
           <label for="agentCode">Código</label>
@@ -135,7 +135,6 @@
             class="button"
             [displayType]="ButtonTypes.RAISED"
             [text]="'BUSCAR'"
-            (click)="search()"
           >
           </app-button>
         </div>
@@ -151,7 +150,7 @@
   <div class="row mb-5">
     <div class="col-12">
       <app-table
-        [tableData]="perfiles"
+        [tableData]="perfiles$ | async"
         [columnHeader]="perfilesColumns"
         [filter]="false"
       >

@@ -7,6 +7,7 @@ import {
   ColorButtonEnum,
   TypeButtonEnum,
 } from 'src/app/shared/components/button/button.component';
+import { AuthService } from '../auth/services/auth.service';
 @Component({
   selector: 'app-dashboard-container',
   templateUrl: './dashboard-container.component.html',
@@ -18,10 +19,14 @@ export class DashboardContainerComponent implements OnInit {
   public readonly ButtonTypes = TypeButtonEnum;
   public readonly ButtonColors = ColorButtonEnum;
 
-  constructor(private _nav: NavigationService) {}
+  public identity;
+
+  constructor(private _nav: NavigationService, private _auth: AuthService) {}
 
   ngOnInit(): void {
     this.getPrevious();
+    this.identity = this._auth.getIdentity();
+    console.log(this.identity);
   }
 
   onClick() {}
