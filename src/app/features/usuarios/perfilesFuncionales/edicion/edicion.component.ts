@@ -1,9 +1,6 @@
-import { NestedTreeControl } from '@angular/cdk/tree';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatTreeNestedDataSource } from '@angular/material/tree';
 import { ItemMenu } from 'src/app/core/models/itemMenu.model';
-import { moduleMenu } from 'src/app/core/modulos/moduleMenu';
 
 @Component({
   selector: 'app-edicion',
@@ -11,11 +8,7 @@ import { moduleMenu } from 'src/app/core/modulos/moduleMenu';
   styleUrls: ['./edicion.component.css'],
 })
 export class EdicionComponent implements OnInit {
-  modulos: ItemMenu[] = [];
-  modulesToSelect = [];
-  SelectedModule: string;
-  treeControl = new NestedTreeControl<ItemMenu>((node) => node.children);
-  dataSource = new MatTreeNestedDataSource<ItemMenu>();
+  arbol: ItemMenu[] = [];
 
   node: ItemMenu = null;
   forma: FormGroup;
@@ -24,11 +17,7 @@ export class EdicionComponent implements OnInit {
 
   constructor(private fb: FormBuilder) {
     this.createForm();
-    this.dataSource.data = moduleMenu;
   }
-
-  hasChild = (_: number, node: ItemMenu) =>
-    !!node.children && node.children.length > 0;
 
   ngOnInit(): void {}
 
@@ -39,9 +28,9 @@ export class EdicionComponent implements OnInit {
   }
 
   edit(node: ItemMenu) {
+    this.node = node;
     this.isNew = false;
     this.isEdit = true;
-    this.node = node;
     this.loadForm();
   }
 
@@ -54,20 +43,17 @@ export class EdicionComponent implements OnInit {
   }
 
   addNewItem() {
-    this.treeControl.expand(this.node);
-
-    const itemNew: ItemMenu = {
+    this.arbol.push({
       index: this.node.children.length,
       name: this.forma.value.nombre,
       route: this.forma.value.ruta,
       children: [],
-    };
-
-    this.node.children.push(itemNew);
-    console.log(this.node);
-    this.dataSource.data = [this.node];
-    console.log('data', this.dataSource);
+    });
+    this.arbol = this.arbol.slice();
+    console.log(this.arbol);
   }
+
+  editItem() {}
 
   closeForm() {
     this.isNew = false;
@@ -83,18 +69,18 @@ export class EdicionComponent implements OnInit {
   }
 
   save() {
-    console.log(this.forma);
-
     if (this.forma.invalid) {
       return Object.values(this.forma.controls).forEach((control) => {
         control.markAsTouched();
       });
     }
 
-    this.addNewItem();
-
-    /*
-    // Posteo de información
-    this.forma.reset();*/
+    if (this.isNew) {
+      this.addNewItem();
+    } else if (this.isEdit) {
+      this.editItem();
+    }
+    this.closeForm();
+    this.forma.reset();
   }
 }
