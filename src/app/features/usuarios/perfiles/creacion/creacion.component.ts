@@ -2,6 +2,10 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { PerfilFuncional } from 'src/app/core/models/perfilFuncional.model';
+import {
+  ColorButtonEnum,
+  TypeButtonEnum,
+} from 'src/app/shared/components/button/button.component';
 
 @Component({
   selector: 'app-creacion',
@@ -10,6 +14,8 @@ import { PerfilFuncional } from 'src/app/core/models/perfilFuncional.model';
 })
 export class CreacionComponent implements OnInit {
   forma: FormGroup;
+  public readonly ButtonTypes = TypeButtonEnum;
+  public readonly ButtonColors = ColorButtonEnum;
   @Input() public set perfilesData(values: any) {
     this.pf$ = values;
   }

@@ -7,7 +7,7 @@
   <hr />
   <form [formGroup]="forma">
     <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="20px">
-      <div fxLayout="column " fxFlex>
+      <div fxLayout="column " fxFlex="15">
         <mat-form-field appearance="outline">
           <input matInput placeholder="Codigp" formControlName="code" />
           <mat-hint *ngIf="codeInvalid" class="text-danger">
@@ -15,7 +15,7 @@
           </mat-hint>
         </mat-form-field>
       </div>
-      <div fxLayout="column " fxFlex>
+      <div fxLayout="column " fxFlex="50">
         <mat-form-field appearance="outline">
           <input matInput placeholder="Nombre" formControlName="nombre" />
           <mat-hint *ngIf="nombreInvalid" class="text-danger">
@@ -23,7 +23,7 @@
           </mat-hint>
         </mat-form-field>
       </div>
-      <div fxLayout="column " fxFlex>
+      <div fxLayout="column " fxFlex="30">
         <mat-form-field appearance="outline">
           <input
             matInput
@@ -46,6 +46,33 @@
             Campo obligatorio
           </mat-hint>
         </mat-form-field>
+      </div>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="20px">
+      <div fxLayout="column " fxFlex>
+        <mat-form-field appearance="outline">
+          <mat-select placeholder="Configuración Menu">
+            <mat-option value="one">First option</mat-option>
+            <mat-option value="two">Second option</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div fxLayout="column " fxFlex>
+        <mat-form-field appearance="outline">
+          <mat-select placeholder="Plantillas">
+            <mat-option value="one">First option</mat-option>
+            <mat-option value="two">Second option</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div fxLayout="column " fxFlex>
+        <app-button
+          [color]="ButtonColors.PRIMARY"
+          class="button"
+          [displayType]="ButtonTypes.RAISED"
+          [text]="'BUSCAR PLANTILLA'"
+        >
+        </app-button>
       </div>
     </div>
   </form>
