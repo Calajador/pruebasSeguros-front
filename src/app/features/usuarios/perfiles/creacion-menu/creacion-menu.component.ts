@@ -25,6 +25,7 @@ export class CreacionMenuComponent implements OnInit {
     this.node = node;
     this.isNew = true;
     this.isEdit = false;
+    console.log(node);
   }
 
   edit(node: ItemMenu) {
@@ -42,30 +43,15 @@ export class CreacionMenuComponent implements OnInit {
     });
   }
 
-  addNewItem() {
-    if (!this.arbol.length) {
-      this.arbol.push({
-        index: this.node.children.length,
-        name: this.forma.value.nombre,
-        route: this.forma.value.ruta,
-        children: [],
-      });
-      this.arbol = this.arbol.slice();
-      console.log(this.arbol);
-    } else {
-      this.arbol.forEach((element) => {
-        if (element.name === this.node.name) {
-          this.node.children.push({
-            index: this.node.children.length,
-            name: this.forma.value.nombre,
-            route: this.forma.value.ruta,
-            children: [],
-          });
-        }
-        this.arbol = this.arbol.slice();
-        console.log(this.arbol);
-      });
-    }
+  addNewItem(node: ItemMenu) {
+    node.children.push({
+      index: this.node.children.length,
+      name: this.forma.value.nombre,
+      route: this.forma.value.ruta,
+      children: [],
+    });
+    this.arbol = this.arbol.slice();
+    console.log(this.arbol);
 
     // this.arbol.push({
     //   index: this.node.children.length,
@@ -100,7 +86,7 @@ export class CreacionMenuComponent implements OnInit {
     }
 
     if (this.isNew) {
-      this.addNewItem();
+      this.addNewItem(this.node);
     } else if (this.isEdit) {
       this.editItem();
     }

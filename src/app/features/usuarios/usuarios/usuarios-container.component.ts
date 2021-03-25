@@ -64,7 +64,6 @@ export class UsuariosContainerComponent implements OnInit, OnDestroy {
 
   editarUsuario() {
     let usuario = this.modificacionCompopnent.forma.value;
-    console.log(usuario);
     this.subscriptions.add(
       this._users
         .editUsuario(this.usuarioEditable._id, usuario)
@@ -82,8 +81,23 @@ export class UsuariosContainerComponent implements OnInit, OnDestroy {
   }
 
   asignarPerfiles() {
-    console.log(this.asignacionMasivaComponent.forma2.value);
-    console.log(this.asignacionMasivaComponent.usuariosSeleccionados);
+    let nuevosDatos = this.asignacionMasivaComponent.forma2.value;
+    let seleccionados: Usuario[] = this.asignacionMasivaComponent
+      .usuariosSeleccionados;
+    seleccionados.forEach((item) => {
+      item.perfil = nuevosDatos.perfil;
+      this.subscriptions.add(
+        this._users.editUsuario(item._id, item).subscribe((res) => {
+          if (res) {
+            this._alerts.mensajeCorrecto(
+              'Conseguido',
+              'Usuarios Modificados Correctamente'
+            );
+            this.listarUsuarios();
+          }
+        })
+      );
+    });
   }
 
   listarUsuarios() {

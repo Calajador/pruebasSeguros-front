@@ -19,6 +19,7 @@ export class PerfilesContainerComponent implements OnInit {
   pf$: Observable<PerfilFuncional>;
   perfiles$: Observable<Perfil>;
   @ViewChild('creacion') creacionCompopnent: any;
+  public perfilEditable: Perfil;
   public readonly ButtonTypes = TypeButtonEnum;
   public readonly ButtonColors = ColorButtonEnum;
   private subscriptions = new Subscription();
@@ -35,6 +36,11 @@ export class PerfilesContainerComponent implements OnInit {
 
   listarPerfilesFuncionales() {
     this.pf$ = this._users.getPerfilesFuncionales();
+  }
+
+  getEditDataSearch(data: Perfil) {
+    this.perfilEditable = data;
+    this.index = 2;
   }
 
   listarPerfiles() {

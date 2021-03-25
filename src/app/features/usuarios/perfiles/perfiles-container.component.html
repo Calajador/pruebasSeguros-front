@@ -5,13 +5,20 @@
     (selectedTabChange)="onLinkClick($event)"
   >
     <mat-tab label="BUSQUEDA PERFILES"
-      ><app-busqueda [perfilesData]="perfiles$"></app-busqueda
+      ><app-busqueda
+        [perfilesData]="perfiles$"
+        (editDataSearch)="getEditDataSearch($event)"
+      ></app-busqueda
     ></mat-tab>
     <mat-tab label="CREACION PERFILES"
       ><app-creacion #creacion [perfilesData]="pf$"></app-creacion
     ></mat-tab>
     <mat-tab label="MODIFICACIÓN PERFILES"
-      ><app-modificacion></app-modificacion
+      ><app-modificacion
+        #modificacion
+        [perfilesData]="pf$"
+        [perfil]="perfilEditable"
+      ></app-modificacion
     ></mat-tab>
     <mat-tab label="CREACIÓN DE MENU">
       <app-creacion-menu></app-creacion-menu>

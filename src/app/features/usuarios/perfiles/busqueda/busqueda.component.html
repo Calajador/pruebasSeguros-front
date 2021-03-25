@@ -153,6 +153,7 @@
         [tableData]="perfiles$ | async"
         [columnHeader]="perfilesColumns"
         [filter]="false"
+        (editData)="getEditData($event)"
       >
       </app-table>
     </div>

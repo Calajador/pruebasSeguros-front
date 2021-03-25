@@ -1,13 +1,13 @@
 <div class="container mt-4">
   <div fxLayout="row">
     <div fxLayout="column " fxFlex>
-      <h6>Creación de Perfiles</h6>
+      <h6>DETALLE DEL PERFIL</h6>
     </div>
   </div>
   <hr />
   <form [formGroup]="forma">
     <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="20px">
-      <div fxLayout="column " fxFlex="15">
+      <div fxLayout="column " fxFlex="10">
         <mat-form-field appearance="outline">
           <input matInput placeholder="Codigp" formControlName="code" />
           <mat-hint *ngIf="codeInvalid" class="text-danger">
@@ -15,7 +15,7 @@
           </mat-hint>
         </mat-form-field>
       </div>
-      <div fxLayout="column " fxFlex="50">
+      <div fxLayout="column " fxFlex="30">
         <mat-form-field appearance="outline">
           <input matInput placeholder="Nombre" formControlName="nombre" />
           <mat-hint *ngIf="nombreInvalid" class="text-danger">
@@ -35,11 +35,18 @@
           </mat-hint>
         </mat-form-field>
       </div>
-      <div fxLayout="column " fxFlex>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="20px">
+      <div fxLayout="column " fxFlex="40">
+        <mat-form-field appearance="outline">
+          <input matInput placeholder="Etiquetas" />
+        </mat-form-field>
+      </div>
+      <div fxLayout="column " fxFlex="60">
         <mat-form-field appearance="outline">
           <textarea
             matInput
-            placeholder="Ex. It makes me feel..."
+            placeholder="observaciones..."
             formControlName="observaciones"
           ></textarea>
           <mat-hint *ngIf="observacionesInvalid" class="text-danger">
@@ -48,8 +55,13 @@
         </mat-form-field>
       </div>
     </div>
-    <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="20px">
+    <div fxLayout="row">
       <div fxLayout="column " fxFlex>
+        <h6>MENU</h6>
+      </div>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
+      <div fxLayout="column " fxFlex="40">
         <mat-form-field appearance="outline">
           <mat-select placeholder="Configuración Menu">
             <mat-option value="one">First option</mat-option>
@@ -57,7 +69,14 @@
           </mat-select>
         </mat-form-field>
       </div>
+    </div>
+    <div fxLayout="row">
       <div fxLayout="column " fxFlex>
+        <h6>PERFILES FUNCIONALES</h6>
+      </div>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
+      <div fxLayout="column " fxFlexfxFlex="40">
         <mat-form-field appearance="outline">
           <mat-select placeholder="Plantillas">
             <mat-option value="one">First option</mat-option>
@@ -65,7 +84,7 @@
           </mat-select>
         </mat-form-field>
       </div>
-      <div fxLayout="column " fxFlex>
+      <div fxLayout="column " fxFlexfxFlex="20">
         <app-button
           [color]="ButtonColors.PRIMARY"
           class="button"
