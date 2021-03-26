@@ -1,5 +1,5 @@
 export interface ItemMenu {
-  index?: number;
+  index: number;
   name?: string;
   route?: string;
   icon?: string;

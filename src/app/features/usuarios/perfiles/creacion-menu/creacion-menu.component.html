@@ -1,50 +1,30 @@
 <div class="container">
   <div class="row mt-5">
+    <div class="col"></div>
+  </div>
+  <div class="row mt-2">
     <div class="col-7">
       <app-tree
         [dataMenu]="arbol"
+        nameTree="Menú"
+        [node]="node"
         (editItem)="edit($event)"
         (newItem)="addNew($event)"
       ></app-tree>
     </div>
-
     <div class="col-5">
-      <div *ngIf="isNew || isEdit">
-        <h3>
-          Sub nivel de <b>{{ node.name }}</b>
-        </h3>
-        <form autocomplete="off" [formGroup]="forma" (ngSubmit)="save()">
-          <div class="row">
-            <mat-form-field appearance="outline">
-              <input matInput placeholder="Nombre" formControlName="nombre" />
-            </mat-form-field>
-          </div>
-          <div class="row">
-            <mat-form-field appearance="outline">
-              <input matInput placeholder="Icono" formControlName="icono" />
-            </mat-form-field>
-          </div>
-          <div class="row">
-            <mat-form-field appearance="outline">
-              <input matInput placeholder="Ruta" formControlName="ruta" />
-            </mat-form-field>
-          </div>
-          <div class="row">
-            <div class="col-6">
-              <app-button class="button" [text]="'Añadir'"></app-button>
-            </div>
-            <div class="col-6">
-              <app-button
-                [btnType]="'button'"
-                class="button"
-                [text]="'Cancelar'"
-                (click)="closeForm()"
-              >
-              </app-button>
-            </div>
-          </div>
-        </form>
-      </div>
+      <app-formulario-item
+        [node]="node"
+        [isNew]="isNew"
+        [isEdit]="isEdit"
+        (updateTree)="updateTree($event)"
+        (close)="closeForm($event)"
+      ></app-formulario-item>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <pre>{{ arbol | json }}</pre>
     </div>
   </div>
 </div>

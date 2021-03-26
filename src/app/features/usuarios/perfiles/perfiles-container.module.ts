@@ -8,9 +8,17 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { CreacionComponent } from './creacion/creacion.component';
 import { ModificacionComponent } from './modificacion/modificacion.component';
 import { CreacionMenuComponent } from './creacion-menu/creacion-menu.component';
+import { FormularioItemComponent } from './creacion-menu/formulario-item/formulario-item.component';
 
 @NgModule({
-  declarations: [PerfilesContainerComponent, BusquedaComponent, CreacionComponent, ModificacionComponent, CreacionMenuComponent],
+  declarations: [
+    PerfilesContainerComponent,
+    BusquedaComponent,
+    CreacionComponent,
+    ModificacionComponent,
+    CreacionMenuComponent,
+    FormularioItemComponent,
+  ],
   imports: [CommonModule, PerfilesContainerRoutingModule, SharedModule],
 })
 export class PerfilesContainerModule {}

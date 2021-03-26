@@ -20,6 +20,8 @@ export class TreeComponent implements OnChanges {
   dataSource = new MatTreeNestedDataSource<ItemMenu>();
 
   @Input() dataMenu: ItemMenu[] = [];
+  @Input() nameTree: string = '';
+  @Input() node: ItemMenu = null;
   @Output() editItem = new EventEmitter<ItemMenu>();
   @Output() newItem = new EventEmitter<ItemMenu>();
 
@@ -27,17 +29,20 @@ export class TreeComponent implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     //
-    if (changes.dataMenu.currentValue !== changes.dataMenu.previousValue) {
+    if (changes.dataMenu?.currentValue !== changes.dataMenu?.previousValue) {
       let menu = [
         {
           index: 0,
-          name: 'Menu',
+          name: this.nameTree,
           route: '',
           icon: '',
           children: changes.dataMenu.currentValue,
         },
       ];
       this.dataSource.data = menu;
+      if (this.node !== null) {
+        this.treeControl.expand(this.node);
+      }
       // this.treeControl.expandAll();
     }
   }
