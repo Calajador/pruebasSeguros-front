@@ -9,7 +9,7 @@
       <!-- use a disabled button to provide padding for tree leaf -->
       <button mat-icon-button disabled></button>
       {{ node.name }}
-      <button mat-icon-button (click)="edit(node)">
+      <button *ngIf="node.name != nameTree" mat-icon-button (click)="edit(node)">
         <mat-icon>edit</mat-icon>
       </button>
       <button mat-icon-button (click)="addNew(node)">
@@ -31,7 +31,7 @@
           </mat-icon>
         </button>
         {{ node.name }}
-        <button mat-icon-button (click)="edit(node)">
+        <button *ngIf="node.name != nameTree" mat-icon-button (click)="edit(node)">
           <mat-icon>edit</mat-icon>
         </button>
         <button mat-icon-button (click)="addNew(node)">
