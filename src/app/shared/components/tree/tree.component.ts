@@ -8,7 +8,6 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { MatTreeNestedDataSource } from '@angular/material/tree';
-import { ItemMenu } from 'src/app/core/models/itemMenu.model';
 
 @Component({
   selector: 'app-tree',
@@ -16,46 +15,47 @@ import { ItemMenu } from 'src/app/core/models/itemMenu.model';
   styleUrls: ['./tree.component.css'],
 })
 export class TreeComponent implements OnChanges {
-  treeControl = new NestedTreeControl<ItemMenu>((node) => node.children);
-  dataSource = new MatTreeNestedDataSource<ItemMenu>();
+  treeControl = new NestedTreeControl<any>((node) => node.children);
+  dataSource = new MatTreeNestedDataSource<any>();
 
-  @Input() dataMenu: ItemMenu[] = [];
+  @Input() dataMenu: any[] = [];
   @Input() nameTree: string = '';
-  @Input() node: ItemMenu = null;
-  @Output() editItem = new EventEmitter<ItemMenu>();
-  @Output() newItem = new EventEmitter<ItemMenu>();
+  @Input() addChild: boolean = true;
+  @Input() editNode: boolean = true;
+  @Output() editItem = new EventEmitter<any>();
+  @Output() newItem = new EventEmitter<any>();
 
   constructor() {}
 
   ngOnChanges(changes: SimpleChanges) {
-    //
     if (changes.dataMenu?.currentValue !== changes.dataMenu?.previousValue) {
-      let menu = [
-        {
-          index: 0,
-          name: this.nameTree,
-          route: '',
-          icon: '',
-          children: changes.dataMenu.currentValue,
-        },
-      ];
-      this.dataSource.data = menu;
-      if (this.node !== null) {
-        this.treeControl.expand(this.node);
+      if (this.nameTree !== '') {
+        let menu = [
+          {
+            index: 0,
+            name: this.nameTree,
+            children: changes.dataMenu.currentValue,
+          },
+        ];
+        this.dataSource.data = menu;
+      } else {
+        this.dataSource.data = changes.dataMenu.currentValue;
       }
-      // this.treeControl.expandAll();
     }
   }
 
-  hasChild = (_: number, node: ItemMenu) =>
-    !!node.children && node.children.length > 0;
+  hasChild(_: number, node: any): boolean {
+    return node.funcionalidades
+      ? !!node.funcionalidades && node.funcionalidades.length > 0
+      : !!node.children && node.children.length > 0;
+  }
 
-  addNew(node: ItemMenu) {
+  addNew(node: any) {
     this.newItem.emit(node);
     this.treeControl.expand(node);
   }
 
-  edit(node: ItemMenu) {
+  edit(node: any) {
     this.editItem.emit(node);
   }
 }
