@@ -25,16 +25,24 @@
     </mat-tab>
   </mat-tab-group>
 </div>
-
+<hr />
 <div class="container">
   <div fxLayout="row" fxLayoutAlign="end center">
     <app-button
       *ngIf="index === 1"
       [color]="ButtonColors.PRIMARY"
       [displayType]="ButtonTypes.RAISED"
-      [text]="'Crear Usuario'"
+      [text]="'Crear Perfil'"
       rightIcon="add"
       (click)="crearPerfil()"
+    ></app-button>
+    <app-button
+      *ngIf="index === 2"
+      [color]="ButtonColors.PRIMARY"
+      [displayType]="ButtonTypes.RAISED"
+      [text]="'Editar Perfil'"
+      rightIcon="add"
+      (click)="editarPerfil()"
     ></app-button>
   </div>
 </div>

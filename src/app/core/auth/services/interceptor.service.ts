@@ -11,6 +11,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { AuthService } from 'src/app/features/auth/services/auth.service';
+import { AlertsService } from 'src/app/shared/services/alerts.service';
 
 @Injectable({
   providedIn: 'root',
@@ -18,6 +19,7 @@ import { AuthService } from 'src/app/features/auth/services/auth.service';
 export class InterceptorService implements HttpInterceptor {
   constructor(
     private _auth: AuthService,
+    private _alerts: AlertsService,
     private _translate: TranslateService
   ) {}
 
@@ -35,14 +37,13 @@ export class InterceptorService implements HttpInterceptor {
       headers,
     });
 
-    return next.handle(reqClone).pipe(catchError(this.manejarError));
-  }
-
-  manejarError(error: HttpErrorResponse) {
-    console.log('Sucedió un error');
-    console.log('Registrado en el log file');
-    console.log(error.error.mensaje);
-    console.warn(error);
-    return throwError('Error personalizado');
+    return next.handle(reqClone).pipe(
+      catchError((error: HttpErrorResponse) => {
+        let mensaje = error.error.mensaje;
+        console.log(mensaje);
+        this._alerts.mensajeError('Error', mensaje);
+        return throwError(error);
+      })
+    );
   }
 }

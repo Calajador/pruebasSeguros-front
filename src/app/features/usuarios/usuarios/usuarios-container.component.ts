@@ -73,6 +73,7 @@ export class UsuariosContainerComponent implements OnInit, OnDestroy {
               'Conseguido',
               'Usuario Modificado Correctamente'
             );
+            this.modificacionCompopnent.forma.reset();
             this.listarUsuarios();
             this.index = 2;
           }
@@ -93,6 +94,7 @@ export class UsuariosContainerComponent implements OnInit, OnDestroy {
               'Conseguido',
               'Usuarios Modificados Correctamente'
             );
+            this.asignacionMasivaComponent.forma2.reset();
             this.listarUsuarios();
           }
         })

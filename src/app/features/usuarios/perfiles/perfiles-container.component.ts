@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatTabChangeEvent } from '@angular/material/tabs';
 import { Observable, Subscription } from 'rxjs';
 import { Perfil } from 'src/app/core/models/perfil.model';
@@ -15,10 +15,11 @@ import { UsuariosService } from '../services/usuarios.service';
   templateUrl: './perfiles-container.component.html',
   styleUrls: ['./perfiles-container.component.css'],
 })
-export class PerfilesContainerComponent implements OnInit {
+export class PerfilesContainerComponent implements OnInit, OnDestroy {
   pf$: Observable<PerfilFuncional>;
   perfiles$: Observable<Perfil>;
   @ViewChild('creacion') creacionCompopnent: any;
+  @ViewChild('modificacion') modificacionCompopnent: any;
   public perfilEditable: Perfil;
   public readonly ButtonTypes = TypeButtonEnum;
   public readonly ButtonColors = ColorButtonEnum;
@@ -32,6 +33,10 @@ export class PerfilesContainerComponent implements OnInit {
   ngOnInit(): void {
     this.listarPerfilesFuncionales();
     this.listarPerfiles();
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
   }
 
   listarPerfilesFuncionales() {
@@ -60,6 +65,25 @@ export class PerfilesContainerComponent implements OnInit {
           this.listarPerfiles();
         }
       })
+    );
+  }
+
+  editarPerfil() {
+    let perfil = this.modificacionCompopnent.forma.value;
+    this.subscriptions.add(
+      this._users
+        .editPerfil(this.perfilEditable._id, perfil)
+        .subscribe((res) => {
+          if (res) {
+            this._alerts.mensajeCorrecto(
+              'Conseguido',
+              'Perfil modificado Correctamente'
+            );
+            this.modificacionCompopnent.forma.reset();
+            this.listarPerfiles();
+            this.index = 0;
+          }
+        })
     );
   }
 

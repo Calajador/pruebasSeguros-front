@@ -31,4 +31,8 @@ export class UsuariosService {
   editUsuario(id, data) {
     return this._web.patch('usuarios/editar/' + id, data);
   }
+
+  editPerfil(id, data) {
+    return this._web.patch('perfil/editar/' + id, data);
+  }
 }
