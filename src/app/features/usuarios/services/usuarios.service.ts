@@ -20,6 +20,10 @@ export class UsuariosService {
     return this._web.get('pf').pipe(map((res: any) => res.pf));
   }
 
+  postPerfilFunciona(data) {
+    return this._web.post('pf/registrar', data);
+  }
+
   postUsuario(data) {
     return this._web.post('registrar', data);
   }
@@ -34,5 +38,9 @@ export class UsuariosService {
 
   editPerfil(id, data) {
     return this._web.patch('perfil/editar/' + id, data);
+  }
+
+  editarPerfilFuncional(id, data) {
+    return this._web.patch('pf/editar/' + id, data);
   }
 }

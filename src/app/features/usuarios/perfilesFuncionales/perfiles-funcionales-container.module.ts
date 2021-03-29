@@ -6,9 +6,10 @@ import { PerfilesFuncionalesContainerComponent } from './perfiles-funcionales-co
 import { SharedModule } from 'src/app/shared/shared.module';
 import { CreacionPerfilFuncionalComponent } from './creacion-perfil-funcional/creacion-perfil-funcional.component';
 import { BusquedaPerfilesFuncionalesComponent } from './busqueda-perfiles-funcionales/busqueda-perfiles-funcionales.component';
+import { ModificacionPerfilFuncionalComponent } from './modificacion-perfil-funcional/modificacion-perfil-funcional.component';
 
 @NgModule({
-  declarations: [PerfilesFuncionalesContainerComponent, CreacionPerfilFuncionalComponent, BusquedaPerfilesFuncionalesComponent],
+  declarations: [PerfilesFuncionalesContainerComponent, CreacionPerfilFuncionalComponent, BusquedaPerfilesFuncionalesComponent, ModificacionPerfilFuncionalComponent],
   imports: [
     CommonModule,
     PerfilesFuncionalesContainerRoutingModule,

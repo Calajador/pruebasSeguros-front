@@ -114,16 +114,28 @@
         </mat-form-field>
       </div>
     </div>
+    <div fxLayout="row" fxLayoutAlign="end center">
+      <app-button
+        [btnType]="'button'"
+        [color]="ButtonColors.PRIMARY"
+        class="button"
+        [displayType]="ButtonTypes.RAISED"
+        [text]="'BUSCAR'"
+      >
+      </app-button>
+    </div>
   </form>
   <hr />
   <app-table
-    [tableData]="perfilesFuncionales"
+    [tableData]="perfilesFuncionales$ | async"
     [columnHeader]="pfColumns"
-    [filter]="true"
-    [order]="true"
+    [filter]="false"
     [paginationSizes]="[2, 4, 6]"
     [defaultPageSize]="4"
-    [export]="true"
-    [hiddenColumns]="[5, 6, 7, 8]"
-  ></app-table>
+    (editData)="getEditData($event)"
+  >
+  </app-table>
 </div>
+
+<hr />
+<hr />

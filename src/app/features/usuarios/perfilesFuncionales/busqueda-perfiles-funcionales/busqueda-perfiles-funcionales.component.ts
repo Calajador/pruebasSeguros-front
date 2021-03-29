@@ -1,6 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Observable } from 'rxjs';
 import { PF } from 'src/app/core/models/perfilFuncional';
+import { PerfilFuncional } from 'src/app/core/models/perfilFuncional.model';
+import {
+  ColorButtonEnum,
+  TypeButtonEnum,
+} from 'src/app/shared/components/button/button.component';
 
 @Component({
   selector: 'app-busqueda-perfiles-funcionales',
@@ -8,11 +14,20 @@ import { PF } from 'src/app/core/models/perfilFuncional';
   styleUrls: ['./busqueda-perfiles-funcionales.component.css'],
 })
 export class BusquedaPerfilesFuncionalesComponent implements OnInit {
+  @Input() public set perfilesData(values: any) {
+    this.perfilesFuncionales$ = values;
+  }
+  @Output() editDataSearch = new EventEmitter<PerfilFuncional>();
+  perfilesFuncionales$: Observable<PerfilFuncional>;
+  public readonly ButtonTypes = TypeButtonEnum;
+  public readonly ButtonColors = ColorButtonEnum;
   forma: FormGroup;
   pfColumns = {
     code: 'Código',
     nombre: 'Nombre',
     estado: 'Estado',
+    Editar: 'grid.edit',
+    Borrar: 'grid.delete',
   };
   perfilesFuncionales: PF[] = [];
   constructor(private fb: FormBuilder) {}
@@ -32,6 +47,10 @@ export class BusquedaPerfilesFuncionalesComponent implements OnInit {
       microPerfil: ['', Validators.required],
       estado: ['', Validators.required],
     });
+  }
+
+  getEditData(data: PerfilFuncional) {
+    this.editDataSearch.emit(data);
   }
 
   get codigoInvalid() {
