@@ -83,7 +83,9 @@ export class FormularioItemComponent implements OnChanges {
 
   addNewItem() {
     this.node.children.push({
-      index: this.node.children.length,
+      order: this.node.children.length,
+      level: this.node.level + 1,
+      father: { order: this.node.order || 0, level: this.node.level },
       name: this.forma.value.nombre,
       route: this.forma.value.ruta,
       icon: this.forma.value.icono,
@@ -100,7 +102,7 @@ export class FormularioItemComponent implements OnChanges {
   }
 
   deleteItem() {
-    this.node.index = -1;
+    this.node.order = -1;
     this.node.name = '';
     this.node.route = '';
     this.node.icon = '';

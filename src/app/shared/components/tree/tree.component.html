@@ -16,7 +16,7 @@
       >
         <mat-icon>edit</mat-icon>
       </button>
-      <button mat-icon-button (click)="addNew(node)" *ngIf="addChild">
+      <button mat-icon-button (click)="addNew(node)" *ngIf="getAddNode(node)">
         <mat-icon>add</mat-icon>
       </button>
     </li>
@@ -42,7 +42,7 @@
         >
           <mat-icon>edit</mat-icon>
         </button>
-        <button mat-icon-button (click)="addNew(node)" *ngIf="addChild">
+        <button mat-icon-button (click)="addNew(node)" *ngIf="getAddNode(node)">
           <mat-icon>add</mat-icon>
         </button>
       </div>

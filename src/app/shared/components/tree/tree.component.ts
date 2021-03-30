@@ -20,8 +20,8 @@ export class TreeComponent implements OnChanges {
 
   @Input() dataMenu: any[] = [];
   @Input() nameTree: string = '';
-  @Input() addChild: boolean = true;
   @Input() editNode: boolean = true;
+  @Input() maxLevelAdd: number = 0;
   @Output() editItem = new EventEmitter<any>();
   @Output() newItem = new EventEmitter<any>();
 
@@ -33,6 +33,7 @@ export class TreeComponent implements OnChanges {
         let menu = [
           {
             index: 0,
+            level: 0,
             name: this.nameTree,
             children: changes.dataMenu.currentValue,
           },
@@ -57,5 +58,41 @@ export class TreeComponent implements OnChanges {
 
   edit(node: any) {
     this.editItem.emit(node);
+  }
+
+  getAddNode(node: any): boolean {
+    if (
+      this.maxLevelAdd > 0 &&
+      node.level !== null &&
+      node.level !== undefined &&
+      node.level <= this.maxLevelAdd
+    ) {
+      return true;
+    }
+    return false;
+  }
+
+  obtainFather(node: any, tree: any) {
+    debugger;
+    const fatherOrder = node.father.order;
+    const fatherLevel = node.father.level;
+    if (tree.length > 0) {
+      tree.forEach((nodeEval) => {
+        if (nodeEval.order === fatherOrder && nodeEval.level === fatherLevel) {
+          return tree;
+        }
+      });
+      tree.forEach((nodeEval) => {
+        this.obtainFather(node, nodeEval);
+      });
+    } else {
+      if (tree.order === fatherOrder && tree.level === fatherLevel) {
+        console.log(tree);
+        return tree;
+      }
+      tree.children.forEach((nodeEval) => {
+        this.obtainFather(node, nodeEval);
+      });
+    }
   }
 }
