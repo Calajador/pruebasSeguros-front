@@ -1,13 +1,9 @@
 <div class="container">
   <div class="row mt-5">
-    <div class="col"></div>
-  </div>
-  <div class="row mt-2">
     <div class="col-7">
       <app-tree
         [dataMenu]="arbol"
         nameTree="Menú"
-        [node]="node"
         (editItem)="edit($event)"
         (newItem)="addNew($event)"
       ></app-tree>
@@ -20,11 +16,6 @@
         (updateTree)="updateTree($event)"
         (close)="closeForm($event)"
       ></app-formulario-item>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col">
-      <pre>{{ arbol | json }}</pre>
     </div>
   </div>
 </div>

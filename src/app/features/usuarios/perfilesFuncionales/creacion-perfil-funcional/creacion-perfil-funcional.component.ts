@@ -1,9 +1,6 @@
-import { NestedTreeControl } from '@angular/cdk/tree';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatTreeNestedDataSource } from '@angular/material/tree';
 import { Funcionalidad } from 'src/app/core/models/funcionalitie.model';
-import { Modulo } from 'src/app/core/models/modulo.model';
 import { moduloCross } from 'src/app/core/modulos/moduloCross';
 import { moduloProductos } from 'src/app/core/modulos/moduloProductos';
 
@@ -14,21 +11,12 @@ import { moduloProductos } from 'src/app/core/modulos/moduloProductos';
 })
 export class CreacionPerfilFuncionalComponent implements OnInit {
   forma: FormGroup;
-  modulos: Modulo[] = [];
   modulesToSelect = [];
   SelectedModule: string;
-  treeControl = new NestedTreeControl<Modulo>((node) => node.children);
-  dataSource = new MatTreeNestedDataSource<Modulo>();
+  dataSource = [];
   funcionalities: Funcionalidad[] = [];
 
   constructor(private fb: FormBuilder) {}
-  hasChild = (_: number, node: Modulo) =>
-    !!node.children && node.children.length > 0;
-  hasfuncionality = (_: number, node: Modulo) => {
-    this.funcionalities = node.funcionalidades;
-    console.log(this.funcionalities);
-    return !!node.funcionalidades && node.funcionalidades.length > 0;
-  };
 
   ngOnInit(): void {
     this.createForm();
@@ -38,12 +26,12 @@ export class CreacionPerfilFuncionalComponent implements OnInit {
     this.SelectedModule = modulo;
     if (modulo === 'cross') {
       console.log('Cross Seleccionado');
-      this.dataSource.data = moduloCross;
+      this.dataSource = moduloCross;
     }
 
     if (modulo === 'productos') {
       console.log('Productos Seleccionado');
-      this.dataSource.data = moduloProductos;
+      this.dataSource = moduloProductos;
     }
   }
 
