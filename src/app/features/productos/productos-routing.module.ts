@@ -3,28 +3,27 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: 'alta-productos',
+    path: 'ramos',
     loadChildren: async () =>
-      (await import('./altaProductos/alta-productos.module'))
-        .AltaProductosModule,
+      (await import('./ramos/ramos-container.module')).RamosContainerModule,
   },
   {
-    path: 'mantenimiento-productos',
+    path: 'productos',
     loadChildren: async () =>
-      (await import('./mantenimientoProductos/mantenimento-productos.module'))
-        .MantenimentoProductosModule,
+      (await import('./productos/productos-container.module'))
+        .ProductosContainerModule,
   },
   {
-    path: 'mantenimiento-parametros',
+    path: 'parametros',
     loadChildren: async () =>
-      (await import('./mantenimientoParametros/mantenimento-parametros.module'))
-        .MantenimentoParametrosModule,
+      (await import('./parametros/parametros-container.module'))
+        .ParametrosContainerModule,
   },
   {
-    path: 'gestion-formulas',
+    path: 'formulas',
     loadChildren: async () =>
-      (await import('./gestionFormulas/gestion-formulas.module'))
-        .GestionFormulasModule,
+      (await import('./formulas/formulas-container.module'))
+        .FormulasContainerModule,
   },
 ];
 

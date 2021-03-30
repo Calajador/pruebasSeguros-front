@@ -8,9 +8,10 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { ModificacionUsuariosComponent } from './modificacion-usuarios/modificacion-usuarios.component';
 import { BusquedaUsuariosComponent } from './busqueda-usuarios/busqueda-usuarios.component';
 import { AsignacionMasivaPerfilesComponent } from './asignacion-masiva-perfiles/asignacion-masiva-perfiles.component';
+import { MantenimientoUsuariosComponent } from './mantenimiento-usuarios/mantenimiento-usuarios.component';
 
 @NgModule({
-  declarations: [UsuariosContainerComponent, CreacionUsuariosComponent, ModificacionUsuariosComponent, BusquedaUsuariosComponent, AsignacionMasivaPerfilesComponent],
+  declarations: [UsuariosContainerComponent, CreacionUsuariosComponent, ModificacionUsuariosComponent, BusquedaUsuariosComponent, AsignacionMasivaPerfilesComponent, MantenimientoUsuariosComponent],
   imports: [CommonModule, UsuariosContainerRoutingModule, SharedModule],
 })
 export class UsuariosContainerModule {}

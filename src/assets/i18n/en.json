@@ -22,7 +22,7 @@
         },
         "products": {
             "menu_title":"Product",
-            "menu_subtitle_1": "Product Registration",
+            "menu_subtitle_1": "Branch",
             "menu_subtitle_2": "Product Maintenance",
             "menu_subtitle_3": "Parameter Maintenance",
             "menu_subtitle_4": "Formula Management"

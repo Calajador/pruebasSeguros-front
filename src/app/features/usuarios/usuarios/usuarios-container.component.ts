@@ -19,11 +19,10 @@ export class UsuariosContainerComponent implements OnInit, OnDestroy {
   perfiles$: Observable<Perfil>;
   usuarios$: Observable<Usuario>;
 
-  @ViewChild('creacion') creacionCompopnent: any;
-  @ViewChild('modificacion') modificacionCompopnent: any;
+  @ViewChild('mantenimiento') mantenimientoCompopnent: any;
   @ViewChild('asignacionMasiva') asignacionMasivaComponent: any;
   index = 0;
-  public usuarioEditable: Usuario;
+  public usuarioEditable: Usuario = null;
   public readonly ButtonTypes = TypeButtonEnum;
   public readonly ButtonColors = ColorButtonEnum;
   private subscriptions = new Subscription();
@@ -42,7 +41,7 @@ export class UsuariosContainerComponent implements OnInit, OnDestroy {
   }
 
   crearUsuario() {
-    let usuario = this.creacionCompopnent.forma.value;
+    let usuario = this.mantenimientoCompopnent.forma.value;
     this.subscriptions.add(
       this._users.postUsuario(usuario).subscribe((res) => {
         if (res) {
@@ -50,7 +49,8 @@ export class UsuariosContainerComponent implements OnInit, OnDestroy {
             'Conseguido',
             'Usuario Creado Correctamente'
           );
-          this.creacionCompopnent.forma.reset();
+          this.mantenimientoCompopnent.forma.reset();
+          this.mantenimientoCompopnent.selectedProfile = [];
           this.listarUsuarios();
         }
       })
@@ -59,11 +59,11 @@ export class UsuariosContainerComponent implements OnInit, OnDestroy {
 
   getEditDataSearch(data: Usuario) {
     this.usuarioEditable = data;
-    this.index = 1;
+    this.index = 0;
   }
 
   editarUsuario() {
-    let usuario = this.modificacionCompopnent.forma.value;
+    let usuario = this.mantenimientoCompopnent.forma.value;
     this.subscriptions.add(
       this._users
         .editUsuario(this.usuarioEditable._id, usuario)
@@ -73,9 +73,11 @@ export class UsuariosContainerComponent implements OnInit, OnDestroy {
               'Conseguido',
               'Usuario Modificado Correctamente'
             );
-            this.modificacionCompopnent.forma.reset();
+            this.usuarioEditable = null;
+            this.mantenimientoCompopnent.selectedProfile = [];
+            this.mantenimientoCompopnent.forma.reset();
             this.listarUsuarios();
-            this.index = 2;
+            this.index = 1;
           }
         })
     );
@@ -114,7 +116,9 @@ export class UsuariosContainerComponent implements OnInit, OnDestroy {
     this.index = event.index;
   }
 
-  changeTAB() {
-    this.index = 2;
+  volverAcrear() {
+    this.usuarioEditable = null;
+    this.mantenimientoCompopnent.selectedProfile = [];
+    this.mantenimientoCompopnent.forma.reset();
   }
 }

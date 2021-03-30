@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AltaProductosContainerComponent } from './alta-productos-container.component';
+import { ParametrosContainerComponent } from './parametros-container.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: AltaProductosContainerComponent,
+    component: ParametrosContainerComponent,
   },
 ];
 
@@ -13,4 +13,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class AltaProductosRoutingModule {}
+export class ParametrosContainerRoutingModule {}

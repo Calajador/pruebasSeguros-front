@@ -4,18 +4,12 @@
     [selectedIndex]="index"
     (selectedTabChange)="onLinkClick($event)"
   >
-    <mat-tab label="CREACIÓN DE USUARIOS"
-      ><app-creacion-usuarios
-        #creacion
-        [perfilesData]="perfiles$"
-      ></app-creacion-usuarios
-    ></mat-tab>
-    <mat-tab label="MODIFICACIÓN DE USUARIOS">
-      <app-modificacion-usuarios
-        #modificacion
+    <mat-tab label="MANTENIMIENTO DE USUARIOS">
+      <app-mantenimiento-usuarios
+        #mantenimiento
         [usuario]="usuarioEditable"
         [perfilesData]="perfiles$"
-      ></app-modificacion-usuarios>
+      ></app-mantenimiento-usuarios>
     </mat-tab>
     <mat-tab label="BÚSQUEDA DE USUARIOS">
       <app-busqueda-usuarios
@@ -35,9 +29,9 @@
 </div>
 
 <div class="container">
-  <div fxLayout="row" fxLayoutAlign="end center">
+  <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="15px">
     <app-button
-      *ngIf="index === 0"
+      *ngIf="!usuarioEditable && index === 0"
       [color]="ButtonColors.PRIMARY"
       [displayType]="ButtonTypes.RAISED"
       [text]="'Crear Usuario'"
@@ -45,7 +39,15 @@
       (click)="crearUsuario()"
     ></app-button>
     <app-button
-      *ngIf="index === 1"
+      *ngIf="usuarioEditable && index === 0"
+      [color]="ButtonColors.PRIMARY"
+      [displayType]="ButtonTypes.RAISED"
+      [text]="'Crear Usuario'"
+      rightIcon="add"
+      (click)="volverAcrear()"
+    ></app-button>
+    <app-button
+      *ngIf="usuarioEditable && index === 0"
       [color]="ButtonColors.PRIMARY"
       [displayType]="ButtonTypes.RAISED"
       [text]="'Editar Usuario'"
@@ -53,7 +55,7 @@
       (click)="editarUsuario()"
     ></app-button>
     <app-button
-      *ngIf="index === 3"
+      *ngIf="index === 2"
       [color]="ButtonColors.PRIMARY"
       [displayType]="ButtonTypes.RAISED"
       [text]="'Asignar Perfiles'"

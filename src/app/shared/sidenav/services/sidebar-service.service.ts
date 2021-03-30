@@ -36,19 +36,19 @@ export class SidebarService {
       children: [
         {
           displayName: 'sidebar.products.menu_subtitle_1',
-          route: '/productos/alta-productos',
+          route: '/productos/ramos',
         },
         {
           displayName: 'sidebar.products.menu_subtitle_2',
-          route: '/productos/mantenimiento-productos',
+          route: '/productos/productos',
         },
         {
           displayName: 'sidebar.products.menu_subtitle_3',
-          route: '/productos/mantenimiento-parametros',
+          route: '/productos/parametros',
         },
         {
           displayName: 'sidebar.products.menu_subtitle_4',
-          route: '/productos/gestion-formulas',
+          route: '/productos/formulas',
         },
       ],
     },
