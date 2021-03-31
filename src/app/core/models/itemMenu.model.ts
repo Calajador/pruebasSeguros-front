@@ -12,3 +12,14 @@ export interface father {
   order: number;
   level: number;
 }
+
+export interface MultiLanguage {
+  pais: string;
+  nombre: string;
+}
+
+export interface Menu {
+  name: string;
+  description: string;
+  tree: ItemMenu;
+}

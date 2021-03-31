@@ -1,1 +1,107 @@
-<p>mantenimiento-ramos works!</p>
+<div class="container">
+  <div fxLayout="row">
+    <div fxLayout="column " fxFlex>
+      <h6>Creación de usuarios</h6>
+    </div>
+  </div>
+  <hr />
+  <form [formGroup]="forma">
+    <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="20px">
+      <div fxLayout="column " fxFlex="15">
+        <mat-form-field appearance="outline">
+          <mat-select placeholder="Tipo" formControlName="tipo">
+            <mat-option *ngFor="let item of listaTipos" [value]="item">{{
+              item
+            }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div fxLayout="column " fxFlex="15">
+        <mat-form-field appearance="outline">
+          <input matInput placeholder="Codigp" formControlName="codigo" />
+        </mat-form-field>
+      </div>
+      <div fxLayout="column " fxFlex="50">
+        <form [formGroup]="idiomaForm">
+          <mat-expansion-panel class="expansion">
+            <mat-expansion-panel-header>
+              <mat-panel-title> Registrar Idiomas </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div fxLayout="column " fxFlex>
+              <mat-form-field appearance="outline">
+                <input matInput placeholder="Pais" formControlName="pais" />
+              </mat-form-field>
+            </div>
+            <div fxLayout="column " fxFlex>
+              <mat-form-field appearance="outline">
+                <input matInput placeholder="Nombre" formControlName="nombre" />
+              </mat-form-field>
+            </div>
+            <mat-action-row>
+              <button (click)="registrarIdioma()">MANDAR</button>
+            </mat-action-row>
+          </mat-expansion-panel>
+        </form>
+      </div>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="20px">
+      <div fxLayout="column " fxFlex="30">
+        <mat-form-field appearance="outline">
+          <mat-select placeholder="Compañia" formControlName="compañia">
+            <mat-option *ngFor="let item of listaCompanias" [value]="item">{{
+              item
+            }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div fxLayout="column " fxFlex="30">
+        <mat-form-field appearance="outline">
+          <mat-select placeholder="Codigo SSN" formControlName="ssn" multiple>
+            <mat-option *ngFor="let item of listaSSN" [value]="item">{{
+              item
+            }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div fxLayout="column " fxFlex="30">
+        <mat-form-field appearance="outline">
+          <input
+            matInput
+            placeholder="Codigo Contable"
+            formControlName="contable"
+          />
+        </mat-form-field>
+      </div>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="20px">
+      <div fxLayout="column " fxFlex>
+        <mat-form-field appearance="outline">
+          <input
+            matInput
+            placeholder="Fecha de Alta"
+            formControlName="fechaInicio"
+            [matDatepicker]="picker"
+            (dateChange)="formatDate($event)"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div fxLayout="column " fxFlex="60">
+        <mat-form-field appearance="outline">
+          <textarea
+            matInput
+            placeholder="observaciones..."
+            formControlName="motivoBaja"
+          ></textarea>
+        </mat-form-field>
+      </div>
+    </div>
+  </form>
+
+  <button (click)="registro()">REGISTRO</button>
+</div>
