@@ -1,10 +1,49 @@
 <div class="container">
-  <mat-tab-group mat-align-tabs="center">
+  <mat-tab-group
+    mat-align-tabs="center"
+    [selectedIndex]="index"
+    (selectedTabChange)="onLinkClick($event)"
+  >
     <mat-tab label="BUSQUEDA DE RAMOS">
-      <app-busqueda-ramos></app-busqueda-ramos>
+      <app-busqueda-ramos
+        [ramosData]="ramos$"
+        (editDataSearch)="getEditDataSearch($event)"
+      ></app-busqueda-ramos>
     </mat-tab>
     <mat-tab label="MANTENIMIENTO DE RAMOS">
-      <app-mantenimiento-ramos></app-mantenimiento-ramos>
+      <app-mantenimiento-ramos
+        #mantenimiento
+        [ramo]="ramoEditable"
+      ></app-mantenimiento-ramos>
     </mat-tab>
   </mat-tab-group>
+</div>
+
+<div class="container">
+  <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="15px">
+    <app-button
+      *ngIf="!ramoEditable && index === 1"
+      [color]="ButtonColors.PRIMARY"
+      [displayType]="ButtonTypes.RAISED"
+      [text]="'Crear Ramo'"
+      rightIcon="add"
+      (click)="crearRamo()"
+    ></app-button>
+    <app-button
+      *ngIf="ramoEditable && index === 1"
+      [color]="ButtonColors.PRIMARY"
+      [displayType]="ButtonTypes.RAISED"
+      [text]="'Crear Ramo'"
+      rightIcon="add"
+      (click)="volverAcrear()"
+    ></app-button>
+    <app-button
+      *ngIf="ramoEditable && index === 1"
+      [color]="ButtonColors.PRIMARY"
+      [displayType]="ButtonTypes.RAISED"
+      [text]="'Editar Ramo'"
+      rightIcon="add"
+      (click)="editarRamo()"
+    ></app-button>
+  </div>
 </div>

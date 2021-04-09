@@ -1,6 +1,7 @@
 import { MultiLanguage } from './itemMenu.model';
 
 export interface Ramo {
+  _id?: string;
   tipo: string;
   codigo: string;
   nombres: MultiLanguage[];

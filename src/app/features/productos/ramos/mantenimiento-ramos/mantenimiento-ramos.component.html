@@ -1,7 +1,8 @@
 <div class="container">
   <div fxLayout="row">
     <div fxLayout="column " fxFlex>
-      <h6>Creación de usuarios</h6>
+      <h6 *ngIf="!_ramo">Creación de Ramos</h6>
+      <h6 *ngIf="_ramo">Edicion de Ramos</h6>
     </div>
   </div>
   <hr />
@@ -14,11 +15,17 @@
               item
             }}</mat-option>
           </mat-select>
+          <mat-hint *ngIf="tipoInvalid" class="text-danger">
+            Campo obligatorio
+          </mat-hint>
         </mat-form-field>
       </div>
       <div fxLayout="column " fxFlex="15">
         <mat-form-field appearance="outline">
           <input matInput placeholder="Codigp" formControlName="codigo" />
+          <mat-hint *ngIf="codigoInvalid" class="text-danger">
+            Campo obligatorio
+          </mat-hint>
         </mat-form-field>
       </div>
       <div fxLayout="column " fxFlex="50">
@@ -38,7 +45,13 @@
               </mat-form-field>
             </div>
             <mat-action-row>
-              <button (click)="registrarIdioma()">MANDAR</button>
+              <app-button
+                [color]="ButtonColors.WARN"
+                [displayType]="ButtonTypes.RAISED"
+                [text]="'Registrar Idioma'"
+                rightIcon="add"
+                (click)="registrarIdioma()"
+              ></app-button>
             </mat-action-row>
           </mat-expansion-panel>
         </form>
@@ -52,6 +65,9 @@
               item
             }}</mat-option>
           </mat-select>
+          <mat-hint *ngIf="companiaInvalid" class="text-danger">
+            Campo obligatorio
+          </mat-hint>
         </mat-form-field>
       </div>
       <div fxLayout="column " fxFlex="30">
@@ -61,6 +77,9 @@
               item
             }}</mat-option>
           </mat-select>
+          <mat-hint *ngIf="ssnInvalid" class="text-danger">
+            Campo obligatorio
+          </mat-hint>
         </mat-form-field>
       </div>
       <div fxLayout="column " fxFlex="30">
@@ -69,12 +88,16 @@
             matInput
             placeholder="Codigo Contable"
             formControlName="contable"
+            mask="0000"
           />
+          <mat-hint *ngIf="contableInvalid" class="text-danger">
+            Campo obligatorio
+          </mat-hint>
         </mat-form-field>
       </div>
     </div>
-    <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="20px">
-      <div fxLayout="column " fxFlex>
+    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
+      <div fxLayout="column " fxFlex="30" *ngIf="!_ramo">
         <mat-form-field appearance="outline">
           <input
             matInput
@@ -89,19 +112,37 @@
           ></mat-datepicker-toggle>
 
           <mat-datepicker #picker></mat-datepicker>
+          <mat-hint *ngIf="fechaInicioInvalid" class="text-danger">
+            Campo obligatorio
+          </mat-hint>
         </mat-form-field>
       </div>
-      <div fxLayout="column " fxFlex="60">
+      <div fxLayout="column " fxFlex="30" *ngIf="_ramo">
+        <mat-form-field appearance="outline">
+          <input
+            matInput
+            placeholder="Fecha de Baja"
+            formControlName="fechaFin"
+            [matDatepicker]="picker2"
+            (dateChange)="formatDate($event)"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker2"
+          ></mat-datepicker-toggle>
+
+          <mat-datepicker #picker2></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div fxLayout="column " fxFlex="60" *ngIf="_ramo">
         <mat-form-field appearance="outline">
           <textarea
             matInput
-            placeholder="observaciones..."
+            placeholder="Motivo de la Baja"
             formControlName="motivoBaja"
           ></textarea>
         </mat-form-field>
       </div>
     </div>
   </form>
-
-  <button (click)="registro()">REGISTRO</button>
 </div>
