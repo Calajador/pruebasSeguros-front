@@ -1,9 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AgentesRoutingModue } from './agentes-routing.module';
+
+import { AgentesRoutingModule } from './agentes-routing.module';
+import { BuscarComponent } from './buscar/buscar.component';
+import { IntermediariosComponent } from './intermediarios/intermediarios.component';
+import { SharedModule } from 'src/app/shared/shared.module';
+import { TestComponent } from './test/test.component';
 
 @NgModule({
-  declarations: [],
-  imports: [CommonModule, AgentesRoutingModue],
+  declarations: [BuscarComponent, IntermediariosComponent, TestComponent],
+  imports: [CommonModule, AgentesRoutingModule, SharedModule],
 })
 export class AgentesModule {}

@@ -65,6 +65,14 @@ const routes: Routes = [
           (await import('./features/usuarios/usuarios.module')).UsuariosModule,
         data: { breadcrumb: { skip: true } },
       },
+      {
+        path: 'agentes',
+        canActivate: [AuthGuard],
+        loadChildren: () =>
+          import('./features/agentes/agentes.module').then(
+            (m) => m.AgentesModule
+          ),
+      },
     ],
   },
 ];

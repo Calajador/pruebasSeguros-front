@@ -57,7 +57,9 @@ export class TreeComponent implements OnChanges {
   }
 
   edit(node: any) {
-    this.editItem.emit(node);
+    //this.editItem.emit(node);
+    const father = this.obtainFather(node, this.dataMenu);
+    console.log(father);
   }
 
   getAddNode(node: any): boolean {
@@ -73,13 +75,14 @@ export class TreeComponent implements OnChanges {
   }
 
   obtainFather(node: any, tree: any) {
-    debugger;
     const fatherOrder = node.father.order;
     const fatherLevel = node.father.level;
+    let father = null;
     if (tree.length > 0) {
       tree.forEach((nodeEval) => {
         if (nodeEval.order === fatherOrder && nodeEval.level === fatherLevel) {
-          return tree;
+          father = nodeEval;
+          return;
         }
       });
       tree.forEach((nodeEval) => {
@@ -87,12 +90,14 @@ export class TreeComponent implements OnChanges {
       });
     } else {
       if (tree.order === fatherOrder && tree.level === fatherLevel) {
-        console.log(tree);
-        return tree;
+        father = tree;
       }
       tree.children.forEach((nodeEval) => {
         this.obtainFather(node, nodeEval);
       });
+    }
+    if (father !== null) {
+      return father;
     }
   }
 }

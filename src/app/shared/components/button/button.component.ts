@@ -19,27 +19,24 @@ export enum ColorButtonEnum {
 @Component({
   selector: 'app-button',
   templateUrl: './button.component.html',
-  styleUrls: ['./button.component.css']
+  styleUrls: ['./button.component.css'],
 })
 export class ButtonComponent implements OnInit {
-
-    @Input() btnType = 'submit';
-    @Input() displayType: TypeButtonEnum;
-    @Input() color: ColorButtonEnum;
-    @Input() text: string;
-    @Input() icon: string;
-    @Input() leftIcon: string;
-    @Input() rightIcon: string;
-    @Input() disabled = false;
+  @Input() btnType = 'submit';
+  @Input() displayType: TypeButtonEnum = TypeButtonEnum.RAISED;
+  @Input() color: ColorButtonEnum = ColorButtonEnum.PRIMARY;
+  @Input() text: string;
+  @Input() icon: string;
+  @Input() leftIcon: string;
+  @Input() rightIcon: string;
+  @Input() disabled = false;
 
   constructor(elRef: ElementRef) {
     this._elementRef = elRef;
-   }
-
-  public typeButtonEnum = TypeButtonEnum;
-    public _elementRef: ElementRef;
-
-  ngOnInit(): void {
   }
 
+  public typeButtonEnum = TypeButtonEnum;
+  public _elementRef: ElementRef;
+
+  ngOnInit(): void {}
 }
