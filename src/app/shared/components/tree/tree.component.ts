@@ -43,6 +43,9 @@ export class TreeComponent implements OnChanges {
         this.dataSource.data = changes.dataMenu.currentValue;
       }
     }
+    if (changes.nameTree?.currentValue !== changes.nameTree?.previousValue) {
+      this.dataSource.data[0].name = changes.nameTree?.currentValue;
+    }
   }
 
   hasChild(_: number, node: any): boolean {

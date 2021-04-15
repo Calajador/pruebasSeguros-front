@@ -1,13 +1,52 @@
 <div class="container">
-  <div class="row mt-5">
+  <form autocomplete="off" [formGroup]="miFormulario">
+    <div class="row mt-5">
+      <div class="col-3">
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Código</mat-label>
+          <input type="text" matInput formControlName="codigo" name="codigo" />
+          <mat-error *ngIf="miFormulario.controls.codigo.errors">
+            El código es <strong>requerido</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-3">
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Nombre</mat-label>
+          <input type="text" matInput formControlName="nombre" name="nombre" />
+          <mat-error *ngIf="miFormulario.controls.nombre.errors">
+            El nombre es <strong>requerido</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-6">
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Descripción</mat-label>
+          <input
+            type="text"
+            matInput
+            formControlName="descripcion"
+            name="descripcion"
+          />
+          <mat-error *ngIf="miFormulario.controls.descripcion.errors">
+            La descripcion es <strong>requerida</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+  </form>
+  <div class="row mt-3">
     <div class="col-7">
       <app-tree
         [dataMenu]="arbol"
-        nameTree="Menú"
+        [nameTree]="nameTree"
         maxLevelAdd="5"
         (editItem)="edit($event)"
         (newItem)="addNew($event)"
       ></app-tree>
+      <span class="form-text text-danger" *ngIf="alertMenuEmpty">
+        *El menú no puede estar vacío
+      </span>
     </div>
     <div class="col-5">
       <app-formulario-item
@@ -17,6 +56,18 @@
         (updateTree)="updateTree($event)"
         (close)="closeForm($event)"
       ></app-formulario-item>
+    </div>
+  </div>
+
+  <div class="row mt-3">
+    <div class="col">
+      <div class="float-end">
+        <app-button
+          text="Guardar"
+          leftIcon="save"
+          (click)="guardar()"
+        ></app-button>
+      </div>
     </div>
   </div>
 </div>
