@@ -1,0 +1,48 @@
+<div class="container">
+  <div fxLayout="row">
+    <div fxLayout="column " fxFlex>
+      <h6>Busqueda de Pantallas</h6>
+    </div>
+  </div>
+  <hr />
+  <form [formGroup]="forma">
+    <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="20px">
+      <div fxLayout="column " fxFlex>
+        <mat-form-field appearance="outline">
+          <mat-select placeholder="Modulo" formControlName="modulo">
+            <mat-option value="cross"> Cross</mat-option>
+            <mat-option value="productos"> Productos</mat-option>
+            <mat-option value="comercial"> Comercial</mat-option>
+          </mat-select>
+          <mat-hint *ngIf="moduloInvalid" class="text-danger">
+            Campo obligatorio
+          </mat-hint>
+        </mat-form-field>
+      </div>
+      <div fxLayout="column " fxFlex>
+        <mat-form-field appearance="outline">
+          <input matInput placeholder="Codigo" formControlName="codigo" />
+          <mat-hint *ngIf="codigoInvalid" class="text-danger">
+            Campo obligatorio
+          </mat-hint>
+        </mat-form-field>
+      </div>
+      <div fxLayout="column " fxFlex>
+        <mat-form-field appearance="outline">
+          <input matInput placeholder="Persona" formControlName="persona" />
+          <mat-hint *ngIf="personaInvalid" class="text-danger">
+            Campo obligatorio
+          </mat-hint>
+        </mat-form-field>
+      </div>
+    </div>
+  </form>
+  <app-table
+    [tableData]="pantallas$ | async"
+    [columnHeader]="pantallasColumns"
+    [paginationSizes]="[2, 4, 6]"
+    [defaultPageSize]="4"
+    [export]="true"
+    (editData)="getEditData($event)"
+  ></app-table>
+</div>

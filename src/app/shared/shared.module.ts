@@ -27,6 +27,7 @@ import { NgxMaskModule, IConfig } from 'ngx-mask';
 import { FormTableComponent } from './components/form-table/form-table.component';
 import { TableComponent } from './components/table/table.component';
 import { TreeComponent } from './components/tree/tree.component';
+import { DatepickerComponent } from './components/datepicker/datepicker.component';
 
 export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
 export function HttpLoaderFactory(http: HttpClient) {
@@ -48,6 +49,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     AlertDialogComponent,
     TableComponent,
     TreeComponent,
+    DatepickerComponent,
   ],
   imports: [
     CommonModule,
@@ -87,6 +89,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     AlertDialogComponent,
     TableComponent,
     TreeComponent,
+    DatepickerComponent,
   ],
 })
 export class SharedModule {

@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { WebReqService } from 'src/app/core/services/web-req.service';
-
+import { pantallas } from '../../../core/pantallas';
+import { funcionalidades } from '../../../core/funcionalities';
+import { of } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
@@ -42,5 +44,13 @@ export class UsuariosService {
 
   editarPerfilFuncional(id, data) {
     return this._web.patch('pf/editar/' + id, data);
+  }
+
+  getPantallas() {
+    return of(pantallas);
+  }
+
+  getFuncionalidades() {
+    return of(funcionalidades);
   }
 }

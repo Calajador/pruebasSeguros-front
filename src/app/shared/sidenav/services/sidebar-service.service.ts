@@ -110,6 +110,10 @@ export class SidebarService {
           route: '/usuarios/perfilesFuncionales',
         },
         {
+          displayName: 'sidebar.users.menu_subtitle_5',
+          route: '/usuarios/pantallas',
+        },
+        {
           displayName: 'sidebar.users.menu_subtitle_3',
           route: '/usuarios/perfiles',
         },

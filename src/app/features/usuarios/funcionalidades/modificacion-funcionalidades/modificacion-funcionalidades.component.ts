@@ -8,8 +8,8 @@ import { Component, OnInit } from '@angular/core';
 export class ModificacionFuncionalidadesComponent implements OnInit {
   funcionalidadesVacias = [];
 
-  public funcionalidadesColumns = {
-    idioma: 'Idioma',
+  public funcionalidadColumns = {
+    pais: 'Idioma',
     nombre: 'Nombre',
     descripcion: 'Descripcion',
   };
