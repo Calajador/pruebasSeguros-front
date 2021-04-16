@@ -3,6 +3,11 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   {
+    path: 'pantallas',
+    loadChildren: async () =>
+      (await import('./pantallas/pantallas.module')).PantallasModule,
+  },
+  {
     path: 'funcionalidades',
     loadChildren: async () =>
       (await import('./funcionalidades/funcionalidades.module'))

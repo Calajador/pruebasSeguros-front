@@ -38,6 +38,12 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { DrawerRailModule } from 'angular-material-rail-drawer';
 import { MatTableExporterModule } from 'mat-table-exporter';
 
+import {
+  NgxMatDatetimePickerModule,
+  NgxMatNativeDateModule,
+  NgxMatTimepickerModule,
+} from '@angular-material-components/datetime-picker';
+
 import { A11yModule } from '@angular/cdk/a11y';
 import { BidiModule } from '@angular/cdk/bidi';
 import { ObserversModule } from '@angular/cdk/observers';
@@ -105,6 +111,9 @@ import { CdkTreeModule } from '@angular/cdk/tree';
     DragDropModule,
     DrawerRailModule,
     MatTableExporterModule,
+    NgxMatDatetimePickerModule,
+    NgxMatNativeDateModule,
+    NgxMatTimepickerModule,
   ],
 })
 export class MatModule {}

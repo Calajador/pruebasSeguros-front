@@ -1,7 +1,11 @@
 <div class="container">
   <mat-tab-group mat-align-tabs="center">
     <mat-tab label="BÚSQUEDA DE FUNCIONALIDADES">
-      <app-busqueda-funcionalidades></app-busqueda-funcionalidades>
+      <app-busqueda-funcionalidades
+        #modificacion
+        [funcionalidadesData]="funcionalidadesBusqueda$"
+        (editDataSearch)="getEditDataSearch($event)"
+      ></app-busqueda-funcionalidades>
     </mat-tab>
     <mat-tab label="MODIFICACIÓN DE FUNCIONALIDADES">
       <app-modificacion-funcionalidades></app-modificacion-funcionalidades>

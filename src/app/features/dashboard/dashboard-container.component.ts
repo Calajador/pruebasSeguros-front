@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { DateAdapter } from '@angular/material/core';
 import { NavigationEnd, Router, RoutesRecognized } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { filter, map, pairwise } from 'rxjs/operators';
@@ -14,6 +16,7 @@ import { AuthService } from '../auth/services/auth.service';
   styleUrls: ['./dashboard-container.component.css'],
 })
 export class DashboardContainerComponent implements OnInit {
+  public form: FormGroup;
   siniestros = true;
   personas = true;
   public readonly ButtonTypes = TypeButtonEnum;
@@ -21,15 +24,27 @@ export class DashboardContainerComponent implements OnInit {
 
   public identity;
 
-  constructor(private _nav: NavigationService, private _auth: AuthService) {}
+  public myDatePicker;
+  public myDatePickerFrom;
+  public myDatePickerTo;
+
+  constructor(
+    private _nav: NavigationService,
+    private _auth: AuthService,
+    private readonly formBuilder: FormBuilder,
+    private dateAdapter: DateAdapter<any>
+  ) {}
 
   ngOnInit(): void {
     this.getPrevious();
     this.identity = this._auth.getIdentity();
-    console.log(this.identity);
+    this.initForm();
   }
 
-  onClick() {}
+  setFrench() {
+    // Set language of Datepicker
+    this.dateAdapter.setLocale('it');
+  }
 
   getPrevious() {
     let prevURL = this._nav.getPreviousUrl();
@@ -43,5 +58,19 @@ export class DashboardContainerComponent implements OnInit {
       this.siniestros = false;
       this.personas = true;
     }
+  }
+
+  initForm(): void {
+    this.form = this.formBuilder.group({
+      dateStart: ['', Validators.required],
+    });
+  }
+
+  obtener() {
+    console.log(this.form.value);
+  }
+
+  getDate(data) {
+    console.log(data);
   }
 }

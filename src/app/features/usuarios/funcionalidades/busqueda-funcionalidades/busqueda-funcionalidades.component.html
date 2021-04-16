@@ -1,11 +1,6 @@
 <div class="container mt-4">
-  <div fxLayout="row">
-    <div fxLayout="column " fxFlex>
-      <h6>Modificacion de Funcionalidades</h6>
-    </div>
-  </div>
   <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="20px">
-    <div fxLayout="column " fxFlex>
+    <div fxLayout="column " fxFlex="20">
       <mat-form-field appearance="outline">
         <mat-select placeholder="Modulo">
           <mat-option value="Cross"> Cross</mat-option>
@@ -13,7 +8,7 @@
         </mat-select>
       </mat-form-field>
     </div>
-    <div fxLayout="column " fxFlex>
+    <div fxLayout="column " fxFlex="20">
       <mat-form-field appearance="outline">
         <mat-select placeholder="Submodulo">
           <mat-option value="XXX"> XXX</mat-option>
@@ -21,7 +16,7 @@
         </mat-select>
       </mat-form-field>
     </div>
-    <div fxLayout="column " fxFlex>
+    <div fxLayout="column " fxFlex="20">
       <mat-form-field appearance="outline">
         <mat-select placeholder="Grupo">
           <mat-option value="XXX"> XXX</mat-option>
@@ -29,9 +24,7 @@
         </mat-select>
       </mat-form-field>
     </div>
-  </div>
-  <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="20px">
-    <div fxLayout="column " fxFlex>
+    <div fxLayout="column " fxFlex="20">
       <mat-form-field appearance="outline">
         <mat-select placeholder="Estado">
           <mat-option value="XXX"> XXX</mat-option>
@@ -39,26 +32,52 @@
         </mat-select>
       </mat-form-field>
     </div>
-    <div fxLayout="column " fxFlex>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="20px">
+    <div fxLayout="column " fxFlex="30">
       <mat-form-field appearance="outline">
-        <input matInput placeholder="Fecha de Alta" [matDatepicker]="picker" />
+        <input matInput placeholder="Desde" [matDatepicker]="picker" />
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
 
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
     </div>
-  </div>
+    <div fxLayout="column " fxFlex="30">
+      <mat-form-field appearance="outline">
+        <input matInput placeholder="Hasta" [matDatepicker]="picker2" />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="picker2"
+        ></mat-datepicker-toggle>
 
-  <div fxLayout="row">
-    <div fxLayout="column " fxFlex>
-      <h6>Funcionalidades</h6>
+        <mat-datepicker #picker2></mat-datepicker>
+      </mat-form-field>
     </div>
   </div>
+
+  <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
+    <div fxLayout="column " fxFlex="50">
+      <mat-form-field appearance="outline">
+        <input matInput placeholder="Texto Funcionalidad" />
+      </mat-form-field>
+    </div>
+    <div fxLayout="column ">
+      <app-button
+        [btnType]="'button'"
+        [color]="ButtonColors.PRIMARY"
+        class="button"
+        [displayType]="ButtonTypes.RAISED"
+        [text]="'BUSCAR FUNCIONALIDAD'"
+      >
+      </app-button>
+    </div>
+  </div>
+  <mat-divider></mat-divider>
   <hr />
   <div fxLayout="row">
     <div fxLayout="column " fxFlex>
       <app-table
-        [tableData]="funcionalidadesVacias"
+        [tableData]="funcionalidades$ | async"
         [columnHeader]="funcionalidadesColumns"
       ></app-table>
     </div>

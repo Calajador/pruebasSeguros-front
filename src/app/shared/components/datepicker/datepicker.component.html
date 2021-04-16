@@ -1,0 +1,18 @@
+<mat-form-field class="w-100">
+  <input
+    matInput
+    [formControl]="control"
+    [matDatepicker]="picker"
+    [placeholder]="placeholder"
+    [min]="min"
+    [max]="max"
+    autocomplete="off"
+    (click)="openPicker()"
+    [readonly]="isReadOnly"
+    [required]="isRequired()"
+    (dateChange)="formatDate($event)"
+  />
+  <mat-datepicker-toggle matSuffix [for]="picker"> </mat-datepicker-toggle>
+  <mat-datepicker #picker [dateClass]="dateClass"></mat-datepicker>
+  <mat-hint>{{ hintMessage }}</mat-hint>
+</mat-form-field>

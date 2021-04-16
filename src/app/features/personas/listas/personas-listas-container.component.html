@@ -1,15 +1,17 @@
 <xng-breadcrumb></xng-breadcrumb>
-<app-header id="section1" [titulo]="'people.lists.title' | translate">
-</app-header>
-
-<app-button
-  [color]="ButtonColors.PRIMARY"
-  [displayType]="ButtonTypes.RAISED"
-  [text]="'Añadir Persona'"
-  rightIcon="add"
-  (click)="addPerson()"
-></app-button>
 <hr />
+<hr />
+
+<div class="container">
+  <app-button
+    [color]="ButtonColors.PRIMARY"
+    [displayType]="ButtonTypes.RAISED"
+    [text]="'Añadir Persona'"
+    rightIcon="add"
+    (click)="addPerson()"
+  ></app-button>
+  <hr />
+</div>
 
 <div id="section2" class="container">
   <app-grid
