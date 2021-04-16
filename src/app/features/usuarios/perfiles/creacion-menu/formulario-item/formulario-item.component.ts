@@ -6,8 +6,13 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ItemMenu } from 'src/app/core/models/itemMenu.model';
+
+interface icon {
+  name: string;
+  value: string;
+}
 
 @Component({
   selector: 'app-formulario-item',
@@ -15,19 +20,32 @@ import { ItemMenu } from 'src/app/core/models/itemMenu.model';
   styleUrls: ['./formulario-item.component.css'],
 })
 export class FormularioItemComponent implements OnChanges {
-  forma: FormGroup;
   @Input() node: ItemMenu = null;
   @Input() isNew: boolean = false;
   @Input() isEdit: boolean = false;
   @Output() updateTree = new EventEmitter<boolean>();
   @Output() close = new EventEmitter<boolean>();
 
-  constructor(private fb: FormBuilder) {
-    this.createForm();
-  }
+  forma = this.fb.group({
+    nombre: ['', Validators.required],
+    icono: [''],
+    ruta: [''],
+  });
+
+  icons: icon[] = [
+    { name: 'Home', value: 'home' },
+    { name: 'Settings', value: 'settings' },
+    { name: 'Search', value: 'search' },
+    { name: 'Description', value: 'description' },
+    { name: 'Dashboard', value: 'dashboard' },
+    { name: 'Paid', value: 'paid' },
+    { name: 'Manage Accounts', value: 'manage_accounts' },
+    { name: 'Support', value: 'support' },
+  ];
+
+  constructor(private fb: FormBuilder) {}
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes, this.isEdit);
     if (
       (this.isEdit &&
         changes.node?.previousValue !== changes.node?.currentValue) ||
@@ -36,20 +54,11 @@ export class FormularioItemComponent implements OnChanges {
       this.loadForm();
     }
     if (changes.isNew?.currentValue) {
-      this.clearForm();
+      this.forma.reset();
     }
   }
 
-  createForm() {
-    this.forma = this.fb.group({
-      nombre: ['', Validators.required],
-      ruta: ['', Validators.required],
-      icono: ['', Validators.required],
-    });
-  }
-
   loadForm() {
-    console.log(this.node);
     this.forma.setValue({
       nombre: this.node.name,
       ruta: this.node.route,
@@ -57,19 +66,19 @@ export class FormularioItemComponent implements OnChanges {
     });
   }
 
-  clearForm() {
-    this.forma.setValue({
-      nombre: '',
-      ruta: '',
-      icono: '',
-    });
-  }
-
   save() {
+    if (this.visibleIcon) {
+      const icon = this.forma.controls.icono;
+      if (icon.value === null || icon.value.length === 0) {
+        icon.setErrors({ iconoRequiered: true });
+      } else {
+        icon.setErrors(null);
+      }
+    }
+
     if (this.forma.invalid) {
-      return Object.values(this.forma.controls).forEach((control) => {
-        control.markAsTouched();
-      });
+      this.forma.markAllAsTouched();
+      return;
     }
 
     if (this.isNew) {
@@ -114,5 +123,19 @@ export class FormularioItemComponent implements OnChanges {
     this.isNew = false;
     this.isEdit = false;
     this.close.emit(true);
+  }
+
+  get visibleIcon() {
+    return (
+      (this.node.level === 0 && this.isNew) ||
+      (this.node.level === 1 && this.isEdit)
+    );
+  }
+
+  get visibleUrl() {
+    return (
+      (this.node.level !== 0 && this.isNew) ||
+      (this.node.level !== 1 && this.isEdit)
+    );
   }
 }

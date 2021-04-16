@@ -6,19 +6,37 @@
   </h3>
   <form autocomplete="off" [formGroup]="forma" (ngSubmit)="save()">
     <div class="row">
-      <mat-form-field appearance="outline">
-        <input matInput placeholder="Nombre" formControlName="nombre" />
-      </mat-form-field>
-    </div>
-    <div class="row">
-      <mat-form-field appearance="outline">
-        <input matInput placeholder="Icono" formControlName="icono" />
-      </mat-form-field>
-    </div>
-    <div class="row">
-      <mat-form-field appearance="outline">
-        <input matInput placeholder="Ruta" formControlName="ruta" />
-      </mat-form-field>
+      <div class="col">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Nombre</mat-label>
+          <input matInput placeholder="Nombre" formControlName="nombre" />
+          <mat-error *ngIf="forma.controls.nombre.errors">
+            El nombre es <strong>requerido</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col" *ngIf="visibleIcon">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Icono</mat-label>
+          <mat-select formControlName="icono">
+            <mat-option *ngFor="let opt of icons" [value]="opt.value">
+              <mat-icon>{{ opt.value }}</mat-icon>
+            </mat-option>
+            <mat-select-trigger>
+              <mat-icon>{{ forma.controls.icono.value }}</mat-icon>
+            </mat-select-trigger>
+          </mat-select>
+          <mat-error *ngIf="forma.controls.icono.errors">
+            El icono es <strong>requerido</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col" *ngIf="visibleUrl">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Ruta</mat-label>
+          <input matInput placeholder="Ruta" formControlName="ruta" />
+        </mat-form-field>
+      </div>
     </div>
     <div class="row">
       <div class="col">

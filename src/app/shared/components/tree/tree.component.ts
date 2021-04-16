@@ -60,9 +60,9 @@ export class TreeComponent implements OnChanges {
   }
 
   edit(node: any) {
-    //this.editItem.emit(node);
-    const father = this.obtainFather(node, this.dataMenu);
-    console.log(father);
+    this.editItem.emit(node);
+    //const father = this.obtainFather(node, this.dataMenu);
+    //console.log(father);
   }
 
   getAddNode(node: any): boolean {
