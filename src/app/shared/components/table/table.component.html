@@ -92,7 +92,7 @@
       </mat-progress-spinner>
     </div>
 
-    <mat-toolbar>
+    <mat-toolbar *ngIf="export || paginationSizes.length > 0">
       <mat-toolbar-row>
         <div *ngIf="export">
           <button
