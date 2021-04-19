@@ -1,10 +1,179 @@
 <div class="container">
-  <div class="form mt-5">
-    <div class="row">
-      <div class="col-3">1</div>
-      <div class="col-3">2</div>
-      <div class="col-3">3</div>
-      <div class="col-3">4</div>
+  <br />
+  <h2>Búsqueda de Agente</h2>
+  <div class="form">
+    <form autocomplete="off" (ngSubmit)="guardar()" [formGroup]="miFormulario">
+      <div
+        fxLayout="row wrap"
+        fxLayout.lt-md="column"
+        fxLayoutAlign="center"
+        fxLayoutGap="10px"
+        fxLayoutGap.lt-md="0px"
+      >
+        <div fxFlex="24">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Código Agente</mat-label>
+            <input type="text" matInput formControlName="codigo" />
+            <mat-error *ngIf="miFormulario.controls.codigo.errors">
+              El código es <strong>requerido</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div fxFlex="24">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Matricula</mat-label>
+            <input type="text" matInput formControlName="matricula" />
+            <mat-error *ngIf="miFormulario.controls.matricula.errors">
+              El código es <strong>requerido</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div fxFlex="24">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>CUIT</mat-label>
+            <input type="text" matInput formControlName="cuit" />
+            <mat-error *ngIf="miFormulario.controls.cuit.errors">
+              El código es <strong>requerido</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div fxFlex="24">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Grupo Economico</mat-label>
+            <mat-select formControlName="grupoEconomico">
+              <mat-option *ngFor="let opt of grupoEconomicoOpt" [value]="opt">
+                {{ opt }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="miFormulario.controls.grupoEconomico.errors">
+              El Grupo Economico es <strong>requerido</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div fxFlex="20">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Tipo de persona</mat-label>
+            <mat-select formControlName="tipoPersona">
+              <mat-option *ngFor="let opt of grupoEconomicoOpt" [value]="opt">
+                {{ opt }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="miFormulario.controls.tipoPersona.errors">
+              El Tipo de persona es <strong>requerido</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div fxFlex="20">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Tipo de documento</mat-label>
+            <mat-select formControlName="tipoDocumento">
+              <mat-option *ngFor="let opt of grupoEconomicoOpt" [value]="opt">
+                {{ opt }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="miFormulario.controls.tipoDocumento.errors">
+              El tipo de documento es <strong>requerido</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div fxFlex="20">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Número de documento</mat-label>
+            <input type="text" matInput formControlName="numeroDocumento" />
+            <mat-error *ngIf="miFormulario.controls.numeroDocumento.errors">
+              El Número de documento es <strong>requerido</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div fxFlex="36">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Nombre o Razón social</mat-label>
+            <input type="text" matInput formControlName="nombre" />
+            <mat-error *ngIf="miFormulario.controls.nombre.errors">
+              El Nombre o Razón social es <strong>requerido</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div fxFlex="24">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Figura de red</mat-label>
+            <mat-select formControlName="figuraRed">
+              <mat-option *ngFor="let opt of grupoEconomicoOpt" [value]="opt">
+                {{ opt }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="miFormulario.controls.figuraRed.errors">
+              La Figura de red es <strong>requerido</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div fxFlex="24">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>CAT</mat-label>
+            <mat-select formControlName="cat">
+              <mat-option *ngFor="let opt of grupoEconomicoOpt" [value]="opt">
+                {{ opt }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="miFormulario.controls.cat.errors">
+              El CAT es <strong>requerido</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div fxFlex="24">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Provincia</mat-label>
+            <mat-select formControlName="provincia">
+              <mat-option *ngFor="let opt of grupoEconomicoOpt" [value]="opt">
+                {{ opt }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="miFormulario.controls.provincia.errors">
+              La Provinvia es <strong>requerido</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div fxFlex="24">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Localidad</mat-label>
+            <mat-select formControlName="localidad">
+              <mat-option *ngFor="let opt of grupoEconomicoOpt" [value]="opt">
+                {{ opt }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="miFormulario.controls.localidad.errors">
+              La Localidad es <strong>requerido</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div fxFlex>
+          <app-button text="Consultar" class="floatRight"></app-button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <app-table
+    [columnHeader]="columnHeader"
+    [tableData]="dataTable"
+    [selectedItem]="true"
+    [order]="true"
+    (selectData)="select($event)"
+  ></app-table>
+  <div
+    fxLayout="row wrap"
+    fxLayout.lt-sm="column"
+    fxLayoutGap="10px"
+    fxLayoutAlign="center center"
+    class="sectionButtons"
+  >
+    <div fxFlex="20">
+      <app-button btnType="'button'" text="Detalle" [disabled]="btnDisabled"></app-button>
+    </div>
+    <div fxFlex="20">
+      <app-button btnType="'button'" text="Modificación" [disabled]="btnDisabled"></app-button>
+    </div>
+    <div fxFlex="20">
+      <app-button btnType="'button'" text="Baja" [disabled]="btnDisabled"></app-button>
     </div>
   </div>
 </div>

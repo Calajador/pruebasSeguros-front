@@ -41,3 +41,19 @@ body {
 .mat-divider {
   border-top-color: red;
 }
+
+.full-width {
+  width: 100%;
+}
+
+.containerAlt {
+  width: 100%;
+  padding-right: 8%;
+  padding-left: 8%;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.floatRight {
+  float: right;
+}
