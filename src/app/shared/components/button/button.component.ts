@@ -23,7 +23,7 @@ export enum ColorButtonEnum {
 })
 export class ButtonComponent implements OnInit {
   @Input() btnType = 'submit';
-  @Input() displayType: TypeButtonEnum = TypeButtonEnum.RAISED;
+  @Input() displayType: TypeButtonEnum = TypeButtonEnum.FLAT;
   @Input() color: ColorButtonEnum = ColorButtonEnum.PRIMARY;
   @Input() text: string;
   @Input() icon: string;

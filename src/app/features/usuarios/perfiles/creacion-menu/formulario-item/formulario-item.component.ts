@@ -8,6 +8,10 @@ import {
 } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ItemMenu } from 'src/app/core/models/itemMenu.model';
+import {
+  ColorButtonEnum,
+  TypeButtonEnum,
+} from 'src/app/shared/components/button/button.component';
 
 interface icon {
   name: string;
@@ -25,6 +29,9 @@ export class FormularioItemComponent implements OnChanges {
   @Input() isEdit: boolean = false;
   @Output() updateTree = new EventEmitter<boolean>();
   @Output() close = new EventEmitter<boolean>();
+
+  public readonly ButtonTypes = TypeButtonEnum;
+  public readonly ButtonColors = ColorButtonEnum;
 
   forma = this.fb.group({
     nombre: ['', Validators.required],

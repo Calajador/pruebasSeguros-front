@@ -39,24 +39,26 @@
       </div>
     </div>
     <div class="row">
-      <div class="col">
+      <div class="col-4">
         <app-button class="button" [text]="'Confirmar'"></app-button>
       </div>
-      <div class="col">
+      <div class="col-4">
         <app-button
           [btnType]="'button'"
           class="button"
           [text]="'Cancelar'"
           (click)="closeForm()"
+          [displayType]="ButtonTypes.STROKED"
         >
         </app-button>
       </div>
-      <div *ngIf="isEdit" class="col">
+      <div *ngIf="isEdit" class="col-4">
         <app-button
           [btnType]="'button'"
           class="button"
           [text]="'Eliminar'"
           (click)="deleteItem()"
+          [displayType]="ButtonTypes.STROKED"
         >
         </app-button>
       </div>

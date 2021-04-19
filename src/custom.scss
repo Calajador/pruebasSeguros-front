@@ -10,12 +10,12 @@ $custom-typography: mat-typography-config(
   $headline: mat-typography-level(32px, 48px, 700),
   $title: mat-typography-level(20px, 32px, 500),
   $subheading-2: mat-typography-level(16px, 28px, 400),
+  $body-1: mat-typography-level(16px, 24px, 500),
   $subheading-1: mat-typography-level(15px, 24px, 400),
   $body-2: mat-typography-level(14px, 24px, 500),
-  $body-1: mat-typography-level(16px, 24px, 500),
+  $button: mat-typography-level(12px, 14px, 500),
+  $input: mat-typography-level(14px, 1.25, 400),
   $caption: mat-typography-level(12px, 20px, 400),
-  $button: mat-typography-level(14px, 14px, 500),
-  $input: mat-typography-level(16px, 1.25, 400),
 );
 
 // Include the common styles for Angular Material. We include this here so that you only
@@ -25,7 +25,7 @@ $custom-typography: mat-typography-config(
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$itaca-app-primary: mat-palette($mat-cyan, 900);
+$itaca-app-primary: mat-palette($mat-grey, 900);
 $itaca-app-accent: mat-palette($mat-purple, 800);
 
 // The warn palette is optional (defaults to red).
