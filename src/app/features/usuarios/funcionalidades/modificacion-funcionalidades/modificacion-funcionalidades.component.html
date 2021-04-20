@@ -4,38 +4,46 @@
       <h6>Modificacion de Funcionalidades</h6>
     </div>
   </div>
-  <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="20px">
-    <div fxLayout="column " fxFlex>
-      <mat-form-field appearance="outline">
-        <input matInput placeholder="Modulo" />
-      </mat-form-field>
-    </div>
-    <div fxLayout="column " fxFlex>
-      <mat-form-field appearance="outline">
-        <input matInput placeholder="Submodulo" />
-      </mat-form-field>
-    </div>
-    <div fxLayout="column " fxFlex>
-      <mat-form-field appearance="outline">
-        <input matInput placeholder="Grupo" />
-      </mat-form-field>
-    </div>
-  </div>
-  <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="20px">
-    <div fxLayout="column " fxFlex>
-      <mat-form-field appearance="outline">
-        <input matInput placeholder="Codigo" />
-      </mat-form-field>
-    </div>
-    <div fxLayout="column " fxFlex>
-      <mat-form-field appearance="outline">
-        <input matInput placeholder="Fecha de Alta" [matDatepicker]="picker" />
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
 
-        <mat-datepicker #picker></mat-datepicker>
-      </mat-form-field>
+  <form [formGroup]="forma">
+    <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="20px">
+      <div fxLayout="column " fxFlex="20">
+        <mat-form-field appearance="outline">
+          <input matInput placeholder="Modulo" formControlName="codeModule" />
+        </mat-form-field>
+      </div>
+      <div fxLayout="column " fxFlex="20">
+        <mat-form-field appearance="outline">
+          <input
+            matInput
+            placeholder="Modulo"
+            formControlName="codeSubModule"
+          />
+        </mat-form-field>
+      </div>
+      <div fxLayout="column " fxFlex="20">
+        <mat-form-field appearance="outline">
+          <input matInput placeholder="Modulo" formControlName="codeGroup" />
+        </mat-form-field>
+      </div>
+      <div fxLayout="column " fxFlex="20">
+        <mat-form-field appearance="outline">
+          <input matInput placeholder="Modulo" formControlName="addDate" />
+        </mat-form-field>
+      </div>
+      <div fxLayout="column " fxFlex="20">
+        <mat-form-field appearance="outline">
+          <mat-select placeholder="Estado" formControlName="state">
+            <mat-option value="XXX"> XXX</mat-option>
+            <mat-option value="YYY"> YYY</mat-option>
+          </mat-select>
+          <mat-hint *ngIf="invalidState" class="text-danger">
+            Campo obligatorio
+          </mat-hint>
+        </mat-form-field>
+      </div>
     </div>
-  </div>
+  </form>
 
   <div fxLayout="row">
     <div fxLayout="column " fxFlex>
@@ -45,8 +53,17 @@
   <hr />
   <div fxLayout="row">
     <div fxLayout="column " fxFlex>
+      <div fxLayout="row" fxLayoutAlign="end center">
+        <app-button
+          [color]="ButtonColors.PRIMARY"
+          [displayType]="ButtonTypes.RAISED"
+          [text]="'Añadir Idioma'"
+          rightIcon="add"
+        ></app-button>
+      </div>
+
       <app-table
-        [tableData]="funcionalidadesVacias"
+        [tableData]="_multilnag"
         [columnHeader]="funcionalidadColumns"
       ></app-table>
     </div>

@@ -12,4 +12,5 @@ export interface Funcionality {
   codeModule?: string;
   nameModule?: string;
   state?: string;
+  addDate?: string;
 }

@@ -1,77 +1,123 @@
 <div class="container mt-4">
-  <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="20px">
-    <div fxLayout="column " fxFlex="20">
-      <mat-form-field appearance="outline">
-        <mat-select placeholder="Modulo">
-          <mat-option value="Cross"> Cross</mat-option>
-          <mat-option value="Productos"> Productos</mat-option>
-        </mat-select>
-      </mat-form-field>
+  <form [formGroup]="forma">
+    <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="20px">
+      <div fxLayout="column " fxFlex="20">
+        <mat-form-field appearance="outline">
+          <mat-select
+            placeholder="Modulo"
+            formControlName="codeModule"
+            (selectionChange)="emitModule()"
+          >
+            <mat-option *ngFor="let module of modules" [value]="module">
+              {{ module }}</mat-option
+            >
+          </mat-select>
+          <mat-hint *ngIf="invalidCodeModule" class="text-danger">
+            Campo obligatorio
+          </mat-hint>
+        </mat-form-field>
+      </div>
+      <div fxLayout="column " fxFlex="20">
+        <mat-form-field appearance="outline">
+          <mat-select
+            placeholder="Submodulo"
+            formControlName="codeSubModule"
+            (selectionChange)="emitSubModule()"
+          >
+            <mat-option value="XXX"> XXX</mat-option>
+            <mat-option value="YYY"> YYY</mat-option>
+          </mat-select>
+          <mat-hint *ngIf="invalidcodeSubModule" class="text-danger">
+            Campo obligatorio
+          </mat-hint>
+        </mat-form-field>
+      </div>
+      <div fxLayout="column " fxFlex="20">
+        <mat-form-field appearance="outline">
+          <mat-select placeholder="Grupo" formControlName="codeGroup">
+            <mat-option value="XXX"> XXX</mat-option>
+            <mat-option value="YYY"> YYY</mat-option>
+          </mat-select>
+          <mat-hint *ngIf="invalidGroup" class="text-danger">
+            Campo obligatorio
+          </mat-hint>
+        </mat-form-field>
+      </div>
+      <div fxLayout="column " fxFlex="20">
+        <mat-form-field appearance="outline">
+          <mat-select placeholder="Estado" formControlName="state">
+            <mat-option value="XXX"> XXX</mat-option>
+            <mat-option value="YYY"> YYY</mat-option>
+          </mat-select>
+          <mat-hint *ngIf="invalidState" class="text-danger">
+            Campo obligatorio
+          </mat-hint>
+        </mat-form-field>
+      </div>
     </div>
-    <div fxLayout="column " fxFlex="20">
-      <mat-form-field appearance="outline">
-        <mat-select placeholder="Submodulo">
-          <mat-option value="XXX"> XXX</mat-option>
-          <mat-option value="YYY"> YYY</mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
-    <div fxLayout="column " fxFlex="20">
-      <mat-form-field appearance="outline">
-        <mat-select placeholder="Grupo">
-          <mat-option value="XXX"> XXX</mat-option>
-          <mat-option value="YYY"> YYY</mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
-    <div fxLayout="column " fxFlex="20">
-      <mat-form-field appearance="outline">
-        <mat-select placeholder="Estado">
-          <mat-option value="XXX"> XXX</mat-option>
-          <mat-option value="YYY"> YYY</mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
-  </div>
-  <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="20px">
-    <div fxLayout="column " fxFlex="30">
-      <mat-form-field appearance="outline">
-        <input matInput placeholder="Desde" [matDatepicker]="picker" />
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="20px">
+      <div fxLayout="column " fxFlex="30">
+        <mat-form-field appearance="outline">
+          <input
+            matInput
+            placeholder="Desde"
+            formControlName="dateFrom"
+            [matDatepicker]="pickerFrom"
+            [(ngModel)]="myDatePickerFrom"
+            (dateChange)="formatDate($event)"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="pickerFrom"
+          ></mat-datepicker-toggle>
 
-        <mat-datepicker #picker></mat-datepicker>
-      </mat-form-field>
-    </div>
-    <div fxLayout="column " fxFlex="30">
-      <mat-form-field appearance="outline">
-        <input matInput placeholder="Hasta" [matDatepicker]="picker2" />
-        <mat-datepicker-toggle
-          matSuffix
-          [for]="picker2"
-        ></mat-datepicker-toggle>
+          <mat-datepicker #pickerFrom></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div fxLayout="column " fxFlex="30">
+        <mat-form-field appearance="outline">
+          <input
+            matInput
+            placeholder="Hasta"
+            formControlName="dateTo"
+            [matDatepicker]="pickerTo"
+            [(ngModel)]="myDatePickerTo"
+            [min]="myDatePickerFrom"
+            (dateChange)="formatDate($event)"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="pickerTo"
+          ></mat-datepicker-toggle>
 
-        <mat-datepicker #picker2></mat-datepicker>
-      </mat-form-field>
+          <mat-datepicker #pickerTo></mat-datepicker>
+        </mat-form-field>
+      </div>
     </div>
-  </div>
+    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
+      <div fxLayout="column " fxFlex="50">
+        <mat-form-field appearance="outline">
+          <input
+            matInput
+            placeholder="Texto Funcionalidad"
+            formControlName="text"
+          />
+        </mat-form-field>
+      </div>
+      <div fxLayout="column ">
+        <app-button
+          [btnType]="'button'"
+          [color]="ButtonColors.PRIMARY"
+          class="button"
+          [displayType]="ButtonTypes.RAISED"
+          [text]="'BUSCAR FUNCIONALIDAD'"
+          (click)="emitForm()"
+        >
+        </app-button>
+      </div>
+    </div>
+  </form>
 
-  <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
-    <div fxLayout="column " fxFlex="50">
-      <mat-form-field appearance="outline">
-        <input matInput placeholder="Texto Funcionalidad" />
-      </mat-form-field>
-    </div>
-    <div fxLayout="column ">
-      <app-button
-        [btnType]="'button'"
-        [color]="ButtonColors.PRIMARY"
-        class="button"
-        [displayType]="ButtonTypes.RAISED"
-        [text]="'BUSCAR FUNCIONALIDAD'"
-      >
-      </app-button>
-    </div>
-  </div>
   <mat-divider></mat-divider>
   <hr />
   <div fxLayout="row">
@@ -79,6 +125,7 @@
       <app-table
         [tableData]="funcionalidades$ | async"
         [columnHeader]="funcionalidadesColumns"
+        (editData)="emitDataEdit($event)"
       ></app-table>
     </div>
   </div>

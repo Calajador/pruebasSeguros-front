@@ -4,11 +4,17 @@
       <app-busqueda-funcionalidades
         #modificacion
         [funcionalidadesData]="funcionalidadesBusqueda$"
-        (editDataSearch)="getEditDataSearch($event)"
+        (emitDataSearch)="getDataSearch($event)"
+        (emitCodeModule)="getModule($event)"
+        (emitCodeSubModule)="getSubModule($event)"
+        (emitEditData)="getDataEdit($event)"
       ></app-busqueda-funcionalidades>
     </mat-tab>
     <mat-tab label="MODIFICACIÓN DE FUNCIONALIDADES">
-      <app-modificacion-funcionalidades></app-modificacion-funcionalidades>
+      <app-modificacion-funcionalidades
+        [funcionality]="funcionalidadEditable"
+        [multiLang]="funcionalityMultiLang"
+      ></app-modificacion-funcionalidades>
     </mat-tab>
   </mat-tab-group>
 </div>

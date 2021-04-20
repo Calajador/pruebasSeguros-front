@@ -24,6 +24,7 @@ export const funcionalidades: Funcionality[] = [
     codeModule: '111',
     nameModule: '111',
     state: '111',
+    addDate: '11/11/1111',
   },
   {
     id: '2',
@@ -48,5 +49,6 @@ export const funcionalidades: Funcionality[] = [
     codeModule: '222',
     nameModule: '222',
     state: '222',
+    addDate: '22/22/2222',
   },
 ];

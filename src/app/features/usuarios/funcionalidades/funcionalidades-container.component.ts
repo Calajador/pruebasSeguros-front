@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { Funcionality } from 'src/app/core/models/funcionalitu.model';
+import { MultiLanguage } from 'src/app/core/models/itemMenu.model';
 import {
   ColorButtonEnum,
   TypeButtonEnum,
@@ -18,9 +19,11 @@ export class FuncionalidadesContainerComponent implements OnInit {
   funcionalidadesBusqueda$: Observable<Funcionality[]>;
   index = 0;
   public funcionalidadEditable: Funcionality = null;
+  public funcionalityMultiLang: MultiLanguage[] = [];
   public readonly ButtonTypes = TypeButtonEnum;
   public readonly ButtonColors = ColorButtonEnum;
   private subscriptions = new Subscription();
+
   constructor(private user: UsuariosService) {}
 
   ngOnInit(): void {
@@ -32,8 +35,21 @@ export class FuncionalidadesContainerComponent implements OnInit {
     this.funcionalidadesBusqueda$ = this.user.getFuncionalidades();
   }
 
-  getEditDataSearch(data: Funcionality) {
+  getDataSearch(data: Funcionality) {
+    console.log(data);
+  }
+
+  getDataEdit(data: Funcionality) {
     this.funcionalidadEditable = data;
-    this.index = 1;
+    this.funcionalityMultiLang = [...data.multilanguage];
+    console.log(this.funcionalityMultiLang);
+  }
+
+  getModule(data: any) {
+    console.log(data);
+  }
+
+  getSubModule(data: any) {
+    console.log(data);
   }
 }

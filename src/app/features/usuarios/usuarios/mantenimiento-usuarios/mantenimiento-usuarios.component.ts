@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DateAdapter } from '@angular/material/core';
+import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
 import { Perfil } from 'src/app/core/models/perfil.model';
 import { Usuario } from 'src/app/core/models/usuario.model';
@@ -29,20 +30,19 @@ export class MantenimientoUsuariosComponent implements OnInit {
     nombre: 'Nombre',
     descripcion: 'Descripcion',
   };
-
+  lang: string;
   constructor(
-    private _users: UsuariosService,
     private fb: FormBuilder,
-    private dateAdapter: DateAdapter<any>
+    private dateAdapter: DateAdapter<any>,
+    private translate: TranslateService
   ) {}
 
   ngOnInit(): void {
     this.createForm();
     this.hide = true;
-  }
-  setFrench() {
-    // Set language of Datepicker
-    this.dateAdapter.setLocale('it');
+    this.dateAdapter.setLocale('es');
+    this.lang = this.translate.defaultLang;
+    console.log(this.lang);
   }
   createForm() {
     if (this._usuario) {

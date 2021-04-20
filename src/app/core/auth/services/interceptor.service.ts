@@ -28,11 +28,12 @@ export class InterceptorService implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    let multilang = this._translate.currentLang;
+    let multilang: string[] = this._translate.langs;
     const headers = new HttpHeaders({
       Authorization: 'Bearer ' + this._auth.getToken(),
       //Habrá que mandar tambien el idioma desde el translate service
-      Mensaje: 'es-ES',
+      Mensaje: multilang[0],
+      Saludo: 'HOLA HOLITA2',
     });
 
     const reqClone = req.clone({
