@@ -1,11 +1,13 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Funcionality } from 'src/app/core/models/funcionalitu.model';
 import { MultiLanguage } from 'src/app/core/models/itemMenu.model';
 import {
   ColorButtonEnum,
   TypeButtonEnum,
 } from 'src/app/shared/components/button/button.component';
+import { FuncionalidadesDialogComponent } from '../funcionalidades-dialog/funcionalidades-dialog.component';
 
 @Component({
   selector: 'app-modificacion-funcionalidades',
@@ -24,6 +26,9 @@ export class ModificacionFuncionalidadesComponent implements OnInit {
   @Input() public set multiLang(values: any[]) {
     this._multilnag = [...values];
   }
+
+  @Output() emitMultiLang = new EventEmitter<MultiLanguage>();
+  @Output() emitEditMultiLang = new EventEmitter<MultiLanguage>();
   public readonly ButtonTypes = TypeButtonEnum;
   public readonly ButtonColors = ColorButtonEnum;
   _funcionality: Funcionality;
@@ -41,7 +46,7 @@ export class ModificacionFuncionalidadesComponent implements OnInit {
     descripcion: 'Descripcion',
   };
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.createForm();
@@ -82,6 +87,36 @@ export class ModificacionFuncionalidadesComponent implements OnInit {
         state: [{ value: '' }],
       });
     }
+  }
+
+  addLang() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    const dialogref = this.dialog.open(
+      FuncionalidadesDialogComponent,
+      dialogConfig
+    );
+
+    dialogref.afterClosed().subscribe((result: MultiLanguage) => {
+      this.emitMultiLang.emit(result);
+    });
+  }
+
+  editLang(data: MultiLanguage) {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.data = data;
+    console.log(data);
+    const dialogref = this.dialog.open(
+      FuncionalidadesDialogComponent,
+      dialogConfig
+    );
+
+    dialogref.afterClosed().subscribe((result: MultiLanguage) => {
+      this.emitEditMultiLang.emit(result);
+    });
   }
 
   get invalidState() {

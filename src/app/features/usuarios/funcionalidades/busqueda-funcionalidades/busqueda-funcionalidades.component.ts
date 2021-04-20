@@ -14,7 +14,6 @@ import {
 })
 export class BusquedaFuncionalidadesComponent implements OnInit {
   forma: FormGroup;
-  funcionalidadesVacias = [];
   @Input() public set funcionalidadesData(values: any) {
     this.funcionalidades$ = values;
   }

@@ -59,12 +59,14 @@
           [displayType]="ButtonTypes.RAISED"
           [text]="'Añadir Idioma'"
           rightIcon="add"
+          (click)="addLang()"
         ></app-button>
       </div>
 
       <app-table
         [tableData]="_multilnag"
         [columnHeader]="funcionalidadColumns"
+        (editData)="editLang($event)"
       ></app-table>
     </div>
   </div>

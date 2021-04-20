@@ -14,6 +14,7 @@
       <app-modificacion-funcionalidades
         [funcionality]="funcionalidadEditable"
         [multiLang]="funcionalityMultiLang"
+        (emitMultiLang)="getNewMultiLang($event)"
       ></app-modificacion-funcionalidades>
     </mat-tab>
   </mat-tab-group>

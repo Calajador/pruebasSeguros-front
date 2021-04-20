@@ -45,6 +45,12 @@ export class FuncionalidadesContainerComponent implements OnInit {
     console.log(this.funcionalityMultiLang);
   }
 
+  getNewMultiLang(data: MultiLanguage) {
+    console.log(data);
+    this.funcionalityMultiLang.push(data);
+    this.funcionalityMultiLang = [...this.funcionalityMultiLang];
+  }
+
   getModule(data: any) {
     console.log(data);
   }
