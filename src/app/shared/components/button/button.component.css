@@ -15,10 +15,10 @@ div {
 }
 
 button {
-  min-width: 10rem;
+  min-width: 9rem;
   min-height: 2.5rem;
 }
 
 .stroked-btn {
-  border: 3px solid #212121;
+  border: 2px solid #212121;
 }

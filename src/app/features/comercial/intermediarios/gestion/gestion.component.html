@@ -1,5 +1,28 @@
-<div class="containerAlt">
-  <p>Acá va el steeper</p>
-  <hr />
-  <app-datos-figura></app-datos-figura>
-</div>
+<mat-horizontal-stepper labelPosition="bottom">
+  <mat-step label="Datos de la figura">
+    <div class="containerAlt">
+      <!-- <app-datos-figura></app-datos-figura> -->
+      <app-cobranzas></app-cobranzas>
+    </div>
+  </mat-step>
+  <mat-step label="Cuadro de cobranzas">
+    <div class="containerAlt">
+      <app-cobranzas></app-cobranzas>
+    </div>
+  </mat-step>
+  <mat-step>
+    <h1>Opcion 2</h1>
+  </mat-step>
+  <mat-step>
+    <h1>Opcion 1</h1>
+  </mat-step>
+  <mat-step>
+    <h1>Opcion 2</h1>
+  </mat-step>
+  <mat-step>
+    <h1>Opcion 1</h1>
+  </mat-step>
+  <mat-step>
+    <h1>Opcion 2</h1>
+  </mat-step>
+</mat-horizontal-stepper>

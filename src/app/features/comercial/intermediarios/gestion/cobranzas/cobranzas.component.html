@@ -1,0 +1,55 @@
+<br />
+<form [formGroup]="formCobro" autocomplete="off" (ngSubmit)="guardar()">
+  <div
+    fxLayout="row wrap"
+    fxLayout.lt-md="column"
+    fxLayoutAlign="center"
+    fxLayoutGap="10px"
+  >
+    <div fxFlex="30" class="check-input">
+      <mat-checkbox formControlName="cobradorAlta">
+        Alta de cobrador
+      </mat-checkbox>
+    </div>
+    <div fxFlex="30" class="check-input">
+      <mat-checkbox formControlName="cobranza">
+        Comisión de cobranza
+      </mat-checkbox>
+    </div>
+    <div fxFlex="30">
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Comisión de cobranza tradicional %</mat-label>
+        <input type="number" matInput formControlName="comision" />
+        <mat-error *ngIf="formCobro.controls.comision.errors">
+          La comisión debe ser <strong>mayor o igual a 0</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div fxFlex="grow">
+      <h3><strong>Uso de medios de pago</strong></h3>
+    </div>
+    <div fxFlex="grow">
+      <mat-checkbox formControlName="cobrador"> Cobrador </mat-checkbox>
+    </div>
+    <div fxFlex="grow">
+      <mat-checkbox formControlName="tc"> Tarjetas de crédito </mat-checkbox>
+    </div>
+    <div fxFlex="grow">
+      <mat-checkbox formControlName="cbu">
+        CBU (Código Bancario Unificado)
+      </mat-checkbox>
+    </div>
+    <div fxFlex="grow">
+      <mat-checkbox formControlName="pagoFacil"> PAgo fácil </mat-checkbox>
+    </div>
+    <div fxFlex="grow" class="section-buttons">
+      <app-button
+        [btnType]="'button'"
+        class="floatLeft"
+        text="Volver"
+        [displayType]="typeBtn"
+      ></app-button>
+      <app-button class="floatRight" text="Guardar"></app-button>
+    </div>
+  </div>
+</form>

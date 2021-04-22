@@ -1,5 +1,3 @@
-<h2>Datos de la figura</h2>
-<br />
 <div class="form-figura">
   <form (ngSubmit)="guardar()" [formGroup]="formDatos" autocomplete="off">
     <div
@@ -157,7 +155,7 @@
           />
         </div>
       </div>
-      <div fxFlex="40" fxLayout="column">
+      <div fxFlex="40" fxLayout="column" fxLayoutAlign="start">
         <div fxFlex>
           <h3><strong>Figura interna</strong></h3>
         </div>
@@ -178,7 +176,6 @@
       fxLayout="row wrap"
       fxLayout.lt-md="column"
       fxLayoutAlign="center"
-      fxLayoutGap="10px"
       class="section-buttons"
     >
       <div fxFlex="grow">
