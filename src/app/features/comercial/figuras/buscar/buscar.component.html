@@ -1,0 +1,49 @@
+<br />
+<h2>Busqueda de figura</h2>
+<div class="form">
+  <form autocomplete="off" (ngSubmit)="buscar()" [formGroup]="miFormulario">
+    <div
+      fxLayout="row wrap"
+      fxLayout.lt-md="column"
+      fxLayoutGap="10px"
+      fxLayoutGap.lt-md="0px"
+    >
+      <div fxFlex="30">
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Código</mat-label>
+          <input type="text" matInput formControlName="code" />
+        </mat-form-field>
+      </div>
+      <div fxFlex="30">
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Descrpción</mat-label>
+          <input type="text" matInput formControlName="description" />
+        </mat-form-field>
+      </div>
+      <div fxFlex="grow" *ngIf="errorForm">
+        <h4 class="alert" class="warn-color">
+          *Debe ingresar por lo menos un campo para la busqueda
+        </h4>
+      </div>
+      <div fxFlex="60">
+        <app-button
+          text="Consultar"
+          class="floatRight"
+          [disabled]="loader"
+        ></app-button>
+      </div>
+    </div>
+  </form>
+</div>
+<br />
+<div class="result-data">
+  <app-table
+    [columnHeader]="columnHeader"
+    [tableData]="dataTable"
+    [pagination]="true"
+    [isLoading]="loader"
+    (editData)="editData($event)"
+    (deleteData)="deleteData($event)"
+    (detailData)="detailData($event)"
+  ></app-table>
+</div>

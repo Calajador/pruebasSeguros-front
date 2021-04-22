@@ -28,8 +28,6 @@ export class BuscarComponent implements OnInit {
     codigoFigura: ['', Validators.required],
   });
 
-  itemSelected: any;
-
   public readonly ButtonTypes = TypeButtonEnum;
   public readonly ButtonColors = ColorButtonEnum;
   grupoEconomicoOpt: string[] = ['opt1', 'opt2', 'opt3', 'opt4'];
@@ -37,6 +35,9 @@ export class BuscarComponent implements OnInit {
   columnHeader = {
     agente: 'Agente',
     codigo: 'Código',
+    detalle: 'grid.detail',
+    edit: 'grid.edit',
+    delete: 'grid.delete',
   };
   dataTable = [
     { agente: 'Rozo Serrano Jose Miguel', codigo: '234562' },
@@ -54,11 +55,15 @@ export class BuscarComponent implements OnInit {
     }
   }
 
-  select(item: any) {
-    this.itemSelected = item[0];
+  editData(data) {
+    console.log('editData', data);
   }
 
-  get btnDisabled() {
-    return this.itemSelected === undefined || this.itemSelected === null;
+  deleteData(data) {
+    console.log('deleteData', data);
+  }
+
+  detailData(data) {
+    console.log('detailData', data);
   }
 }

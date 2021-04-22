@@ -6,7 +6,6 @@
       <div
         fxLayout="row wrap"
         fxLayout.lt-md="column"
-        fxLayoutAlign="center"
         fxLayoutGap="10px"
         fxLayoutGap.lt-md="0px"
       >
@@ -24,7 +23,7 @@
             <mat-label>Matricula</mat-label>
             <input type="text" matInput formControlName="matricula" />
             <mat-error *ngIf="miFormulario.controls.matricula.errors">
-              El código es <strong>requerido</strong>
+              La matricula es <strong>requerido</strong>
             </mat-error>
           </mat-form-field>
         </div>
@@ -81,7 +80,7 @@
             <mat-label>Número de documento</mat-label>
             <input type="text" matInput formControlName="numeroDocumento" />
             <mat-error *ngIf="miFormulario.controls.numeroDocumento.errors">
-              El Número de documento es <strong>requerido</strong>
+              El documento es <strong>requerido</strong>
             </mat-error>
           </mat-form-field>
         </div>
@@ -146,7 +145,32 @@
             </mat-error>
           </mat-form-field>
         </div>
-        <div fxFlex>
+        <div fxFlex="grow">
+          <h3>Por red Comercial (que lo contiene)</h3>
+        </div>
+        <div fxFlex="24">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Figura de red</mat-label>
+            <mat-select formControlName="figuraRed2">
+              <mat-option *ngFor="let opt of grupoEconomicoOpt" [value]="opt">
+                {{ opt }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="miFormulario.controls.figuraRed2.errors">
+              La Figura de red es <strong>requerido</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div fxFlex="24">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Código de la figura</mat-label>
+            <input type="text" matInput formControlName="codigoFigura" />
+            <mat-error *ngIf="miFormulario.controls.codigoFigura.errors">
+              El Código de la figura es <strong>requerido</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div fxFlex="grow">
           <app-button text="Consultar" class="floatRight"></app-button>
         </div>
       </div>
@@ -155,37 +179,11 @@
   <app-table
     [columnHeader]="columnHeader"
     [tableData]="dataTable"
-    [selectedItem]="true"
     [order]="true"
-    (selectData)="select($event)"
+    [pagination]="true"
+    (editData)="editData($event)"
+    (deleteData)="deleteData($event)"
+    (detailData)="detailData($event)"
   ></app-table>
-  <div
-    fxLayout="row wrap"
-    fxLayout.lt-sm="column"
-    fxLayoutGap="10px"
-    fxLayoutAlign="center center"
-    class="sectionButtons"
-  >
-    <div fxFlex="20">
-      <app-button
-        btnType="'button'"
-        text="Detalle"
-        [disabled]="btnDisabled"
-      ></app-button>
-    </div>
-    <div fxFlex="20">
-      <app-button
-        btnType="'button'"
-        text="Modificación"
-        [disabled]="btnDisabled"
-      ></app-button>
-    </div>
-    <div fxFlex="20">
-      <app-button
-        btnType="'button'"
-        text="Baja"
-        [disabled]="btnDisabled"
-      ></app-button>
-    </div>
-  </div>
+  <br />
 </div>

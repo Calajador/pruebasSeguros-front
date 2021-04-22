@@ -73,6 +73,14 @@ const routes: Routes = [
             (m) => m.AgentesModule
           ),
       },
+      {
+        path: 'comercial',
+        canActivate: [AuthGuard],
+        loadChildren: () =>
+          import('./features/comercial/comercial.module').then(
+            (m) => m.ComercialModule
+          ),
+      },
     ],
   },
 ];

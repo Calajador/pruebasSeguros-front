@@ -57,3 +57,7 @@ body {
 .floatRight {
   float: right;
 }
+
+.warn-color {
+  color: #ef5350 !important;
+}
