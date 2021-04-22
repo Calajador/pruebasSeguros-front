@@ -66,12 +66,11 @@
           <ng-template #elseReservedCol> {{ element[col] }}</ng-template>
         </td>
       </ng-container>
-
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
     </table>
 
-    <div *ngIf="noData | async" class="no-records">
+    <div *ngIf="(noData | async) && !isLoading" class="no-records">
       {{ "grid.no_records" | translate }}
     </div>
 
@@ -92,7 +91,7 @@
       </mat-progress-spinner>
     </div>
 
-    <mat-toolbar *ngIf="export || paginationSizes.length > 0">
+    <mat-toolbar *ngIf="export || pagination">
       <mat-toolbar-row>
         <div *ngIf="export">
           <button
@@ -106,7 +105,7 @@
         </div>
         <span class="spacer"></span>
         <mat-paginator
-          *ngIf="paginationSizes.length > 0"
+          *ngIf="pagination"
           [pageSizeOptions]="paginationSizes"
           [pageSize]="defaultPageSize"
           showFirstLastButtons

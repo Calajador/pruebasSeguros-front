@@ -19,6 +19,7 @@ import { map } from 'rxjs/operators';
 })
 export class TableComponent implements AfterViewInit {
   optionsReserved = ['grid.edit', 'grid.delete', 'grid.detail', 'grid.doc'];
+  defaultPagination: number[] = [5, 10, 20];
   typesExport = ['xlsx', 'csv'];
   itemSelected: any[] = [];
   multipleSelected: boolean = false;
@@ -26,8 +27,8 @@ export class TableComponent implements AfterViewInit {
   selection = new SelectionModel<any>(false, []);
   objectKeys = Object.keys;
   noData: any;
-  isLoading = true;
 
+  @Input() isLoading: boolean = false;
   @Input() filter: boolean = false;
   @Input() order: boolean = false;
   @Input() export: boolean = false;
@@ -39,8 +40,9 @@ export class TableComponent implements AfterViewInit {
   @Input() public set tableData(data: any[]) {
     this.loadData(data);
   }
-  @Input() paginationSizes: number[] = [];
-  @Input() defaultPageSize = this.paginationSizes[1];
+  @Input() pagination: boolean = false;
+  @Input() paginationSizes: number[] = this.defaultPagination;
+  @Input() defaultPageSize = this.paginationSizes[0];
   @Input() hiddenColumns: number[] = [];
 
   @Output() editData = new EventEmitter<any>();
@@ -113,15 +115,12 @@ export class TableComponent implements AfterViewInit {
 
   //Carga la información en la tabla tan pronto recibe la data
   loadData(data: any[]) {
-    setTimeout(() => {
-      this.isLoading = false;
-      this.dataSource = new MatTableDataSource<any>(data);
-      this.dataSource.paginator = this.paginator;
-      this.noData = this.dataSource
-        .connect()
-        .pipe(map((data) => data.length === 0));
-      this.dataSource.sort = this.sort;
-    }, 2000);
+    this.dataSource = new MatTableDataSource<any>(data);
+    this.dataSource.paginator = this.paginator;
+    this.noData = this.dataSource
+      .connect()
+      .pipe(map((data) => data.length === 0));
+    this.dataSource.sort = this.sort;
   }
 
   //Crea el selectionModel nuevamente si se permite selección múltiple
