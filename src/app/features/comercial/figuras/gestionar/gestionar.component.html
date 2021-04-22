@@ -1,7 +1,7 @@
 <br />
-<h2>Crear figura</h2>
+<h2>{{ create ? "Crear" : "Editar" }} figura</h2>
 <div class="form">
-  <form autocomplete="off" (ngSubmit)="gestionar()" [formGroup]="miFormulario">
+  <form autocomplete="off" (ngSubmit)="gestionar()" [formGroup]="formGestion">
     <div
       fxLayout="row wrap"
       fxLayout.lt-md="column"
@@ -12,7 +12,7 @@
         <mat-form-field class="full-width" appearance="outline">
           <mat-label>Código</mat-label>
           <input type="text" matInput formControlName="code" />
-          <mat-error *ngIf="miFormulario.controls.code.errors">
+          <mat-error *ngIf="formGestion.controls.code.errors">
             El Código de red es <strong>requerido</strong>
           </mat-error>
         </mat-form-field>
@@ -21,14 +21,17 @@
         <mat-form-field class="full-width" appearance="outline">
           <mat-label>Descrpción</mat-label>
           <input type="text" matInput formControlName="description" />
-          <mat-error *ngIf="miFormulario.controls.description.errors">
+          <mat-error *ngIf="formGestion.controls.description.errors">
             La Descrpción es <strong>requerido</strong>
           </mat-error>
         </mat-form-field>
       </div>
+      <div fxFlex="grow" *ngIf="endProcess">
+        <h4>Registro satisfactorio</h4>
+      </div>
       <div fxFlex="60">
         <app-button
-          text="Crear"
+          [text]="create ? 'Crear' : 'Editar'"
           class="floatRight"
           [disabled]="loader"
         ></app-button>

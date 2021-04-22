@@ -1,10 +1,17 @@
 <div class="containerAlt">
-  <mat-tab-group mat-align-tabs="center" (selectedTabChange)="setCreate($event)">
+  <mat-tab-group
+    mat-align-tabs="center"
+    [selectedIndex]="index"
+    (selectedTabChange)="changeTab($event)"
+  >
     <mat-tab label="Buscar figura">
-      <app-buscar></app-buscar>
+      <app-buscar (editFigure)="editFigure($event)"></app-buscar>
     </mat-tab>
-    <mat-tab label="Gestionar figura">
-      <app-gestionar></app-gestionar>
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <span (click)="setCreate()">Gestionar figura</span>
+      </ng-template>
+      <app-gestionar [create]="crearFigura" [figura]="figura"></app-gestionar>
     </mat-tab>
   </mat-tab-group>
 </div>

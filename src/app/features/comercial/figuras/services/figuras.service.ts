@@ -28,6 +28,10 @@ export class FigurasService {
   }
 
   createFigure(figura: Figura) {
-    console.log(figura);
+    console.log('createFigure', figura);
+  }
+
+  updateFigure(figura: Figura) {
+    console.log('updateFigure', figura);
   }
 }
