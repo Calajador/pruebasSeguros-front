@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Output, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Figura } from '../interfaces/figura.interface';
+import { Figura } from '../../interfaces/figura.interface';
 import { FigurasService } from '../services/figuras.service';
 
 @Component({

@@ -11,6 +11,13 @@ const routes: Routes = [
         component: FigurasComponent,
       },
       {
+        path: 'intermediarios',
+        loadChildren: () =>
+          import('./intermediarios/intermediarios.module').then(
+            (m) => m.IntermediariosModule
+          ),
+      },
+      {
         path: '**',
         redirectTo: 'figuras',
       },

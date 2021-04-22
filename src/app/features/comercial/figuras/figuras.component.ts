@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Figura } from './interfaces/figura.interface';
+import { Figura } from '../interfaces/figura.interface';
 
 @Component({
   selector: 'app-figuras',
