@@ -89,11 +89,11 @@ export class MantenimientoRamosComponent implements OnInit {
   // }
 
   addIdioma(idioma: string) {
-    const names = this.forma.get('nombres') as FormArray;
+    const names = this.forma.controls.nombres as FormArray;
     names.push(
       this.fb.group({
-        pais: new FormControl(idioma),
-        nombre: new FormControl(''),
+        pais: [idioma],
+        nombre: [''],
       })
     );
   }
