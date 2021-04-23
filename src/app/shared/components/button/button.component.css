@@ -14,9 +14,11 @@ div {
   color: aliceblue;
 }
 
-button:focus,
-button:active:focus,
-button.active:focus {
-  outline: none !important;
-  outline-style: none !important;
+button {
+  min-width: 9rem;
+  min-height: 2.5rem;
+}
+
+.stroked-btn {
+  border: 2px solid #212121;
 }

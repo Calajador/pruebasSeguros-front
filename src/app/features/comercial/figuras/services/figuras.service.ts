@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Figura } from '../interfaces/figura.interface';
+import { Figura } from '../../interfaces/figura.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +13,7 @@ export class FigurasService {
   constructor(private http: HttpClient) {}
 
   getFigureQuery(code: string, description: string): Observable<Figura[]> {
-    let params = new HttpParams();
+    let params = new HttpParams().set('state', 'true');
     if (code) {
       params = params.set('code', code);
     }
@@ -24,10 +24,14 @@ export class FigurasService {
   }
 
   getAllFigure() {
-    return this.http.get<Figura[]>(`${this.URI}/figure`);
+    return this.http.get<Figura[]>(`${this.URI}/figure?state=true`);
   }
 
   createFigure(figura: Figura) {
-    console.log(figura);
+    console.log('createFigure', figura);
+  }
+
+  updateFigure(figura: Figura) {
+    console.log('updateFigure', figura);
   }
 }

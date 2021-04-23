@@ -1,0 +1,192 @@
+<div class="form-figura">
+  <form (ngSubmit)="guardar()" [formGroup]="formDatos" autocomplete="off">
+    <div
+      fxLayout="row wrap"
+      fxLayout.lt-md="column"
+      fxLayoutAlign="center"
+      fxLayoutGap="10px"
+    >
+      <div fxFlex="30">
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Tipo figura</mat-label>
+          <mat-select formControlName="figura">
+            <mat-option *ngFor="let figura of figuras" [value]="figura.id">
+              {{ figura.description }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="formDatos.controls.figura.errors">
+            La figura es <strong>requerido</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxFlex="30">
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Matricula</mat-label>
+          <input type="text" matInput formControlName="matricula" />
+          <mat-error *ngIf="formDatos.controls.matricula.errors">
+            La Matricula es <strong>requerido</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxFlex="30">
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Zona de envío</mat-label>
+          <mat-select formControlName="envio">
+            <mat-option *ngFor="let zona of zonas" [value]="zona.id">
+              {{ zona.label }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="formDatos.controls.envio.errors">
+            La Zona de envío es <strong>requerido</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxFlex="30">
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Tipo firmante</mat-label>
+          <input type="text" matInput formControlName="tipoFirmante" />
+          <mat-error *ngIf="formDatos.controls.tipoFirmante.errors">
+            El Tipo firmante es <strong>requerido</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxFlex="30">
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Tipo documento firmante</mat-label>
+          <mat-select formControlName="documento">
+            <mat-option
+              *ngFor="let documento of documentos"
+              [value]="documento.id"
+            >
+              {{ documento.label }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="formDatos.controls.documento.errors">
+            El Tipo documento es <strong>requerido</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxFlex="30">
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Firmante</mat-label>
+          <input type="text" matInput formControlName="firmante" />
+          <mat-error *ngIf="formDatos.controls.firmante.errors">
+            El firmante es <strong>requerido</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxFlex="30">
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>RAI</mat-label>
+          <input type="text" matInput formControlName="rai" />
+          <mat-error *ngIf="formDatos.controls.rai.errors">
+            El RAI es <strong>requerido</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxFlex="30">
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>CBU</mat-label>
+          <input type="text" matInput formControlName="cbu" />
+          <mat-error *ngIf="formDatos.controls.cbu.errors">
+            El CBU es <strong>requerido</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxFlex="30">
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Alias cuenta bancaria</mat-label>
+          <input type="text" matInput formControlName="cuenta" />
+          <mat-error *ngIf="formDatos.controls.cuenta.errors">
+            La cuenta es <strong>requerido</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div
+      fxLayout="row"
+      fxLayout.lt-md="column"
+      fxLayoutAlign="center"
+      fxLayoutGap="10px"
+    >
+      <div fxFlex="50" fxLayout="column">
+        <div fxFlex class="section-file">
+          <mat-checkbox formControlName="cCurso" class="full-width">
+            Constancia del curso
+          </mat-checkbox>
+          <input
+            type="file"
+            formControlName="fCurso"
+            class="input-file"
+            *ngIf="inputIsVisible('cCurso')"
+          />
+        </div>
+        <div fxFlex class="section-file">
+          <mat-checkbox formControlName="cInscripcion" class="full-width">
+            Inscripción UIF
+          </mat-checkbox>
+          <input
+            type="file"
+            formControlName="fInscripcion"
+            class="input-file"
+            *ngIf="inputIsVisible('cInscripcion')"
+          />
+        </div>
+        <div fxFlex class="section-file">
+          <mat-checkbox formControlName="cCipas" class="full-width"
+            >CIPAS</mat-checkbox
+          >
+          <input
+            type="file"
+            formControlName="fCipas"
+            class="input-file"
+            *ngIf="inputIsVisible('cCipas')"
+          />
+        </div>
+        <div fxFlex class="section-file">
+          <mat-checkbox formControlName="cBanco" class="full-width">
+            Constancia bancaria
+          </mat-checkbox>
+          <input
+            type="file"
+            formControlName="fBanco"
+            class="input-file"
+            *ngIf="inputIsVisible('cBanco')"
+          />
+        </div>
+      </div>
+      <div fxFlex="40" fxLayout="column" fxLayoutAlign="start">
+        <div fxFlex>
+          <h3><strong>Figura interna</strong></h3>
+        </div>
+        <div fxFlex>
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Legajo empleado</mat-label>
+            <input type="text" matInput formControlName="legajo" />
+          </mat-form-field>
+        </div>
+        <div fxFlex>
+          <mat-checkbox formControlName="exEmpleado">
+            Ex-empleado
+          </mat-checkbox>
+        </div>
+      </div>
+    </div>
+    <div
+      fxLayout="row wrap"
+      fxLayout.lt-md="column"
+      fxLayoutAlign="center"
+      class="section-buttons"
+    >
+      <div fxFlex="grow">
+        <app-button
+          [btnType]="'button'"
+          class="floatLeft"
+          text="Volver"
+          [displayType]="typeBtn"
+        ></app-button>
+        <app-button class="floatRight" text="Guardar"></app-button>
+      </div>
+    </div>
+  </form>
+</div>

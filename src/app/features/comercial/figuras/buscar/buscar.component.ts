@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Output, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Figura } from '../interfaces/figura.interface';
+import { Figura } from '../../interfaces/figura.interface';
 import { FigurasService } from '../services/figuras.service';
 
 @Component({
@@ -9,6 +9,8 @@ import { FigurasService } from '../services/figuras.service';
   styleUrls: ['./buscar.component.css'],
 })
 export class BuscarComponent implements OnInit {
+  @Output() editFigure = new EventEmitter<Figura>();
+
   miFormulario: FormGroup = this.fb.group({
     code: [''],
     description: [''],
@@ -64,7 +66,7 @@ export class BuscarComponent implements OnInit {
   }
 
   editData(figura: Figura) {
-    console.log('editData', figura);
+    this.editFigure.emit(figura);
   }
 
   deleteData(figura: Figura) {

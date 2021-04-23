@@ -58,6 +58,10 @@ body {
   float: right;
 }
 
+.floatLeft {
+  float: left;
+}
+
 .warn-color {
   color: #ef5350 !important;
 }
