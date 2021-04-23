@@ -1,11 +1,19 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  FormArray,
+  Validators,
+  FormControl,
+} from '@angular/forms';
+import { DateAdapter } from '@angular/material/core';
 import { MultiLanguage } from 'src/app/core/models/itemMenu.model';
 import { Ramo } from 'src/app/core/models/ramo.model';
 import {
   ColorButtonEnum,
   TypeButtonEnum,
 } from 'src/app/shared/components/button/button.component';
+import { idiomas } from '../services/idiomas';
 
 @Component({
   selector: 'app-mantenimiento-ramos',
@@ -16,37 +24,29 @@ export class MantenimientoRamosComponent implements OnInit {
   forma: FormGroup;
   @Input() public set ramo(value: any) {
     this._ramo = value;
-    console.log(this._ramo);
     this.createForm();
   }
   public readonly ButtonTypes = TypeButtonEnum;
   public readonly ButtonColors = ColorButtonEnum;
 
-  idiomaForm: FormGroup;
+  buttonSpanishForm = true;
+  buttonEnglishForm = true;
   listaTipos: string[] = ['X-99', 'Z-88', 'Y-77', 'W-55'];
+  listaModalidad: string[] = ['Ejemp1', 'Ejemp2', 'Ejemp3', 'Ejemp4'];
   listaSSN: string[] = ['SSN1', 'SSN2', 'SSN3', 'SSN4'];
   listaCompanias: string[] = ['UST', 'Google', 'Microsoft', 'Rivadavia'];
   _ramo: Ramo;
   idiomas: MultiLanguage[] = [];
-
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private dateAdapter: DateAdapter<any>) {}
 
   ngOnInit(): void {
-    this.createIdiomaForm();
+    this.dateAdapter.setLocale('es');
     this.createForm();
-  }
-
-  createIdiomaForm() {
-    this.idiomaForm = this.fb.group({
-      pais: [''],
-      nombre: [''],
+    idiomas.forEach((element) => {
+      this.addIdioma(element);
     });
-  }
 
-  registrarIdioma() {
-    let idioma = this.idiomaForm.value;
-    this.idiomas.push(idioma);
-    this.idiomaForm.reset();
+    console.log(this.forma.get('nombres').value);
   }
 
   createForm() {
@@ -66,15 +66,36 @@ export class MantenimientoRamosComponent implements OnInit {
       this.forma = this.fb.group({
         tipo: ['', Validators.required],
         codigo: ['', Validators.required],
-        nombres: [this.idiomas],
+        nombres: this.fb.array([]),
         compañia: ['', Validators.required],
         ssn: ['', Validators.required],
         contable: ['', Validators.required],
-        fechaInicio: ['', Validators.required],
+        fechaInicio: [new Date(), Validators.required],
+        approbationModality: ['', Validators.required],
+        approbationDate: ['', Validators.required],
+        expedientNumber: ['', Validators.required],
+        expedientNumberOutCompany: ['', Validators.required],
+        ssnExpedientNumber: ['', Validators.required],
+        companyName: ['', Validators.required],
+        tramitNumber: ['', Validators.required],
         fechaFin: [''],
         motivoBaja: [''],
       });
     }
+  }
+
+  // get names() {
+  //   return this.forma.get('nombres') as FormArray;
+  // }
+
+  addIdioma(idioma: string) {
+    const names = this.forma.get('nombres') as FormArray;
+    names.push(
+      this.fb.group({
+        pais: new FormControl(idioma),
+        nombre: new FormControl(''),
+      })
+    );
   }
 
   formatDate(e) {
@@ -110,10 +131,61 @@ export class MantenimientoRamosComponent implements OnInit {
       this.forma.get('contable').invalid && this.forma.get('contable').touched
     );
   }
+  get approbationModalityInvalid() {
+    return (
+      this.forma.get('approbationModality').invalid &&
+      this.forma.get('approbationModality').touched
+    );
+  }
   get fechaInicioInvalid() {
     return (
       this.forma.get('fechaInicio').invalid &&
       this.forma.get('fechaInicio').touched
     );
+  }
+  get expedientNumberInvalid() {
+    return (
+      this.forma.get('expedientNumber').invalid &&
+      this.forma.get('expedientNumber').touched
+    );
+  }
+
+  get approbationDateInvalid() {
+    return (
+      this.forma.get('approbationDate').invalid &&
+      this.forma.get('approbationDate').touched
+    );
+  }
+
+  get expedientNumberOutCompanyInvalid() {
+    return (
+      this.forma.get('expedientNumberOutCompany').invalid &&
+      this.forma.get('expedientNumberOutCompany').touched
+    );
+  }
+
+  get ssnExpedientNumberInvalid() {
+    return (
+      this.forma.get('ssnExpedientNumber').invalid &&
+      this.forma.get('ssnExpedientNumber').touched
+    );
+  }
+
+  get companyNameInvalid() {
+    return (
+      this.forma.get('companyName').invalid &&
+      this.forma.get('companyName').touched
+    );
+  }
+
+  get tramitNumberInvalid() {
+    return (
+      this.forma.get('tramitNumber').invalid &&
+      this.forma.get('tramitNumber').touched
+    );
+  }
+
+  prueba() {
+    console.log(this.forma.value);
   }
 }

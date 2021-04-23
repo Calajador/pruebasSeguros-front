@@ -4,6 +4,12 @@
     [selectedIndex]="index"
     (selectedTabChange)="onLinkClick($event)"
   >
+    <mat-tab label="BÚSQUEDA DE PERFILES FUNCIONALES">
+      <app-busqueda-perfiles-funcionales
+        [perfilesData]="pf$"
+        (editDataSearch)="getEditDataSearch($event)"
+      ></app-busqueda-perfiles-funcionales>
+    </mat-tab>
     <mat-tab label="CREACIÓN DE PERFILES FUNCIONALES"
       ><app-creacion-perfil-funcional #creacion></app-creacion-perfil-funcional
     ></mat-tab>
@@ -13,19 +19,13 @@
         [PerfilFuncional]="pfEditable"
       ></app-modificacion-perfil-funcional>
     </mat-tab>
-    <mat-tab label="BÚSQUEDA DE PERFILES FUNCIONALES">
-      <app-busqueda-perfiles-funcionales
-        [perfilesData]="pf$"
-        (editDataSearch)="getEditDataSearch($event)"
-      ></app-busqueda-perfiles-funcionales>
-    </mat-tab>
   </mat-tab-group>
 </div>
 
 <div class="container">
   <div fxLayout="row" fxLayoutAlign="end center">
     <app-button
-      *ngIf="index === 0"
+      *ngIf="index === 1"
       [color]="ButtonColors.PRIMARY"
       [displayType]="ButtonTypes.RAISED"
       [text]="'Crear Perfil Funcional'"
@@ -33,7 +33,7 @@
       (click)="crearPerfilFuncional()"
     ></app-button>
     <app-button
-      *ngIf="index === 1"
+      *ngIf="index === 2"
       [color]="ButtonColors.PRIMARY"
       [displayType]="ButtonTypes.RAISED"
       [text]="'Modificar Perfil Funcional'"

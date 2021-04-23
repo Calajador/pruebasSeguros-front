@@ -1,9 +1,104 @@
 <div class="container">
+  <div fxLayout="row">
+    <div fxLayout="column " fxFlex>
+      <h4>Búsqueda de Ramos</h4>
+    </div>
+  </div>
+  <hr />
+  <form [formGroup]="forma">
+    <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="20px">
+      <div fxLayout="column " fxFlex="15">
+        <mat-form-field appearance="outline">
+          <mat-select placeholder="Tipo" formControlName="tipo">
+            <mat-option *ngFor="let item of listaTipos" [value]="item">{{
+              item
+            }}</mat-option>
+          </mat-select>
+          <mat-hint *ngIf="tipoInvalid" class="text-danger">
+            Campo obligatorio
+          </mat-hint>
+        </mat-form-field>
+      </div>
+      <div fxLayout="column " fxFlex="35">
+        <mat-form-field appearance="outline">
+          <input matInput placeholder="Nombre" formControlName="nombre" />
+          <mat-hint *ngIf="nombreInvalid" class="text-danger">
+            Campo obligatorio
+          </mat-hint>
+        </mat-form-field>
+      </div>
+      <div fxLayout="column " fxFlex="30">
+        <mat-form-field appearance="outline">
+          <mat-select placeholder="Compañia" formControlName="compañia">
+            <mat-option *ngFor="let item of listaCompanias" [value]="item">{{
+              item
+            }}</mat-option>
+          </mat-select>
+          <mat-hint *ngIf="companiaInvalid" class="text-danger">
+            Campo obligatorio
+          </mat-hint>
+        </mat-form-field>
+      </div>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="20px">
+      <div fxLayout="column " fxFlex="30">
+        <mat-form-field appearance="outline">
+          <input
+            matInput
+            placeholder="Fecha Inicio"
+            formControlName="fechaInicio"
+            [matDatepicker]="pickerFrom"
+            [(ngModel)]="myDatePickerFrom"
+            (dateChange)="formatDate($event)"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="pickerFrom"
+          ></mat-datepicker-toggle>
+
+          <mat-datepicker #pickerFrom></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div fxLayout="column " fxFlex="30">
+        <mat-form-field appearance="outline">
+          <input
+            matInput
+            placeholder="Fecha FIn"
+            formControlName="fechaFin"
+            [matDatepicker]="pickerTo"
+            [(ngModel)]="myDatePickerTo"
+            [min]="myDatePickerFrom"
+            (dateChange)="formatDate($event)"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="pickerTo"
+          ></mat-datepicker-toggle>
+
+          <mat-datepicker #pickerTo></mat-datepicker>
+        </mat-form-field>
+      </div>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="20px">
+      <div fxLayout="column ">
+        <app-button
+          [btnType]="'button'"
+          [color]="ButtonColors.PRIMARY"
+          class="button"
+          [displayType]="ButtonTypes.RAISED"
+          [text]="'BUSCAR RAMO'"
+          (click)="emitForm()"
+        >
+        </app-button>
+      </div>
+    </div>
+  </form>
   <app-table
     [tableData]="ramos$ | async"
     [columnHeader]="ramosColumns"
     [filter]="true"
     [order]="true"
+    [pagination]="true"
     [paginationSizes]="[2, 4, 6]"
     [defaultPageSize]="4"
     [export]="true"

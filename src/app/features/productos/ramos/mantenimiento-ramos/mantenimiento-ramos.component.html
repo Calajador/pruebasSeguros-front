@@ -1,12 +1,13 @@
 <div class="container">
   <div fxLayout="row">
     <div fxLayout="column " fxFlex>
-      <h6 *ngIf="!_ramo">Creación de Ramos</h6>
-      <h6 *ngIf="_ramo">Edicion de Ramos</h6>
+      <h4 *ngIf="!_ramo">Creación de Ramos</h4>
+      <h4 *ngIf="_ramo">Edicion de Ramos</h4>
     </div>
   </div>
   <hr />
   <form [formGroup]="forma">
+    <!-- Campos Basicos -->
     <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="20px">
       <div fxLayout="column " fxFlex="15">
         <mat-form-field appearance="outline">
@@ -22,42 +23,12 @@
       </div>
       <div fxLayout="column " fxFlex="15">
         <mat-form-field appearance="outline">
-          <input matInput placeholder="Codigp" formControlName="codigo" />
+          <input matInput placeholder="Codigo" formControlName="codigo" />
           <mat-hint *ngIf="codigoInvalid" class="text-danger">
             Campo obligatorio
           </mat-hint>
         </mat-form-field>
       </div>
-      <div fxLayout="column " fxFlex="50">
-        <form [formGroup]="idiomaForm">
-          <mat-expansion-panel class="expansion">
-            <mat-expansion-panel-header>
-              <mat-panel-title> Registrar Idiomas </mat-panel-title>
-            </mat-expansion-panel-header>
-            <div fxLayout="column " fxFlex>
-              <mat-form-field appearance="outline">
-                <input matInput placeholder="Pais" formControlName="pais" />
-              </mat-form-field>
-            </div>
-            <div fxLayout="column " fxFlex>
-              <mat-form-field appearance="outline">
-                <input matInput placeholder="Nombre" formControlName="nombre" />
-              </mat-form-field>
-            </div>
-            <mat-action-row>
-              <app-button
-                [color]="ButtonColors.WARN"
-                [displayType]="ButtonTypes.RAISED"
-                [text]="'Registrar Idioma'"
-                rightIcon="add"
-                (click)="registrarIdioma()"
-              ></app-button>
-            </mat-action-row>
-          </mat-expansion-panel>
-        </form>
-      </div>
-    </div>
-    <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="20px">
       <div fxLayout="column " fxFlex="30">
         <mat-form-field appearance="outline">
           <mat-select placeholder="Compañia" formControlName="compañia">
@@ -70,9 +41,11 @@
           </mat-hint>
         </mat-form-field>
       </div>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="20px">
       <div fxLayout="column " fxFlex="30">
         <mat-form-field appearance="outline">
-          <mat-select placeholder="Codigo SSN" formControlName="ssn" multiple>
+          <mat-select placeholder="Codigo SSN" formControlName="ssn">
             <mat-option *ngFor="let item of listaSSN" [value]="item">{{
               item
             }}</mat-option>
@@ -144,5 +117,146 @@
         </mat-form-field>
       </div>
     </div>
+    <hr />
+    <mat-divider></mat-divider>
+    <!-- Registro de Nombres -->
+    <div fxLayout="row">
+      <div fxLayout="column " fxFlex>
+        <h4>Registo Nombres</h4>
+      </div>
+    </div>
+    <div
+      fxLayout="row"
+      fxLayoutAlign="start center"
+      fxLayoutGap="20px"
+      formArrayName="nombres"
+    >
+      <ng-container
+        *ngFor="let name of forma.controls.nombres?.value; let i = index"
+      >
+        <div fxLayout="column " fxFlex="20">
+          <h5>{{ name.pais }}</h5>
+          <mat-form-field appearance="outline">
+            <input matInput placeholder="Nombre" formControlName="nombre" />
+          </mat-form-field>
+        </div>
+      </ng-container>
+    </div>
+    <hr />
+    <mat-divider></mat-divider>
+    <!-- Campos De validaciones Opcionales por Pais -->
+    <div fxLayout="row">
+      <div fxLayout="column " fxFlex>
+        <h4>Datos Aprobacion</h4>
+      </div>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
+      <div fxLayout="column " fxFlex="15">
+        <mat-form-field appearance="outline">
+          <mat-select
+            placeholder="Modalidad"
+            formControlName="approbationModality"
+          >
+            <mat-option *ngFor="let item of listaModalidad" [value]="item">{{
+              item
+            }}</mat-option>
+          </mat-select>
+          <mat-hint *ngIf="approbationModalityInvalid" class="text-danger">
+            Campo obligatorio
+          </mat-hint>
+        </mat-form-field>
+      </div>
+      <div fxLayout="column " fxFlex="26">
+        <mat-form-field appearance="outline">
+          <input
+            matInput
+            placeholder="Fecha de Aprobacion"
+            formControlName="approbationDate"
+            [matDatepicker]="picker"
+            (dateChange)="formatDate($event)"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-hint *ngIf="approbationDateInvalid" class="text-danger">
+            Campo obligatorio
+          </mat-hint>
+        </mat-form-field>
+      </div>
+      <div fxLayout="column " fxFlex="20">
+        <mat-form-field appearance="outline">
+          <input
+            matInput
+            placeholder="Numero Aprobación"
+            formControlName="expedientNumber"
+            mask="0000"
+          />
+          <mat-hint *ngIf="expedientNumberInvalid" class="text-danger">
+            Campo obligatorio
+          </mat-hint>
+        </mat-form-field>
+      </div>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
+      <div fxLayout="column " fxFlex="15">
+        <mat-form-field appearance="outline">
+          <input
+            matInput
+            placeholder="Numero Compañía Externa"
+            formControlName="expedientNumberOutCompany"
+            mask="0000"
+          />
+          <mat-hint
+            *ngIf="expedientNumberOutCompanyInvalid"
+            class="text-danger"
+          >
+            Campo obligatorio
+          </mat-hint>
+        </mat-form-field>
+      </div>
+      <div fxLayout="column " fxFlex="25">
+        <mat-form-field appearance="outline">
+          <input
+            matInput
+            placeholder="Numero Expediente SSN"
+            formControlName="ssnExpedientNumber"
+            mask="0000"
+          />
+          <mat-hint *ngIf="ssnExpedientNumberInvalid" class="text-danger">
+            Campo obligatorio
+          </mat-hint>
+        </mat-form-field>
+      </div>
+      <div fxLayout="column " fxFlex="25">
+        <mat-form-field appearance="outline">
+          <input
+            matInput
+            placeholder="Nombre Compañía"
+            formControlName="companyName"
+          />
+          <mat-hint *ngIf="companyNameInvalid" class="text-danger">
+            Campo obligatorio
+          </mat-hint>
+        </mat-form-field>
+      </div>
+      <div fxLayout="column " fxFlex="20">
+        <mat-form-field appearance="outline">
+          <input
+            matInput
+            placeholder="Numero Trámite"
+            formControlName="tramitNumber"
+            mask="0000"
+          />
+          <mat-hint *ngIf="tramitNumberInvalid" class="text-danger">
+            Campo obligatorio
+          </mat-hint>
+        </mat-form-field>
+      </div>
+    </div>
   </form>
+  <button (click)="prueba()">Prueba</button>
 </div>
+<hr />

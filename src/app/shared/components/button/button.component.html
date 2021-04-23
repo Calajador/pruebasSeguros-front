@@ -41,17 +41,23 @@
       [color]="color"
       [disabled]="disabled"
     >
-      <span *ngIf="icon" [ngClass]="icon"></span>
+      <mat-icon *ngIf="icon" [ngClass]="{ iconoBlanco: icon }">{{
+        icon
+      }}</mat-icon>
     </button>
   </ng-container>
   <ng-container *ngSwitchCase="typeButtonEnum.FAB">
     <button [type]="btnType" mat-fab [color]="color" [disabled]="disabled">
-      <span *ngIf="icon" [ngClass]="icon"></span>
+      <mat-icon *ngIf="icon" [ngClass]="{ iconoBlanco: icon }">{{
+        icon
+      }}</mat-icon>
     </button>
   </ng-container>
   <ng-container *ngSwitchCase="typeButtonEnum.MINI_FAB">
     <button [type]="btnType" mat-mini-fab [color]="color" [disabled]="disabled">
-      <span *ngIf="icon" [ngClass]="icon"></span>
+      <mat-icon *ngIf="icon" [ngClass]="{ iconoBlanco: icon }">{{
+        icon
+      }}</mat-icon>
     </button>
   </ng-container>
   <ng-container *ngSwitchDefault>

@@ -91,18 +91,18 @@ export class BusquedaComponent implements OnInit {
     return this.invalidSearch;
   }
 
-  // save() {
-  //   console.log(this.forma);
+  save() {
+    console.log(this.forma);
 
-  //   if (this.forma.invalid) {
-  //     return Object.values(this.forma.controls).forEach((control) => {
-  //       control.markAsTouched();
-  //     });
-  //   }
-  //   /*
-  //   // Posteo de información
-  //   this.forma.reset();*/
-  // }
+    if (this.forma.invalid) {
+      return Object.values(this.forma.controls).forEach((control) => {
+        control.markAsTouched();
+      });
+    }
+    /*
+    // Posteo de información
+    this.forma.reset();*/
+  }
 
   // search() {
   //   console.log(this.forma);

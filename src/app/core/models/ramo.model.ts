@@ -11,4 +11,13 @@ export interface Ramo {
   fechaInicio: Date;
   fechaFin?: Date;
   motivoBaja?: string;
+  approbationModality?: string;
+  approbationDate?: string;
+  expedientNumber?: number;
+  expedientNumberOutCompany?: number;
+  ssnExpedientNumber?: number;
+  companyName?: string;
+  tramitNumber?: number;
+
+  //Falta resolutions y notifications
 }

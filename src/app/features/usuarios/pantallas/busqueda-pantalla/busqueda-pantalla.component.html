@@ -40,6 +40,7 @@
   <app-table
     [tableData]="pantallas$ | async"
     [columnHeader]="pantallasColumns"
+    [pagination]="true"
     [paginationSizes]="[2, 4, 6]"
     [defaultPageSize]="4"
     [export]="true"

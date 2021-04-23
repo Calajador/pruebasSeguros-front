@@ -14,8 +14,8 @@ export interface father {
 }
 
 export interface MultiLanguage {
-  pais: string;
-  nombre: string;
+  pais?: string;
+  nombre?: string;
   description?: string;
 }
 

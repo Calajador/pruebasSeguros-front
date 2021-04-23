@@ -14,7 +14,9 @@ div {
   color: aliceblue;
 }
 
-button {
-  min-width: 10rem;
-  min-height: 2.5rem;
+button:focus,
+button:active:focus,
+button.active:focus {
+  outline: none !important;
+  outline-style: none !important;
 }

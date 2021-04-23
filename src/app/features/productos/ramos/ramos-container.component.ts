@@ -37,6 +37,9 @@ export class RamosContainerComponent implements OnInit, OnDestroy {
   }
 
   crearRamo() {
+    if (this.mantenimientoCompopnent.forma.invalid) {
+      return this._alerts.mensajeError('Error', 'Tienes campos por rellenar');
+    }
     let ramo = this.mantenimientoCompopnent.forma.value;
     this.subscriptions.add(
       this._ramos.postRamos(ramo).subscribe((res) => {
@@ -58,7 +61,14 @@ export class RamosContainerComponent implements OnInit, OnDestroy {
     this.index = 1;
   }
 
+  getDataSearch(data: Ramo) {
+    console.log(data);
+  }
+
   editarRamo() {
+    if (this.mantenimientoCompopnent.forma.invalid) {
+      return this._alerts.mensajeError('Error', 'Tienes campos por rellenar');
+    }
     let ramo = this.mantenimientoCompopnent.forma.value;
     this.subscriptions.add(
       this._ramos.putRamo(this.ramoEditable._id, ramo).subscribe((res) => {

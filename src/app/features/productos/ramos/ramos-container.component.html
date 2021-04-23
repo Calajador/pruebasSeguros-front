@@ -7,7 +7,8 @@
     <mat-tab label="BUSQUEDA DE RAMOS">
       <app-busqueda-ramos
         [ramosData]="ramos$"
-        (editDataSearch)="getEditDataSearch($event)"
+        (emitDataSearch)="getDataSearch($event)"
+        (emitEditData)="getEditDataSearch($event)"
       ></app-busqueda-ramos>
     </mat-tab>
     <mat-tab label="MANTENIMIENTO DE RAMOS">
@@ -47,3 +48,6 @@
     ></app-button>
   </div>
 </div>
+
+<hr />
+<hr />
