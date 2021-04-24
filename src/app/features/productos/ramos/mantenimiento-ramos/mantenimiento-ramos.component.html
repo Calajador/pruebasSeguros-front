@@ -130,13 +130,16 @@
       fxLayoutAlign="start center"
       fxLayoutGap="20px"
       formArrayName="nombres"
-      *ngFor="let name of forma.controls.nombres?.value; let i = index"
+      *ngFor="let name of names.controls; let i = index"
     >
       <ng-container [formGroupName]="i">
-        <div fxLayout="column " fxFlex="20">
-          <h5>{{ name.pais }}</h5>
+        <div fxLayout="column " fxFlex="30">
           <mat-form-field appearance="outline">
-            <input matInput placeholder="Nombre" formControlName="nombre" />
+            <input
+              matInput
+              placeholder="{{ name.value.pais }}"
+              formControlName="nombre"
+            />
           </mat-form-field>
         </div>
       </ng-container>

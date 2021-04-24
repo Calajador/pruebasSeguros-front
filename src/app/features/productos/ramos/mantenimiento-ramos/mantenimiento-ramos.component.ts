@@ -24,6 +24,8 @@ export class MantenimientoRamosComponent implements OnInit {
   forma: FormGroup;
   @Input() public set ramo(value: any) {
     this._ramo = value;
+    this.addIdioma();
+    console.log(this.forma.get('nombres').value);
     this.createForm();
   }
   public readonly ButtonTypes = TypeButtonEnum;
@@ -31,7 +33,7 @@ export class MantenimientoRamosComponent implements OnInit {
 
   buttonSpanishForm = true;
   buttonEnglishForm = true;
-  listaTipos: string[] = ['X-99', 'Z-88', 'Y-77', 'W-55'];
+  listaTipos: string[] = ['X-99', 'Z-88', 'Y-77', 'W-55', 'm-44'];
   listaModalidad: string[] = ['Ejemp1', 'Ejemp2', 'Ejemp3', 'Ejemp4'];
   listaSSN: string[] = ['SSN1', 'SSN2', 'SSN3', 'SSN4'];
   listaCompanias: string[] = ['UST', 'Google', 'Microsoft', 'Rivadavia'];
@@ -59,6 +61,22 @@ export class MantenimientoRamosComponent implements OnInit {
         ssn: [this._ramo.ssn, Validators.required],
         contable: [this._ramo.contable, Validators.required],
         fechaInicio: [this._ramo.fechaInicio, Validators.required],
+        approbationModality: [
+          this._ramo.approbationModality,
+          Validators.required,
+        ],
+        approbationDate: [this._ramo.approbationDate, Validators.required],
+        expedientNumber: [this._ramo.expedientNumber, Validators.required],
+        expedientNumberOutCompany: [
+          this._ramo.expedientNumberOutCompany,
+          Validators.required,
+        ],
+        ssnExpedientNumber: [
+          this._ramo.ssnExpedientNumber,
+          Validators.required,
+        ],
+        companyName: [this._ramo.companyName, Validators.required],
+        tramitNumber: [this._ramo.tramitNumber, Validators.required],
         fechaFin: [''],
         motivoBaja: [''],
       });
@@ -84,18 +102,28 @@ export class MantenimientoRamosComponent implements OnInit {
     }
   }
 
-  // get names() {
-  //   return this.forma.get('nombres') as FormArray;
-  // }
+  get names() {
+    return this.forma.get('nombres') as FormArray;
+  }
 
-  addIdioma(idioma: string) {
-    const names = this.forma.controls.nombres as FormArray;
-    names.push(
-      this.fb.group({
-        pais: [idioma],
-        nombre: [''],
-      })
-    );
+  addIdioma(idioma?: string, nombre = '') {
+    if (this._ramo) {
+      this._ramo.nombres.forEach((element) => {
+        this.names.push(
+          this.fb.group({
+            pais: element.pais,
+            nombre: element.nombre,
+          })
+        );
+      });
+    } else {
+      this.names.push(
+        this.fb.group({
+          pais: idioma,
+          nombre: nombre,
+        })
+      );
+    }
   }
 
   formatDate(e) {
