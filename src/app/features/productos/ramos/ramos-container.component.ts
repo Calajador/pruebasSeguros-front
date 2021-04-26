@@ -93,7 +93,7 @@ export class RamosContainerComponent implements OnInit, OnDestroy {
 
   volverAcrear() {
     this.ramoEditable = null;
-    this.mantenimientoCompopnent.idiomas = [];
-    this.mantenimientoCompopnent.forma.reset();
+    this.mantenimientoCompopnent.createForm();
+    this.mantenimientoCompopnent.addIdioma();
   }
 }

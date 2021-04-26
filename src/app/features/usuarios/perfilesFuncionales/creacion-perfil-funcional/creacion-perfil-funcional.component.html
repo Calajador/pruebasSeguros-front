@@ -6,7 +6,7 @@
   </div>
   <hr />
   <form [formGroup]="forma">
-    <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="20px">
+    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
       <div fxLayout="column " fxFlex="14">
         <mat-form-field appearance="outline">
           <input matInput placeholder="Codigo" formControlName="code" />
@@ -54,19 +54,21 @@
           </mat-hint>
         </mat-form-field>
       </div>
-      <div fxLayout="column " fxFlex>
-        <mat-form-field appearance="outline">
-          <mat-select placeholder="Permiso" formControlName="permiso">
-            <mat-option value="concedido"> Concedido</mat-option>
-            <mat-option value="denegado"> Denegado</mat-option>
-          </mat-select>
-          <mat-hint *ngIf="permisoInvalid" class="text-danger">
-            Campo obligatorio
-          </mat-hint>
-        </mat-form-field>
-      </div>
     </div>
   </form>
+  <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
+    <div fxLayout="column " fxFlex="20">
+      <mat-select
+        placeholder="Modulo"
+        [(ngModel)]="SelectedModule"
+        name="modulo"
+        (selectionChange)="cargarFuncionalidades($event.value)"
+      >
+        <mat-option value="cross"> Cross</mat-option>
+        <mat-option value="productos"> Productos</mat-option>
+      </mat-select>
+    </div>
+  </div>
 </div>
 
 <!-- <mat-select
@@ -130,9 +132,7 @@
         {{ node.name }}
       </div>
       <ul [class.example-tree-invisible]="!treeControl.isExpanded(node)">
-        <ng-container matTreeNodeOutlet *ngFor="let func of funcionalities">
-          <li>{{ func.name }}</li>
-        </ng-container>
+        <ng-container matTreeNodeOutlet> </ng-container>
       </ul>
     </li>
   </mat-nested-tree-node>

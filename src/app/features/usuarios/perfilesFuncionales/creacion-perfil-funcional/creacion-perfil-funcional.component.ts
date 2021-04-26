@@ -1,6 +1,9 @@
+import { NestedTreeControl } from '@angular/cdk/tree';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatTreeNestedDataSource } from '@angular/material/tree';
 import { Funcionalidad } from 'src/app/core/models/funcionalitie.model';
+import { Modulo } from 'src/app/core/models/modulo.model';
 import { moduloCross } from 'src/app/core/modulos/moduloCross';
 import { moduloProductos } from 'src/app/core/modulos/moduloProductos';
 
@@ -15,9 +18,12 @@ export class CreacionPerfilFuncionalComponent implements OnInit {
   SelectedModule: string;
   dataSource = [];
   funcionalities: Funcionalidad[] = [];
-
+  treeControl = new NestedTreeControl<Modulo>((node) => node.children);
   constructor(private fb: FormBuilder) {}
-
+  hasChild = (_: number, node: Modulo) =>
+    !!node.children && node.children.length > 0;
+  hasfuncionality = (_: number, node: Modulo) =>
+    !!node.funcionalidades && node.funcionalidades.length > 0;
   ngOnInit(): void {
     this.createForm();
   }
@@ -41,7 +47,6 @@ export class CreacionPerfilFuncionalComponent implements OnInit {
       nombre: ['', Validators.required],
       estado: ['', Validators.required],
       addDate: ['', Validators.required],
-      permiso: ['', Validators.required],
     });
   }
 
@@ -54,12 +59,6 @@ export class CreacionPerfilFuncionalComponent implements OnInit {
 
   get estadoInvalid() {
     return this.forma.get('estado').invalid && this.forma.get('estado').touched;
-  }
-
-  get permisoInvalid() {
-    return (
-      this.forma.get('permiso').invalid && this.forma.get('permiso').touched
-    );
   }
 
   get addDateInvalid() {

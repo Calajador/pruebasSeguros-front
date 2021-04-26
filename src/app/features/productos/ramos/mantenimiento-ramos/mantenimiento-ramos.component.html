@@ -1,15 +1,16 @@
 <div class="container">
+  <hr />
   <div fxLayout="row">
     <div fxLayout="column " fxFlex>
-      <h4 *ngIf="!_ramo">Creación de Ramos</h4>
-      <h4 *ngIf="_ramo">Edicion de Ramos</h4>
+      <h4 *ngIf="!_ramo"><strong>Creación de Ramos</strong></h4>
+      <h4 *ngIf="_ramo"><strong>Edicion de Ramos</strong></h4>
     </div>
   </div>
   <hr />
   <form [formGroup]="forma">
     <!-- Campos Basicos -->
-    <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="20px">
-      <div fxLayout="column " fxFlex="15">
+    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
+      <div fxLayout="column " fxFlex="15" *ngIf="clasificationTypes">
         <mat-form-field appearance="outline">
           <mat-select placeholder="Tipo" formControlName="tipo">
             <mat-option *ngFor="let item of listaTipos" [value]="item">{{
@@ -29,7 +30,7 @@
           </mat-hint>
         </mat-form-field>
       </div>
-      <div fxLayout="column " fxFlex="30">
+      <div fxLayout="column " fxFlex="20">
         <mat-form-field appearance="outline">
           <mat-select placeholder="Compañia" formControlName="compañia">
             <mat-option *ngFor="let item of listaCompanias" [value]="item">{{
@@ -41,9 +42,7 @@
           </mat-hint>
         </mat-form-field>
       </div>
-    </div>
-    <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="20px">
-      <div fxLayout="column " fxFlex="30">
+      <div fxLayout="column " fxFlex="20" *ngIf="ssnCodes">
         <mat-form-field appearance="outline">
           <mat-select placeholder="Codigo SSN" formControlName="ssn">
             <mat-option *ngFor="let item of listaSSN" [value]="item">{{
@@ -55,13 +54,13 @@
           </mat-hint>
         </mat-form-field>
       </div>
-      <div fxLayout="column " fxFlex="30">
+      <div fxLayout="column " fxFlex="20">
         <mat-form-field appearance="outline">
           <input
             matInput
             placeholder="Codigo Contable"
             formControlName="contable"
-            mask="0000"
+            mask="0000000000"
           />
           <mat-hint *ngIf="contableInvalid" class="text-danger">
             Campo obligatorio
@@ -120,9 +119,10 @@
     <hr />
     <mat-divider></mat-divider>
     <!-- Registro de Nombres -->
+    <hr />
     <div fxLayout="row">
       <div fxLayout="column " fxFlex>
-        <h4>Registo Nombres</h4>
+        <h4><strong>Registo Nombres</strong></h4>
       </div>
     </div>
     <div
@@ -147,9 +147,10 @@
     <hr />
     <mat-divider></mat-divider>
     <!-- Campos De validaciones Opcionales por Pais -->
-    <div fxLayout="row">
+    <hr />
+    <div fxLayout="row" *ngIf="approbationData">
       <div fxLayout="column " fxFlex>
-        <h4>Datos Aprobacion</h4>
+        <h4><strong>Datos Aprobacion</strong></h4>
       </div>
     </div>
     <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
@@ -194,7 +195,7 @@
             matInput
             placeholder="Numero Aprobación"
             formControlName="expedientNumber"
-            mask="0000"
+            mask="0000000000"
           />
           <mat-hint *ngIf="expedientNumberInvalid" class="text-danger">
             Campo obligatorio
@@ -209,7 +210,7 @@
             matInput
             placeholder="Numero Compañía Externa"
             formControlName="expedientNumberOutCompany"
-            mask="0000"
+            mask="0000000000"
           />
           <mat-hint
             *ngIf="expedientNumberOutCompanyInvalid"
@@ -225,7 +226,7 @@
             matInput
             placeholder="Numero Expediente SSN"
             formControlName="ssnExpedientNumber"
-            mask="0000"
+            mask="0000000000"
           />
           <mat-hint *ngIf="ssnExpedientNumberInvalid" class="text-danger">
             Campo obligatorio
@@ -250,7 +251,7 @@
             matInput
             placeholder="Numero Trámite"
             formControlName="tramitNumber"
-            mask="0000"
+            mask="0000000000"
           />
           <mat-hint *ngIf="tramitNumberInvalid" class="text-danger">
             Campo obligatorio
@@ -259,6 +260,5 @@
       </div>
     </div>
   </form>
-  <button (click)="prueba()">Prueba</button>
 </div>
 <hr />

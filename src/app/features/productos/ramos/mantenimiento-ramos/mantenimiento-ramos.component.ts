@@ -24,31 +24,25 @@ export class MantenimientoRamosComponent implements OnInit {
   forma: FormGroup;
   @Input() public set ramo(value: any) {
     this._ramo = value;
-    this.addIdioma();
-    console.log(this.forma.get('nombres').value);
     this.createForm();
+    this.addIdioma();
   }
   public readonly ButtonTypes = TypeButtonEnum;
   public readonly ButtonColors = ColorButtonEnum;
-
-  buttonSpanishForm = true;
-  buttonEnglishForm = true;
+  clasificationTypes = true;
+  ssnCodes = true;
+  approbationData = true;
   listaTipos: string[] = ['X-99', 'Z-88', 'Y-77', 'W-55', 'm-44'];
   listaModalidad: string[] = ['Ejemp1', 'Ejemp2', 'Ejemp3', 'Ejemp4'];
   listaSSN: string[] = ['SSN1', 'SSN2', 'SSN3', 'SSN4'];
-  listaCompanias: string[] = ['UST', 'Google', 'Microsoft', 'Rivadavia'];
+  listaCompanias: string[] = ['Mutual', 'Cooperativa'];
   _ramo: Ramo;
-  idiomas: MultiLanguage[] = [];
   constructor(private fb: FormBuilder, private dateAdapter: DateAdapter<any>) {}
 
   ngOnInit(): void {
     this.dateAdapter.setLocale('es');
     this.createForm();
-    idiomas.forEach((element) => {
-      this.addIdioma(element);
-    });
-
-    console.log(this.forma.get('nombres').value);
+    this.setLangs();
   }
 
   createForm() {
@@ -56,7 +50,7 @@ export class MantenimientoRamosComponent implements OnInit {
       this.forma = this.fb.group({
         tipo: [this._ramo.tipo, Validators.required],
         codigo: [this._ramo.codigo, Validators.required],
-        nombres: [this._ramo.nombres],
+        nombres: this.fb.array([]),
         compañia: [this._ramo.compañia, Validators.required],
         ssn: [this._ramo.ssn, Validators.required],
         contable: [this._ramo.contable, Validators.required],
@@ -108,6 +102,9 @@ export class MantenimientoRamosComponent implements OnInit {
 
   addIdioma(idioma?: string, nombre = '') {
     if (this._ramo) {
+      while (this.names.length !== 0) {
+        this.names.removeAt(0);
+      }
       this._ramo.nombres.forEach((element) => {
         this.names.push(
           this.fb.group({
@@ -124,6 +121,12 @@ export class MantenimientoRamosComponent implements OnInit {
         })
       );
     }
+  }
+
+  setLangs() {
+    idiomas.forEach((element) => {
+      this.addIdioma(element);
+    });
   }
 
   formatDate(e) {
@@ -211,9 +214,5 @@ export class MantenimientoRamosComponent implements OnInit {
       this.forma.get('tramitNumber').invalid &&
       this.forma.get('tramitNumber').touched
     );
-  }
-
-  prueba() {
-    console.log(this.forma.value);
   }
 }
