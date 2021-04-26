@@ -15,12 +15,15 @@ import { MatTreeNestedDataSource } from '@angular/material/tree';
   styleUrls: ['./tree.component.css'],
 })
 export class TreeComponent implements OnChanges {
-  treeControl = new NestedTreeControl<any>((node) => node.children);
+  treeControl = new NestedTreeControl<any>(
+    (node) => node.funcionalidades || node.children
+  );
   dataSource = new MatTreeNestedDataSource<any>();
 
   @Input() dataMenu: any[] = [];
   @Input() nameTree: string = '';
   @Input() editNode: boolean = true;
+  @Input() addChild: boolean = true;
   @Input() maxLevelAdd: number = 0;
   @Output() editItem = new EventEmitter<any>();
   @Output() newItem = new EventEmitter<any>();
@@ -67,6 +70,7 @@ export class TreeComponent implements OnChanges {
 
   getAddNode(node: any): boolean {
     if (
+      this.addChild &&
       this.maxLevelAdd > 0 &&
       node.level !== null &&
       node.level !== undefined &&

@@ -85,7 +85,11 @@
 <hr />
 <hr />
 
-<app-tree [dataMenu]="dataSource" addChild="false"></app-tree>
+<app-tree
+  [dataMenu]="dataSource"
+  [addChild]="false"
+  [editNode]="false"
+></app-tree>
 <!-- <mat-tree
   [dataSource]="dataSource"
   [treeControl]="treeControl"
