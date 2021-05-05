@@ -12,6 +12,7 @@
     <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
       <div fxLayout="column " fxFlex="15" *ngIf="clasificationTypes">
         <mat-form-field appearance="outline">
+          <mat-label>Tipo</mat-label>
           <mat-select placeholder="Tipo" formControlName="tipo">
             <mat-option *ngFor="let item of listaTipos" [value]="item">{{
               item
@@ -24,6 +25,7 @@
       </div>
       <div fxLayout="column " fxFlex="15">
         <mat-form-field appearance="outline">
+          <mat-label>Codigo</mat-label>
           <input matInput placeholder="Codigo" formControlName="codigo" />
           <mat-hint *ngIf="codigoInvalid" class="text-danger">
             Campo obligatorio
@@ -32,6 +34,7 @@
       </div>
       <div fxLayout="column " fxFlex="20">
         <mat-form-field appearance="outline">
+          <mat-label>Compañia</mat-label>
           <mat-select placeholder="Compañia" formControlName="compañia">
             <mat-option *ngFor="let item of listaCompanias" [value]="item">{{
               item
@@ -44,6 +47,7 @@
       </div>
       <div fxLayout="column " fxFlex="20" *ngIf="ssnCodes">
         <mat-form-field appearance="outline">
+          <mat-label>Codigo SSN</mat-label>
           <mat-select placeholder="Codigo SSN" formControlName="ssn">
             <mat-option *ngFor="let item of listaSSN" [value]="item">{{
               item
@@ -56,11 +60,12 @@
       </div>
       <div fxLayout="column " fxFlex="20">
         <mat-form-field appearance="outline">
+          <mat-label>Codigo Contable</mat-label>
           <input
             matInput
             placeholder="Codigo Contable"
             formControlName="contable"
-            mask="0000000000"
+            mask="0000"
           />
           <mat-hint *ngIf="contableInvalid" class="text-danger">
             Campo obligatorio
@@ -71,6 +76,7 @@
     <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
       <div fxLayout="column " fxFlex="30" *ngIf="!_ramo">
         <mat-form-field appearance="outline">
+          <mat-label>Fecha de Alta</mat-label>
           <input
             matInput
             placeholder="Fecha de Alta"
@@ -91,6 +97,7 @@
       </div>
       <div fxLayout="column " fxFlex="30" *ngIf="_ramo">
         <mat-form-field appearance="outline">
+          <mat-label>Fecha de Baja</mat-label>
           <input
             matInput
             placeholder="Fecha de Baja"
@@ -108,6 +115,7 @@
       </div>
       <div fxLayout="column " fxFlex="60" *ngIf="_ramo">
         <mat-form-field appearance="outline">
+          <mat-label>Motivo de la Baja</mat-label>
           <textarea
             matInput
             placeholder="Motivo de la Baja"
@@ -135,6 +143,7 @@
       <ng-container [formGroupName]="i">
         <div fxLayout="column " fxFlex="30">
           <mat-form-field appearance="outline">
+            <mat-label>{{ name.value.pais }}</mat-label>
             <input
               matInput
               placeholder="{{ name.value.pais }}"
@@ -156,6 +165,7 @@
     <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
       <div fxLayout="column " fxFlex="15">
         <mat-form-field appearance="outline">
+          <mat-label>Modalidad</mat-label>
           <mat-select
             placeholder="Modalidad"
             formControlName="approbationModality"
@@ -171,6 +181,7 @@
       </div>
       <div fxLayout="column " fxFlex="26">
         <mat-form-field appearance="outline">
+          <mat-label>Fecha de Aprobacion</mat-label>
           <input
             matInput
             placeholder="Fecha de Aprobacion"
@@ -191,11 +202,12 @@
       </div>
       <div fxLayout="column " fxFlex="20">
         <mat-form-field appearance="outline">
+          <mat-label>Numero Aprobación</mat-label>
           <input
             matInput
             placeholder="Numero Aprobación"
             formControlName="expedientNumber"
-            mask="0000000000"
+            mask="0000"
           />
           <mat-hint *ngIf="expedientNumberInvalid" class="text-danger">
             Campo obligatorio
@@ -206,11 +218,12 @@
     <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
       <div fxLayout="column " fxFlex="15">
         <mat-form-field appearance="outline">
+          <mat-label>Numero Compañía Externa</mat-label>
           <input
             matInput
             placeholder="Numero Compañía Externa"
             formControlName="expedientNumberOutCompany"
-            mask="0000000000"
+            mask="0000"
           />
           <mat-hint
             *ngIf="expedientNumberOutCompanyInvalid"
@@ -222,11 +235,12 @@
       </div>
       <div fxLayout="column " fxFlex="25">
         <mat-form-field appearance="outline">
+          <mat-label>Numero Expediente SSN</mat-label>
           <input
             matInput
             placeholder="Numero Expediente SSN"
             formControlName="ssnExpedientNumber"
-            mask="0000000000"
+            mask="0000"
           />
           <mat-hint *ngIf="ssnExpedientNumberInvalid" class="text-danger">
             Campo obligatorio
@@ -235,6 +249,7 @@
       </div>
       <div fxLayout="column " fxFlex="25">
         <mat-form-field appearance="outline">
+          <mat-label>Nombre Compañía</mat-label>
           <input
             matInput
             placeholder="Nombre Compañía"
@@ -247,11 +262,12 @@
       </div>
       <div fxLayout="column " fxFlex="20">
         <mat-form-field appearance="outline">
+          <mat-label>Numero Trámite</mat-label>
           <input
             matInput
             placeholder="Numero Trámite"
             formControlName="tramitNumber"
-            mask="0000000000"
+            mask="0000"
           />
           <mat-hint *ngIf="tramitNumberInvalid" class="text-danger">
             Campo obligatorio

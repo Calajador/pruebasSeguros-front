@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatTreeNestedDataSource } from '@angular/material/tree';
 import { Funcionalidad } from 'src/app/core/models/funcionalitie.model';
 import { Modulo } from 'src/app/core/models/modulo.model';
-import { moduloCross } from 'src/app/core/modulos/moduloCross';
+import { functionality } from 'src/app/core/modulos/moduloCross';
 import { moduloProductos } from 'src/app/core/modulos/moduloProductos';
 
 @Component({
@@ -16,14 +16,9 @@ export class CreacionPerfilFuncionalComponent implements OnInit {
   forma: FormGroup;
   modulesToSelect = [];
   SelectedModule: string;
-  dataSource = [];
+  dataSource;
   funcionalities: Funcionalidad[] = [];
-  treeControl = new NestedTreeControl<Modulo>((node) => node.children);
   constructor(private fb: FormBuilder) {}
-  hasChild = (_: number, node: Modulo) =>
-    !!node.children && node.children.length > 0;
-  hasfuncionality = (_: number, node: Modulo) =>
-    !!node.funcionalidades && node.funcionalidades.length > 0;
   ngOnInit(): void {
     this.createForm();
   }
@@ -32,7 +27,7 @@ export class CreacionPerfilFuncionalComponent implements OnInit {
     this.SelectedModule = modulo;
     if (modulo === 'cross') {
       console.log('Cross Seleccionado');
-      this.dataSource = moduloCross;
+      this.dataSource = functionality;
     }
 
     if (modulo === 'productos') {
@@ -44,8 +39,8 @@ export class CreacionPerfilFuncionalComponent implements OnInit {
   createForm() {
     this.forma = this.fb.group({
       code: ['', Validators.required],
-      nombre: ['', Validators.required],
-      estado: ['', Validators.required],
+      name: ['', Validators.required],
+      state: ['', Validators.required],
       addDate: ['', Validators.required],
     });
   }
@@ -54,11 +49,11 @@ export class CreacionPerfilFuncionalComponent implements OnInit {
     return this.forma.get('code').invalid && this.forma.get('code').touched;
   }
   get nombreInvalid() {
-    return this.forma.get('nombre').invalid && this.forma.get('nombre').touched;
+    return this.forma.get('name').invalid && this.forma.get('name').touched;
   }
 
   get estadoInvalid() {
-    return this.forma.get('estado').invalid && this.forma.get('estado').touched;
+    return this.forma.get('state').invalid && this.forma.get('state').touched;
   }
 
   get addDateInvalid() {

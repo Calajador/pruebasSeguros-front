@@ -7,7 +7,11 @@
     <mat-tab label="BÚSQUEDA DE PERFILES FUNCIONALES">
       <app-busqueda-perfiles-funcionales
         [perfilesData]="pf$"
-        (editDataSearch)="getEditDataSearch($event)"
+        (emitDataSearch)="getDataSearch($event)"
+        (emitCodeModule)="getModule($event)"
+        (emitCodeSubModule)="getSubModule($event)"
+        (emitCodeGroup)="getGroup($event)"
+        (emitEditData)="getEditData($event)"
       ></app-busqueda-perfiles-funcionales>
     </mat-tab>
     <mat-tab label="CREACIÓN DE PERFILES FUNCIONALES"
@@ -42,3 +46,5 @@
     ></app-button>
   </div>
 </div>
+<hr />
+<hr />

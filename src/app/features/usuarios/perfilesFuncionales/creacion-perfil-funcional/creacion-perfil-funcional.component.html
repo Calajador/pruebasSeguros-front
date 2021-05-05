@@ -9,6 +9,7 @@
     <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
       <div fxLayout="column " fxFlex="14">
         <mat-form-field appearance="outline">
+          <mat-label>Codigo</mat-label>
           <input matInput placeholder="Codigo" formControlName="code" />
           <mat-hint *ngIf="codigoInvalid" class="text-danger">
             Campo obligatorio
@@ -17,7 +18,8 @@
       </div>
       <div fxLayout="column " fxFlex>
         <mat-form-field appearance="outline">
-          <input matInput placeholder="Nombre" formControlName="nombre" />
+          <mat-label>Nombre</mat-label>
+          <input matInput placeholder="Nombre" formControlName="name" />
           <mat-hint *ngIf="nombreInvalid" class="text-danger">
             Campo obligatorio
           </mat-hint>
@@ -25,7 +27,8 @@
       </div>
       <div fxLayout="column " fxFlex>
         <mat-form-field appearance="outline">
-          <mat-select placeholder="Estado" formControlName="estado">
+          <mat-label>Estado</mat-label>
+          <mat-select placeholder="Estado" formControlName="state">
             <mat-option value="activo"> Activo</mat-option>
             <mat-option value="inactivo"> Inactivo</mat-option>
           </mat-select>
@@ -36,6 +39,7 @@
       </div>
       <div fxLayout="column " fxFlex>
         <mat-form-field appearance="outline">
+          <mat-label>Fecha de Alta</mat-label>
           <input
             matInput
             placeholder="Fecha de Alta"
@@ -71,73 +75,17 @@
   </div>
 </div>
 
-<!-- <mat-select
-  [(ngModel)]="SelectedModule"
-  name="modulo"
-  (selectionChange)="cargarFuncionalidades($event.value)"
->
-  <mat-option value="cross"> Cross</mat-option>
-  <mat-option value="productos"> Productos</mat-option>
-</mat-select> -->
-
-<!-- <p>Selected module: {{ SelectedModule }}</p> -->
-
 <hr />
 <hr />
-
-<app-tree
-  [dataMenu]="dataSource"
-  [addChild]="false"
-  [editNode]="false"
-></app-tree>
-<!-- <mat-tree
-  [dataSource]="dataSource"
-  [treeControl]="treeControl"
-  class="example-tree"
->
-  <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle>
-    <li class="mat-tree-node">
-      <button mat-icon-button disabled></button>
-      {{ node.name }}
-    </li>
-  </mat-tree-node>
-  <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild">
-    <li>
-      <div class="mat-tree-node">
-        <button
-          mat-icon-button
-          matTreeNodeToggle
-          [attr.aria-label]="'Toggle ' + node.name"
-        >
-          <mat-icon class="mat-icon-rtl-mirror">
-            {{ treeControl.isExpanded(node) ? "expand_more" : "chevron_right" }}
-          </mat-icon>
-        </button>
-        {{ node.name }}
-      </div>
-      <ul [class.example-tree-invisible]="!treeControl.isExpanded(node)">
-        <ng-container matTreeNodeOutlet></ng-container>
-      </ul>
-    </li>
-  </mat-nested-tree-node>
-
-  <mat-nested-tree-node *matTreeNodeDef="let node; when: hasfuncionality">
-    <li>
-      <div class="mat-tree-node">
-        <button
-          mat-icon-button
-          matTreeNodeToggle
-          [attr.aria-label]="'Toggle ' + node.name"
-        >
-          <mat-icon class="mat-icon-rtl-mirror">
-            {{ treeControl.isExpanded(node) ? "expand_more" : "chevron_right" }}
-          </mat-icon>
-        </button>
-        {{ node.name }}
-      </div>
-      <ul [class.example-tree-invisible]="!treeControl.isExpanded(node)">
-        <ng-container matTreeNodeOutlet> </ng-container>
-      </ul>
-    </li>
-  </mat-nested-tree-node>
-</mat-tree> -->
+<div class="container">
+  <div fxLayout="row">
+    <div fxLayout="column " fxFlex="70">
+      <app-tree
+        [dataMenu]="dataSource"
+        [addChild]="false"
+        [editNode]="false"
+      ></app-tree>
+    </div>
+    <div fxLayout="column " fxFlex></div>
+  </div>
+</div>

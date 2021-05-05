@@ -50,8 +50,23 @@ export class PerfilesFuncionalesContainerComponent implements OnInit {
       })
     );
   }
+  getDataSearch(data: any) {
+    console.log(data);
+  }
 
-  getEditDataSearch(data: PerfilFuncional) {
+  getModule(data: any) {
+    console.log(data);
+  }
+
+  getSubModule(data: any) {
+    console.log(data);
+  }
+
+  getGroup(data: any) {
+    console.log(data);
+  }
+
+  getEditData(data: PerfilFuncional) {
     this.pfEditable = data;
     this.index = 1;
   }

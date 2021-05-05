@@ -9,6 +9,7 @@ import { CreacionComponent } from './creacion/creacion.component';
 import { ModificacionComponent } from './modificacion/modificacion.component';
 import { CreacionMenuComponent } from './creacion-menu/creacion-menu.component';
 import { FormularioItemComponent } from './creacion-menu/formulario-item/formulario-item.component';
+import { MantenimientoComponent } from './mantenimiento/mantenimiento.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { FormularioItemComponent } from './creacion-menu/formulario-item/formula
     ModificacionComponent,
     CreacionMenuComponent,
     FormularioItemComponent,
+    MantenimientoComponent,
   ],
   imports: [CommonModule, PerfilesContainerRoutingModule, SharedModule],
 })

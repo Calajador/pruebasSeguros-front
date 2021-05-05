@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { DateAdapter } from '@angular/material/core';
 import { Observable } from 'rxjs';
 import { Funcionality } from 'src/app/core/models/funcionalitu.model';
 import {
@@ -44,9 +45,10 @@ export class BusquedaFuncionalidadesComponent implements OnInit {
     Editar: 'grid.edit',
   };
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private dateAdapter: DateAdapter<any>) {}
 
   ngOnInit(): void {
+    this.dateAdapter.setLocale('es');
     this.createForm();
   }
 

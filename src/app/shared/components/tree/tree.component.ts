@@ -27,6 +27,7 @@ export class TreeComponent implements OnChanges {
   @Input() maxLevelAdd: number = 0;
   @Output() editItem = new EventEmitter<any>();
   @Output() newItem = new EventEmitter<any>();
+  @Output() editFuncionality = new EventEmitter<any>();
 
   constructor() {}
 

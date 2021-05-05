@@ -10,6 +10,7 @@
     <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="20px">
       <div fxLayout="column " fxFlex="15">
         <mat-form-field appearance="outline">
+          <mat-label>Tipo</mat-label>
           <mat-select placeholder="Tipo" formControlName="tipo">
             <mat-option *ngFor="let item of listaTipos" [value]="item">{{
               item
@@ -22,7 +23,13 @@
       </div>
       <div fxLayout="column " fxFlex="35">
         <mat-form-field appearance="outline">
-          <input matInput placeholder="Nombre" formControlName="nombre" />
+          <mat-label>Nombre</mat-label>
+          <input
+            type="text"
+            matInput
+            placeholder="Nombre"
+            formControlName="nombre"
+          />
           <mat-hint *ngIf="nombreInvalid" class="text-danger">
             Campo obligatorio
           </mat-hint>
@@ -30,6 +37,7 @@
       </div>
       <div fxLayout="column " fxFlex="30">
         <mat-form-field appearance="outline">
+          <mat-label>Compañia</mat-label>
           <mat-select placeholder="Compañia" formControlName="compañia">
             <mat-option *ngFor="let item of listaCompanias" [value]="item">{{
               item
@@ -44,6 +52,7 @@
     <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="20px">
       <div fxLayout="column " fxFlex="30">
         <mat-form-field appearance="outline">
+          <mat-label>Fecha Inicio</mat-label>
           <input
             matInput
             placeholder="Fecha Inicio"
@@ -62,6 +71,7 @@
       </div>
       <div fxLayout="column " fxFlex="30">
         <mat-form-field appearance="outline">
+          <mat-label>Fecha Fin</mat-label>
           <input
             matInput
             placeholder="Fecha FIn"
@@ -103,7 +113,7 @@
     [paginationSizes]="[2, 4, 6]"
     [defaultPageSize]="4"
     [export]="true"
-    [hiddenColumns]="[5, 6, 7, 8]"
+    [hiddenColumns]="[0, 4]"
     (editData)="getEditData($event)"
   ></app-table>
 </div>

@@ -9,7 +9,8 @@
     <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="20px">
       <div fxLayout="column " fxFlex>
         <mat-form-field appearance="outline">
-          <input matInput placeholder="Código" formControlName="codigo" />
+          <mat-label>Código</mat-label>
+          <input matInput placeholder="Código" formControlName="code" />
           <mat-hint *ngIf="codigoInvalid" class="text-danger">
             Campo obligatorio
           </mat-hint>
@@ -17,7 +18,8 @@
       </div>
       <div fxLayout="column " fxFlex>
         <mat-form-field appearance="outline">
-          <input matInput placeholder="Nombre" formControlName="nombre" />
+          <mat-label>Nombre</mat-label>
+          <input matInput placeholder="Nombre" formControlName="name" />
           <mat-hint *ngIf="nombreInvalid" class="text-danger">
             Campo obligatorio
           </mat-hint>
@@ -25,62 +27,86 @@
       </div>
       <div fxLayout="column " fxFlex>
         <mat-form-field appearance="outline">
+          <mat-label>Micro Perfil</mat-label>
           <input
             matInput
-            placeholder="Desde"
-            formControlName="desde"
-            [matDatepicker]="desdepicker"
-            (dateChange)="formatDate($event)"
+            placeholder="Micro Perfil"
+            formControlName="microProfile"
           />
-          <mat-datepicker-toggle
-            matSuffix
-            [for]="desdepicker"
-          ></mat-datepicker-toggle>
-
-          <mat-datepicker #desdepicker></mat-datepicker>
-          <mat-hint *ngIf="desdeInvalid" class="text-danger">
+          <mat-hint *ngIf="microPerfilInvalid" class="text-danger">
             Campo obligatorio
           </mat-hint>
         </mat-form-field>
       </div>
       <div fxLayout="column " fxFlex>
         <mat-form-field appearance="outline">
-          <input
-            matInput
-            placeholder="hasta"
-            formControlName="hasta"
-            [matDatepicker]="hastapicker"
-            (dateChange)="formatDate($event)"
-          />
-          <mat-datepicker-toggle
-            matSuffix
-            [for]="hastapicker"
-          ></mat-datepicker-toggle>
-
-          <mat-datepicker #hastapicker></mat-datepicker>
-          <mat-hint *ngIf="hastaInvalid" class="text-danger">
+          <mat-label>Estado</mat-label>
+          <mat-select placeholder="Estado" formControlName="state">
+            <mat-option value="activo"> activo</mat-option>
+            <mat-option value="inactivo"> inactivo</mat-option>
+          </mat-select>
+          <mat-hint *ngIf="invalidState" class="text-danger">
             Campo obligatorio
           </mat-hint>
         </mat-form-field>
       </div>
     </div>
     <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="20px">
-      <div fxLayout="column " fxFlex>
+      <div fxLayout="column " fxFlex="20">
         <mat-form-field appearance="outline">
-          <mat-select placeholder="Modulo" formControlName="modulo">
-            <mat-option value="cross"> Cross</mat-option>
-            <mat-option value="productos"> Productos</mat-option>
+          <mat-label>Modulo</mat-label>
+          <mat-select
+            placeholder="Modulo"
+            formControlName="codeModule"
+            (selectionChange)="emitModule()"
+          >
+            <mat-option *ngFor="let module of modules" [value]="module">
+              {{ module }}</mat-option
+            >
           </mat-select>
-          <mat-hint *ngIf="moduloInvalid" class="text-danger">
+          <mat-hint *ngIf="invalidCodeModule" class="text-danger">
+            Campo obligatorio
+          </mat-hint>
+        </mat-form-field>
+      </div>
+      <div fxLayout="column " fxFlex="20">
+        <mat-form-field appearance="outline">
+          <mat-label>Submodulo</mat-label>
+          <mat-select
+            placeholder="Submodulo"
+            formControlName="codeSubModule"
+            (selectionChange)="emitSubModule()"
+          >
+            <mat-option value="XXX"> XXX</mat-option>
+            <mat-option value="YYY"> YYY</mat-option>
+          </mat-select>
+          <mat-hint *ngIf="invalidcodeSubModule" class="text-danger">
+            Campo obligatorio
+          </mat-hint>
+        </mat-form-field>
+      </div>
+      <div fxLayout="column " fxFlex="20">
+        <mat-form-field appearance="outline">
+          <mat-label>Grupo</mat-label>
+          <mat-select
+            placeholder="Grupo"
+            formControlName="codeGroup"
+            (selectionChange)="emitGroup()"
+          >
+            <mat-option value="XXX"> XXX</mat-option>
+            <mat-option value="YYY"> YYY</mat-option>
+          </mat-select>
+          <mat-hint *ngIf="invalidGroup" class="text-danger">
             Campo obligatorio
           </mat-hint>
         </mat-form-field>
       </div>
       <div fxLayout="column " fxFlex>
         <mat-form-field appearance="outline">
+          <mat-label>Funcionalidad</mat-label>
           <mat-select
             placeholder="Funcionalidad"
-            formControlName="funcionalidad"
+            formControlName="codeFunctionality"
           >
             <mat-option value="xxx"> xxx</mat-option>
             <mat-option value="yyy"> yyy</mat-option>
@@ -90,27 +116,45 @@
           </mat-hint>
         </mat-form-field>
       </div>
-      <div fxLayout="column " fxFlex>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
+      <div fxLayout="column " fxFlex="30">
         <mat-form-field appearance="outline">
+          <mat-label>Desde</mat-label>
           <input
             matInput
-            placeholder="Micro Perfil"
-            formControlName="microPerfil"
+            placeholder="Desde"
+            formControlName="addDateFrom"
+            [matDatepicker]="pickerFrom"
+            [(ngModel)]="myDatePickerFrom"
+            (dateChange)="formatDate($event)"
           />
-          <mat-hint *ngIf="microPerfilInvalid" class="text-danger">
-            Campo obligatorio
-          </mat-hint>
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="pickerFrom"
+          ></mat-datepicker-toggle>
+
+          <mat-datepicker #pickerFrom></mat-datepicker>
         </mat-form-field>
       </div>
-      <div fxLayout="column " fxFlex>
+      <div fxLayout="column " fxFlex="30">
         <mat-form-field appearance="outline">
-          <mat-select placeholder="Estado" formControlName="estado">
-            <mat-option value="activo"> activo</mat-option>
-            <mat-option value="inactivo"> inactivo</mat-option>
-          </mat-select>
-          <mat-hint *ngIf="estadoInvalid" class="text-danger">
-            Campo obligatorio
-          </mat-hint>
+          <mat-label>Hasta</mat-label>
+          <input
+            matInput
+            placeholder="Hasta"
+            formControlName="addDateTo"
+            [matDatepicker]="pickerTo"
+            [(ngModel)]="myDatePickerTo"
+            [min]="myDatePickerFrom"
+            (dateChange)="formatDate($event)"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="pickerTo"
+          ></mat-datepicker-toggle>
+
+          <mat-datepicker #pickerTo></mat-datepicker>
         </mat-form-field>
       </div>
     </div>
@@ -121,6 +165,7 @@
         class="button"
         [displayType]="ButtonTypes.RAISED"
         [text]="'BUSCAR'"
+        (click)="emitForm()"
       >
       </app-button>
     </div>
@@ -133,7 +178,7 @@
     [pagination]="true"
     [paginationSizes]="[2, 4, 6]"
     [defaultPageSize]="4"
-    (editData)="getEditData($event)"
+    (editData)="editDataEmit($event)"
   >
   </app-table>
 </div>
