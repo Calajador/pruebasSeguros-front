@@ -18,8 +18,7 @@ import { UsuariosService } from '../services/usuarios.service';
 export class PerfilesContainerComponent implements OnInit, OnDestroy {
   pf$: Observable<PerfilFuncional>;
   perfiles$: Observable<Perfil>;
-  @ViewChild('creacion') creacionCompopnent: any;
-  @ViewChild('modificacion') modificacionCompopnent: any;
+  @ViewChild('mantenimiento') mantenimientoCompopnent: any;
   public perfilEditable: Perfil;
   public readonly ButtonTypes = TypeButtonEnum;
   public readonly ButtonColors = ColorButtonEnum;
@@ -53,7 +52,7 @@ export class PerfilesContainerComponent implements OnInit, OnDestroy {
   }
 
   crearPerfil() {
-    let perfil = this.creacionCompopnent.forma.value;
+    let perfil = this.mantenimientoCompopnent.forma.value;
     this.subscriptions.add(
       this._users.postPerfil(perfil).subscribe((res) => {
         if (res) {
@@ -61,7 +60,7 @@ export class PerfilesContainerComponent implements OnInit, OnDestroy {
             'Conseguido',
             'Perfil Creado Correctamente'
           );
-          this.creacionCompopnent.forma.reset();
+          this.mantenimientoCompopnent.forma.reset();
           this.listarPerfiles();
         }
       })
@@ -69,7 +68,7 @@ export class PerfilesContainerComponent implements OnInit, OnDestroy {
   }
 
   editarPerfil() {
-    let perfil = this.modificacionCompopnent.forma.value;
+    let perfil = this.mantenimientoCompopnent.forma.value;
     this.subscriptions.add(
       this._users
         .editPerfil(this.perfilEditable._id, perfil)
@@ -79,7 +78,7 @@ export class PerfilesContainerComponent implements OnInit, OnDestroy {
               'Conseguido',
               'Perfil modificado Correctamente'
             );
-            this.modificacionCompopnent.forma.reset();
+            this.mantenimientoCompopnent.forma.reset();
             this.listarPerfiles();
             this.index = 0;
           }
@@ -89,5 +88,11 @@ export class PerfilesContainerComponent implements OnInit, OnDestroy {
 
   onLinkClick(event: MatTabChangeEvent) {
     this.index = event.index;
+  }
+
+  volverAcrear() {
+    this.perfilEditable = null;
+    this.mantenimientoCompopnent.selectedProfile = [];
+    this.mantenimientoCompopnent.forma.reset();
   }
 }

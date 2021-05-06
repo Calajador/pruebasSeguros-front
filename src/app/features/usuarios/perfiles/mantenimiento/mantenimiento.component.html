@@ -1,1 +1,121 @@
-<p>mantenimiento works!</p>
+<div class="container mt-4">
+  <div fxLayout="row">
+    <div fxLayout="column " fxFlex>
+      <h4 *ngIf="!_perfil"><strong>Creacion de Perfil</strong></h4>
+      <h4 *ngIf="_perfil"><strong>Modificación de Perfil</strong></h4>
+    </div>
+  </div>
+  <hr />
+  <form [formGroup]="forma">
+    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
+      <div fxLayout="column " fxFlex="10">
+        <mat-form-field appearance="outline">
+          <mat-label>Codigo</mat-label>
+          <input matInput placeholder="Codigo" formControlName="code" />
+          <mat-hint *ngIf="codeInvalid" class="text-danger">
+            Campo obligatorio
+          </mat-hint>
+        </mat-form-field>
+      </div>
+      <div fxLayout="column " fxFlex="30">
+        <mat-form-field appearance="outline">
+          <mat-label>Nombre</mat-label>
+          <input matInput placeholder="Nombre" formControlName="nombre" />
+          <mat-hint *ngIf="nombreInvalid" class="text-danger">
+            Campo obligatorio
+          </mat-hint>
+        </mat-form-field>
+      </div>
+      <div fxLayout="column " fxFlex="30">
+        <mat-form-field appearance="outline">
+          <mat-label>Descripcion</mat-label>
+          <input
+            matInput
+            placeholder="Descripcion"
+            formControlName="descripcion"
+          />
+          <mat-hint *ngIf="descripcionInvalid" class="text-danger">
+            Campo obligatorio
+          </mat-hint>
+        </mat-form-field>
+      </div>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="20px">
+      <div fxLayout="column " fxFlex="40">
+        <mat-form-field appearance="outline">
+          <mat-label>Etiquetas</mat-label>
+          <input matInput placeholder="Etiquetas" />
+        </mat-form-field>
+      </div>
+      <div fxLayout="column " fxFlex="60">
+        <mat-form-field appearance="outline">
+          <mat-label>Observaciones</mat-label>
+          <textarea
+            matInput
+            placeholder="observaciones..."
+            formControlName="observaciones"
+          ></textarea>
+          <mat-hint *ngIf="observacionesInvalid" class="text-danger">
+            Campo obligatorio
+          </mat-hint>
+        </mat-form-field>
+      </div>
+    </div>
+    <div fxLayout="row">
+      <div fxLayout="column " fxFlex>
+        <h4><strong>Menu</strong></h4>
+      </div>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
+      <div fxLayout="column " fxFlex="40">
+        <mat-form-field appearance="outline">
+          <mat-label>Configuración Menu</mat-label>
+          <mat-select placeholder="Configuración Menu">
+            <mat-option value="one">First option</mat-option>
+            <mat-option value="two">Second option</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+    <div fxLayout="row">
+      <div fxLayout="column " fxFlex>
+        <h4><strong>Perfiles Funcionales</strong></h4>
+      </div>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
+      <div fxLayout="column " fxFlexfxFlex="40">
+        <mat-form-field appearance="outline">
+          <mat-label>Plantillas</mat-label>
+          <mat-select placeholder="Plantillas">
+            <mat-option value="one">First option</mat-option>
+            <mat-option value="two">Second option</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div fxLayout="column " fxFlexfxFlex="20">
+        <app-button
+          [color]="ButtonColors.PRIMARY"
+          class="button"
+          [displayType]="ButtonTypes.RAISED"
+          [text]="'BUSCAR PLANTILLA'"
+        >
+        </app-button>
+      </div>
+    </div>
+  </form>
+</div>
+<hr />
+<hr />
+<div class="container">
+  <app-table
+    [tableData]="pf$ | async"
+    [columnHeader]="pfColumns"
+    [filter]="true"
+    [selectedItem]="true"
+    [isMultipleSelected]="false"
+    [pagination]="true"
+    [paginationSizes]="[2, 4, 6]"
+    [defaultPageSize]="4"
+    (selectData)="getSelected($event)"
+  ></app-table>
+</div>

@@ -1,7 +1,7 @@
 <div class="container root">
   <div class="row">
     <div class="col-12">
-      <h6>BUSQUEDA DE PERFILES</h6>
+      <h4><strong>Busqueda Perfiles</strong></h4>
     </div>
   </div>
 
@@ -9,8 +9,8 @@
     <form autocomplete="off" [formGroup]="forma">
       <div class="row">
         <div class="col-2 input">
-          <label for="agentCode">Código</label>
           <mat-form-field appearance="outline">
+            <mat-label>Código</mat-label>
             <input
               matInput
               placeholder="Código"
@@ -23,8 +23,8 @@
           </mat-form-field>
         </div>
         <div class="col-4 input">
-          <label for="agentCode">Nombre y apellidos</label>
           <mat-form-field appearance="outline">
+            <mat-label>Nombre y apellidos</mat-label>
             <input
               matInput
               placeholder="Nombre y apellidos"
@@ -37,8 +37,8 @@
           </mat-form-field>
         </div>
         <div class="col-3 input">
-          <label for="agentCode">Descirpción</label>
           <mat-form-field appearance="outline">
+            <mat-label>Descirpción</mat-label>
             <input
               matInput
               placeholder="Descirpción"
@@ -51,8 +51,8 @@
           </mat-form-field>
         </div>
         <div class="col-3 input">
-          <label for="agentCode">Estado</label>
           <mat-form-field appearance="outline">
+            <mat-label>Estado</mat-label>
             <mat-select
               placeholder="Selecciona"
               formControlName="state"
@@ -69,8 +69,8 @@
       </div>
       <div class="row mt-2">
         <div class="col-3 input">
-          <label for="agentCode">Modulo</label>
           <mat-form-field appearance="outline">
+            <mat-label>Modulo</mat-label>
             <mat-select
               placeholder="Selecciona"
               formControlName="module"
@@ -85,8 +85,8 @@
           </mat-form-field>
         </div>
         <div class="col-3 input">
-          <label for="agentCode">Perfil funcional</label>
           <mat-form-field appearance="outline">
+            <mat-label>Perfil</mat-label>
             <mat-select
               placeholder="Selecciona"
               formControlName="profile"
@@ -101,8 +101,8 @@
           </mat-form-field>
         </div>
         <div class="col-3 input">
-          <label for="agentCode">Etiquetas</label>
           <mat-form-field appearance="outline">
+            <mat-label>Etiquetas</mat-label>
             <input
               matInput
               placeholder="Etiquetas"
@@ -118,26 +118,15 @@
       <small *ngIf="invalidSearch" class="text-danger">
         * Es necesario algún campo para hacer la busqueda
       </small>
-      <div class="row mt-3">
-        <div class="col text-right">
-          <app-button
-            [color]="ButtonColors.PRIMARY"
-            class="button"
-            [displayType]="ButtonTypes.RAISED"
-            [text]="'AÑADIR NUEVO'"
-          >
-          </app-button>
-        </div>
-        <div class="col-3 text-right">
-          <app-button
-            [btnType]="'button'"
-            [color]="ButtonColors.PRIMARY"
-            class="button"
-            [displayType]="ButtonTypes.RAISED"
-            [text]="'BUSCAR'"
-          >
-          </app-button>
-        </div>
+      <div fxLayout="row" fxLayoutAlign="end center">
+        <app-button
+          [btnType]="'button'"
+          [color]="ButtonColors.PRIMARY"
+          class="button"
+          [displayType]="ButtonTypes.RAISED"
+          [text]="'BUSCAR'"
+        >
+        </app-button>
       </div>
     </form>
   </div>

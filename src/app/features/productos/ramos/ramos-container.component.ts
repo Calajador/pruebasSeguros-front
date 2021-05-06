@@ -48,8 +48,8 @@ export class RamosContainerComponent implements OnInit, OnDestroy {
             'Conseguido',
             'Ramo Creado Correctamente'
           );
-          this.mantenimientoCompopnent.forma.reset();
           this.mantenimientoCompopnent.idiomas = [];
+          this.mantenimientoCompopnent.createForm();
           this.listarRamos();
         }
       })
@@ -79,7 +79,7 @@ export class RamosContainerComponent implements OnInit, OnDestroy {
           );
           this.ramoEditable = null;
           this.mantenimientoCompopnent.idiomas = [];
-          this.mantenimientoCompopnent.forma.reset();
+          this.mantenimientoCompopnent.createForm();
           this.listarRamos();
           this.index = 0;
         }

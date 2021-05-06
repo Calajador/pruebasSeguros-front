@@ -63,4 +63,29 @@ export class MantenimientoComponent implements OnInit {
       });
     }
   }
+
+  get codeInvalid() {
+    return this.forma.get('code').invalid && this.forma.get('code').touched;
+  }
+  get nombreInvalid() {
+    return this.forma.get('nombre').invalid && this.forma.get('nombre').touched;
+  }
+
+  get descripcionInvalid() {
+    return (
+      this.forma.get('descripcion').invalid &&
+      this.forma.get('descripcion').touched
+    );
+  }
+  get observacionesInvalid() {
+    return (
+      this.forma.get('observaciones').invalid &&
+      this.forma.get('observaciones').touched
+    );
+  }
+
+  getSelected(data) {
+    this.selectedProfile = data;
+    this.forma.get('perfilFuncional').setValue(this.selectedProfile[0]._id);
+  }
 }
