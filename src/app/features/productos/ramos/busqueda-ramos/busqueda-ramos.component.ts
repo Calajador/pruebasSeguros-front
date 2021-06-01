@@ -70,14 +70,4 @@ export class BusquedaRamosComponent implements OnInit {
   get nombreInvalid() {
     return this.forma.get('nombre').invalid && this.forma.get('nombre').touched;
   }
-
-  formatDate(e) {
-    let convertDate = new Date(e.target.value).toISOString().substring(0, 10);
-    this.forma.get('fechaInicio').setValue(convertDate, {
-      onlyself: true,
-    });
-    this.forma.get('fechaFin').setValue(convertDate, {
-      onlyself: true,
-    });
-  }
 }

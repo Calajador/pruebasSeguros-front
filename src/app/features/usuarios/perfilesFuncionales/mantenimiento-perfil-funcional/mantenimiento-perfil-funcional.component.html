@@ -1,0 +1,104 @@
+<div class="container mt-4">
+  <div fxLayout="row">
+    <div fxLayout="column " fxFlex>
+      <h4 *ngIf="!_pf"><strong>Creacion de Perfil Funciona</strong></h4>
+      <h4 *ngIf="_pf"><strong>Modificación de Perfil Funcional</strong></h4>
+    </div>
+  </div>
+  <hr />
+  <form [formGroup]="forma">
+    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
+      <div fxLayout="column " fxFlex="14">
+        <mat-form-field appearance="outline">
+          <mat-label>Codigo</mat-label>
+          <input matInput placeholder="Codigo" formControlName="code" />
+          <mat-hint *ngIf="codigoInvalid" class="text-danger">
+            Campo obligatorio
+          </mat-hint>
+        </mat-form-field>
+      </div>
+      <div fxLayout="column " fxFlex>
+        <mat-form-field appearance="outline">
+          <mat-label>Nombre</mat-label>
+          <input matInput placeholder="Nombre" formControlName="name" />
+          <mat-hint *ngIf="nombreInvalid" class="text-danger">
+            Campo obligatorio
+          </mat-hint>
+        </mat-form-field>
+      </div>
+      <div fxLayout="column " fxFlex>
+        <mat-form-field appearance="outline">
+          <mat-label>Estado</mat-label>
+          <mat-select placeholder="Estado" formControlName="state">
+            <mat-option value="activo"> Activo</mat-option>
+            <mat-option value="inactivo"> Inactivo</mat-option>
+          </mat-select>
+          <mat-hint *ngIf="estadoInvalid" class="text-danger">
+            Campo obligatorio
+          </mat-hint>
+        </mat-form-field>
+      </div>
+      <div fxLayout="column " fxFlex>
+        <mat-form-field appearance="outline">
+          <mat-label>Fecha de Alta</mat-label>
+          <input
+            matInput
+            placeholder="Fecha de Alta"
+            formControlName="addDate"
+            [matDatepicker]="picker"
+            (dateChange)="formatDate($event)"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-hint *ngIf="addDateInvalid" class="text-danger">
+            Campo obligatorio
+          </mat-hint>
+        </mat-form-field>
+      </div>
+    </div>
+  </form>
+  <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
+    <div fxLayout="column " fxFlex="20">
+      <mat-select
+        placeholder="Modulo"
+        [(ngModel)]="SelectedModule"
+        name="modulo"
+        (selectionChange)="cargarFuncionalidades($event.value)"
+      >
+        <mat-option value="cross"> Cross</mat-option>
+        <mat-option value="productos"> Productos</mat-option>
+      </mat-select>
+    </div>
+  </div>
+</div>
+<hr />
+<hr />
+<div *ngIf="dataSource" fxLayout="row" fxLayoutAlign="start center">
+  <div fxLayout="column " fxFlex="90">
+    <div *ngFor="let data of dataSource">
+      <div fxLayout="row">
+        <p>
+          <strong>{{ data.subModulo }}</strong>
+        </p>
+        <span> | </span>
+        <p>
+          <strong>{{ data.grupo }}</strong>
+        </p>
+      </div>
+      <div fxLayout="row">
+        <mat-checkbox>{{ data.funcionalidad1 }}</mat-checkbox>
+      </div>
+      <div fxLayout="row">
+        <mat-checkbox>{{ data.funcionalidad2 }}</mat-checkbox>
+      </div>
+      <div fxLayout="row">
+        <mat-checkbox>{{ data.funcionalidad3 }}</mat-checkbox>
+      </div>
+      <hr />
+    </div>
+  </div>
+</div>

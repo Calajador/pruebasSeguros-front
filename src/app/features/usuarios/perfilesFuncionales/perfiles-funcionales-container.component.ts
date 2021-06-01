@@ -16,8 +16,7 @@ import { UsuariosService } from '../services/usuarios.service';
 })
 export class PerfilesFuncionalesContainerComponent implements OnInit {
   pf$: Observable<PerfilFuncional>;
-  @ViewChild('creacion') creacionCompopnent: any;
-  @ViewChild('modificacion') modificacionCompopnent: any;
+  @ViewChild('mantenimiento') mantenimientoCompopnent: any;
   index = 0;
   public pfEditable: PerfilFuncional;
   public readonly ButtonTypes = TypeButtonEnum;
@@ -37,18 +36,7 @@ export class PerfilesFuncionalesContainerComponent implements OnInit {
   }
 
   crearPerfilFuncional() {
-    let ramo = this.creacionCompopnent.forma.value;
-    this.subscriptions.add(
-      this._users.postPerfilFunciona(ramo).subscribe((res) => {
-        if (res) {
-          this._alerts.mensajeCorrecto(
-            'Conseguido',
-            'Ramo Creado Correctamente'
-          );
-          this.creacionCompopnent.forma.reset();
-        }
-      })
-    );
+    let ramo = this.mantenimientoCompopnent.forma.value;
   }
   getDataSearch(data: any) {
     console.log(data);
@@ -72,25 +60,16 @@ export class PerfilesFuncionalesContainerComponent implements OnInit {
   }
 
   editarPerfilFuncional() {
-    let pf = this.modificacionCompopnent.forma.value;
-    this.subscriptions.add(
-      this._users
-        .editarPerfilFuncional(this.pfEditable._id, pf)
-        .subscribe((res) => {
-          if (res) {
-            this._alerts.mensajeCorrecto(
-              'Conseguido',
-              'Perfil Funcional Modificado Correctamente'
-            );
-            this.modificacionCompopnent.forma.reset();
-            this.listarPerfilesFuncionales();
-            this.index = 2;
-          }
-        })
-    );
+    let pf = this.mantenimientoCompopnent.forma.value;
   }
 
   onLinkClick(event: MatTabChangeEvent) {
     this.index = event.index;
+  }
+
+  volverAcrear() {
+    this.pfEditable = null;
+    this.mantenimientoCompopnent.forma.reset();
+    this.index = 0;
   }
 }

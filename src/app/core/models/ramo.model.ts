@@ -6,7 +6,7 @@ export interface Ramo {
   codigo: string;
   nombres: MultiLanguage[];
   compañia: string;
-  ssn: string[];
+  ssn: string;
   contable: number;
   fechaInicio: Date;
   fechaFin?: Date;

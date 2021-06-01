@@ -10,6 +10,7 @@
     <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="20px">
       <div fxLayout="column " fxFlex>
         <mat-form-field appearance="outline">
+          <mat-label>Usuario</mat-label>
           <input matInput placeholder="Usuario" formControlName="usuario" />
           <mat-hint *ngIf="usuarioInvalid" class="text-danger">
             Campo obligatorio
@@ -18,6 +19,7 @@
       </div>
       <div fxLayout="column " fxFlex>
         <mat-form-field appearance="outline">
+          <mat-label>Nombre</mat-label>
           <input matInput placeholder="Nombre" formControlName="nombre" />
           <mat-hint *ngIf="nombreInvalid" class="text-danger">
             Campo obligatorio
@@ -26,6 +28,7 @@
       </div>
       <div fxLayout="column " fxFlex>
         <mat-form-field appearance="outline">
+          <mat-label>Fecha de Alta</mat-label>
           <input
             matInput
             placeholder="Fecha de Alta"
@@ -46,6 +49,7 @@
       </div>
       <div fxLayout="column " fxFlex>
         <mat-form-field appearance="outline">
+          <mat-label>Estado</mat-label>
           <mat-select placeholder="Estado" formControlName="estado">
             <mat-option value="activo"> Activo</mat-option>
             <mat-option value="inactivo"> Inactivo</mat-option>
@@ -59,9 +63,10 @@
     <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="20px">
       <div fxLayout="column " fxFlex>
         <mat-form-field appearance="outline">
+          <mat-label>Contraseña</mat-label>
           <input
             matInput
-            placeholder="Password"
+            placeholder="Contraseña"
             [type]="hide ? 'password' : 'text'"
             formControlName="password"
             required
@@ -76,11 +81,20 @@
       </div>
       <div fxLayout="column " fxFlex>
         <mat-form-field appearance="outline">
-          <input matInput placeholder="Repetir Contraseña" />
+          <mat-label>Repetir Contraseña</mat-label>
+          <input
+            matInput
+            placeholder="Repetir Contraseña"
+            [type]="hide ? 'password' : 'text'"
+          />
+          <mat-icon matSuffix (click)="hide = !hide">{{
+            hide ? "visibility_off" : "visibility"
+          }}</mat-icon>
         </mat-form-field>
       </div>
       <div fxLayout="column " fxFlex>
         <mat-form-field appearance="outline">
+          <mat-label>Correo Electronico</mat-label>
           <input
             matInput
             placeholder="Correo Electronico"
@@ -94,6 +108,7 @@
       </div>
       <div fxLayout="column " fxFlex>
         <mat-form-field appearance="outline">
+          <mat-label>Idioma</mat-label>
           <mat-select placeholder="Idioma" formControlName="idioma">
             <mat-option value="Español-España">Español-España</mat-option>
             <mat-option value="Español-Argentina">Español-Argentina</mat-option>

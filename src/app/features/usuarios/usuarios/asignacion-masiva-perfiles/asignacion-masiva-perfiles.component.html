@@ -1,7 +1,7 @@
 <div class="container mt-4">
   <div fxLayout="row">
     <div fxLayout="column " fxFlex>
-      <h6>Asignación Masiva de Perfiles</h6>
+      <h4><strong>Asignación Masiva de Perfiles</strong></h4>
     </div>
   </div>
   <hr />
@@ -9,6 +9,7 @@
     <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="20px">
       <div fxLayout="column " fxFlex>
         <mat-form-field appearance="outline">
+          <mat-label>Usuario</mat-label>
           <input matInput placeholder="Usuario" formControlName="usuario" />
           <mat-hint *ngIf="usuarioInvalid" class="text-danger">
             Campo obligatorio
@@ -17,6 +18,7 @@
       </div>
       <div fxLayout="column " fxFlex>
         <mat-form-field appearance="outline">
+          <mat-label>Nombre</mat-label>
           <input matInput placeholder="Nombre" formControlName="nombre" />
           <mat-hint *ngIf="nombreInvalid" class="text-danger">
             Campo obligatorio
@@ -25,6 +27,7 @@
       </div>
       <div fxLayout="column " fxFlex>
         <mat-form-field appearance="outline">
+          <mat-label>Estado</mat-label>
           <mat-select placeholder="Estado" formControlName="estado">
             <mat-option value="activo"> Activo</mat-option>
             <mat-option value="inactivo"> Inactivo</mat-option>
@@ -38,6 +41,7 @@
     <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="20px">
       <div fxLayout="column " fxFlex>
         <mat-form-field appearance="outline">
+          <mat-label>Perfil</mat-label>
           <mat-select placeholder="Perfil" formControlName="perfil">
             <mat-option *ngFor="let item of perfiles" [value]="item._id">{{
               item.nombre
@@ -50,6 +54,7 @@
       </div>
       <div fxLayout="column " fxFlex>
         <mat-form-field appearance="outline">
+          <mat-label>Fecha de Alta</mat-label>
           <input
             matInput
             placeholder="Fecha de Alta"
@@ -90,18 +95,17 @@
     <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="20px">
       <div fxLayout="column " fxFlex>
         <mat-form-field appearance="outline">
+          <mat-label>Perfil</mat-label>
           <mat-select placeholder="Perfil" formControlName="perfil">
             <mat-option *ngFor="let item of perfiles" [value]="item._id">{{
               item.nombre
             }}</mat-option>
           </mat-select>
-          <mat-hint *ngIf="perfilInvalid" class="text-danger">
-            Campo obligatorio
-          </mat-hint>
         </mat-form-field>
       </div>
       <div fxLayout="column " fxFlex>
         <mat-form-field appearance="outline">
+          <mat-label>Fecha de Alta</mat-label>
           <input
             matInput
             placeholder="Fecha de Alta"
@@ -115,9 +119,6 @@
           ></mat-datepicker-toggle>
 
           <mat-datepicker #picker2></mat-datepicker>
-          <mat-hint *ngIf="addDateInvalid" class="text-danger">
-            Campo obligatorio
-          </mat-hint>
         </mat-form-field>
       </div>
     </div>

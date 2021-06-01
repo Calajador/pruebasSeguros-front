@@ -4,8 +4,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatTreeNestedDataSource } from '@angular/material/tree';
 import { Funcionalidad } from 'src/app/core/models/funcionalitie.model';
 import { Modulo } from 'src/app/core/models/modulo.model';
-import { functionality } from 'src/app/core/modulos/moduloCross';
-import { moduloProductos } from 'src/app/core/modulos/moduloProductos';
 
 @Component({
   selector: 'app-creacion-perfil-funcional',
@@ -21,19 +19,6 @@ export class CreacionPerfilFuncionalComponent implements OnInit {
   constructor(private fb: FormBuilder) {}
   ngOnInit(): void {
     this.createForm();
-  }
-
-  cargarFuncionalidades(modulo: string) {
-    this.SelectedModule = modulo;
-    if (modulo === 'cross') {
-      console.log('Cross Seleccionado');
-      this.dataSource = functionality;
-    }
-
-    if (modulo === 'productos') {
-      console.log('Productos Seleccionado');
-      this.dataSource = moduloProductos;
-    }
   }
 
   createForm() {

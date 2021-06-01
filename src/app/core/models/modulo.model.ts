@@ -1,7 +1,10 @@
 import { Funcionalidad } from './funcionalitie.model';
 
 export interface Modulo {
-  name?: string;
-  children?: Modulo[];
-  funcionalidades?: Funcionalidad[];
+  subModulo?: string;
+  grupo?: string;
+  funcionalidad1?: string;
+  funcionalidad2?: string;
+  funcionalidad3?: string;
+  funcionalidad4?: string;
 }

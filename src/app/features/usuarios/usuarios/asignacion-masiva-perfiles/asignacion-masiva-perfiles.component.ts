@@ -25,11 +25,13 @@ export class AsignacionMasivaPerfilesComponent implements OnInit {
     usuario: 'Usuario',
     nombre: 'Nombre',
     estado: 'Estado',
+    perfil: 'Perfil',
   };
   usuariosSelColumns = {
     usuario: 'Usuario',
     nombre: 'Nombre',
     estado: 'Estado',
+    perfil: 'Perfil',
     Borrar: 'grid.delete',
   };
   constructor(private fb: FormBuilder) {}

@@ -14,22 +14,19 @@
         (emitEditData)="getEditData($event)"
       ></app-busqueda-perfiles-funcionales>
     </mat-tab>
-    <mat-tab label="CREACIÓN DE PERFILES FUNCIONALES"
-      ><app-creacion-perfil-funcional #creacion></app-creacion-perfil-funcional
+    <mat-tab label="MANTENIMIENTO PERFILES FUNCIONALES"
+      ><app-mantenimiento-perfil-funcional
+        #mantenimiento
+        [perfilFuncional]="pfEditable"
+      ></app-mantenimiento-perfil-funcional
     ></mat-tab>
-    <mat-tab label="MODIFICACIÓN DE PERFILES FUNCIONALES">
-      <app-modificacion-perfil-funcional
-        #modificacion
-        [PerfilFuncional]="pfEditable"
-      ></app-modificacion-perfil-funcional>
-    </mat-tab>
   </mat-tab-group>
 </div>
 
 <div class="container">
-  <div fxLayout="row" fxLayoutAlign="end center">
+  <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="15px">
     <app-button
-      *ngIf="index === 1"
+      *ngIf="!pfEditable && index === 1"
       [color]="ButtonColors.PRIMARY"
       [displayType]="ButtonTypes.RAISED"
       [text]="'Crear Perfil Funcional'"
@@ -37,12 +34,20 @@
       (click)="crearPerfilFuncional()"
     ></app-button>
     <app-button
-      *ngIf="index === 2"
+      *ngIf="pfEditable && index === 1"
       [color]="ButtonColors.PRIMARY"
       [displayType]="ButtonTypes.RAISED"
-      [text]="'Modificar Perfil Funcional'"
+      [text]="'Crear Perfil Funcional'"
       rightIcon="add"
-      (click)="editarPerfilFuncional()"
+      (click)="volverAcrear()"
+    ></app-button>
+    <app-button
+      *ngIf="pfEditable && index === 1"
+      [color]="ButtonColors.PRIMARY"
+      [displayType]="ButtonTypes.RAISED"
+      [text]="'Editar Perfil Funcional'"
+      rightIcon="add"
+      (click)="crearPerfilFuncional()"
     ></app-button>
   </div>
 </div>

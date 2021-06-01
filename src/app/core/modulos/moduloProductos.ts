@@ -1,99 +1,19 @@
 import { Modulo } from '../models/modulo.model';
 
-export const moduloProductos: Modulo[] = [
+export const productos: Modulo[] = [
   {
-    name: 'Productos',
-    children: [
-      {
-        name: 'Productos',
-        children: [
-          {
-            name: 'Alta de productos',
-            funcionalidades: [
-              {
-                name: 'funcionalidad 1',
-                granted: 'Denegado',
-                microProfile: 'OP003',
-              },
-              {
-                name: 'funcionalidad 1',
-                granted: 'Denegado',
-                microProfile: 'OP003',
-              },
-              {
-                name: 'funcionalidad 1',
-                granted: 'Denegado',
-                microProfile: 'OP005',
-              },
-            ],
-          },
-          {
-            name: 'Consulta de Productos',
-            funcionalidades: [
-              {
-                name: 'funcionalidad 1',
-                granted: 'Denegado',
-                microProfile: 'OP001',
-              },
-              {
-                name: 'funcionalidad 1',
-                granted: 'Denegado',
-                microProfile: 'OP001',
-              },
-              {
-                name: 'funcionalidad 1',
-                granted: 'Denegado',
-                microProfile: 'OP001',
-              },
-            ],
-          },
-        ],
-      },
-      {
-        name: 'Submodulo',
-        children: [
-          {
-            name: 'Grupo1',
-            funcionalidades: [
-              {
-                name: 'Funcionalidad 1',
-                granted: 'Denegado',
-                microProfile: 'OP003',
-              },
-              {
-                name: 'Funcionalidad 2',
-                granted: 'Denegado',
-                microProfile: 'OP003',
-              },
-              {
-                name: 'Funcionalidad 3',
-                granted: 'Denegado',
-                microProfile: 'OP005',
-              },
-            ],
-          },
-          {
-            name: 'Grupo2',
-            funcionalidades: [
-              {
-                name: 'Funcionalidad 1',
-                granted: 'Denegado',
-                microProfile: 'OP003',
-              },
-              {
-                name: 'Funcionalidad 2',
-                granted: 'Denegado',
-                microProfile: 'OP003',
-              },
-              {
-                name: 'Funcionalidad 3',
-                granted: 'Denegado',
-                microProfile: 'OP005',
-              },
-            ],
-          },
-        ],
-      },
-    ],
+    subModulo: 'Productos',
+    grupo: 'Alta de Productos',
+    funcionalidad1: 'Alta Prodcutos',
+    funcionalidad2: 'Alta Ramos',
+    funcionalidad3: 'Alta Divisas',
+  },
+
+  {
+    subModulo: 'Productos',
+    grupo: 'Consulta de Productos',
+    funcionalidad1: 'Consulta Prodcutos',
+    funcionalidad2: 'Consulta Ramos',
+    funcionalidad3: 'Consulta Divisas',
   },
 ];
